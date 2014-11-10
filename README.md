@@ -3,6 +3,7 @@ IDCM
 
 Individual Data  Center of Microbial resources (IDCM)
 ***********************************************************
+With function requirements:
 
 Desktop software package for microbial resources researchers
 
