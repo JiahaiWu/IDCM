@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B9AE283F-4726-4DB1-AC95-20B93F94366E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IDCM</RootNamespace>
+    <AssemblyName>IDCM</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>发布\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=1.38.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Dapper.1.38\lib\net40\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.Rainbow.SQLite">
+      <HintPath>..\packages\Dapper.Rainbow.SQLite.0.1.2\lib\net40\Dapper.Rainbow.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net40\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.94.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.94.0\lib\net40\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.94.0\lib\net40\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddedEI\Debug\DBReseter.cs" />
+    <Compile Include="AddedEI\Test\SqLiteTester.cs" />
+    <Compile Include="AppContext\IDCMAppContext.cs" />
+    <Compile Include="AppContext\LongTermHandleNoter.cs" />
+    <Compile Include="AppContext\WorkSpaceHolder.cs" />
+    <Compile Include="ControlMBL\AsyncInvoker\ComboxAsyncUitl.cs" />
+    <Compile Include="ControlMBL\AsyncInvoker\ControlAsyncUtil.cs" />
+    <Compile Include="ControlMBL\AsyncInvoker\DateTimePikcerAsyncUtil.cs" />
+    <Compile Include="ControlMBL\AsyncInvoker\DGVAsyncUtil.cs" />
+    <Compile Include="ControlMBL\Module\LibFieldBuilder.cs" />
+    <Compile Include="ControlMBL\Module\LocalDataSetBuilder.cs" />
+    <Compile Include="ControlMBL\Module\LocalLibBuilder.cs" />
+    <Compile Include="ControlMBL\Utilities\ControlUtil.cs" />
+    <Compile Include="ControlMBL\Utilities\DGVUtil.cs" />
+    <Compile Include="OverallSC\Commons\Generator\Base64CShared.cs" />
+    <Compile Include="OverallSC\Commons\Generator\Base64Shared.cs" />
+    <Compile Include="OverallSC\Commons\Generator\Base64SharedI.cs" />
+    <Compile Include="OverallSC\Commons\Generator\CUIDGenerator.cs" />
+    <Compile Include="OverallSC\Commons\HashUtil.cs" />
+    <Compile Include="OverallSC\Commons\SockUtil.cs" />
+    <Compile Include="OverallSC\Commons\StringUtil.cs" />
+    <Compile Include="OverallSC\Commons\FileUtil.cs" />
+    <Compile Include="OverallSC\ShareSync\ConfigurationHelper.cs" />
+    <Compile Include="OverallSC\ShareSync\ExtResponseCode.cs" />
+    <Compile Include="OverallSC\ShareSync\IDCMEnvironment.cs" />
+    <Compile Include="OverallSC\ShareSync\ResponseCodeMap.cs" />
+    <Compile Include="OverallSC\ShareSync\ShareSyncLockers.cs" />
+    <Compile Include="OverallSC\ShareSync\SysConstants.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceBL\CmdChannel\CmdConsole.cs" />
+    <Compile Include="ServiceBL\Common\ColumnMapping.cs" />
+    <Compile Include="ServiceBL\Common\Converter\AttrTypeConverter.cs" />
+    <Compile Include="ServiceBL\Common\Converter\CVNameConverter.cs" />
+    <Compile Include="ServiceBL\Common\Converter\StrValConverter.cs" />
+    <Compile Include="ServiceBL\Common\Converter\StrViewConverter.cs" />
+    <Compile Include="ServiceBL\Common\ExportType.cs" />
+    <Compile Include="ServiceBL\Common\HandleToken.cs" />
+    <Compile Include="ServiceBL\Common\ObjectPair.cs" />
+    <Compile Include="ServiceBL\DataTransfer\ColumnMappingHolder.cs" />
+    <Compile Include="ServiceBL\DataTransfer\CTableSetting.cs" />
+    <Compile Include="ServiceBL\DataTransfer\CTableSigner.cs" />
+    <Compile Include="ServiceBL\DataTransfer\ExcelDataImporter.cs" />
+    <Compile Include="ServiceBL\DataTransfer\ExcelExporter.cs" />
+    <Compile Include="ServiceBL\DataTransfer\JSONListExporter.cs" />
+    <Compile Include="ServiceBL\DataTransfer\TextExporter.cs" />
+    <Compile Include="ServiceBL\Handle\AbsHandler.cs" />
+    <Compile Include="ServiceBL\Handle\ExcelExportHandler.cs" />
+    <Compile Include="ServiceBL\Handle\ExcelImportHandler.cs" />
+    <Compile Include="ServiceBL\Handle\JSONListExportHandler.cs" />
+    <Compile Include="ServiceBL\Handle\LocalHandlerProxy.cs" />
+    <Compile Include="ServiceBL\Handle\SelectDataRowHandler.cs" />
+    <Compile Include="ServiceBL\Handle\TextExportHandler.cs" />
+    <Compile Include="ServiceBL\Handle\UpdateHomeDataViewHandler.cs" />
+    <Compile Include="ServiceBL\Handle\UpdateHomeLibCountHandler.cs" />
+    <Compile Include="ServiceBL\Handle\UpdateTemplateHandler.cs" />
+    <Compile Include="ServiceBL\ServBuf\BGWorkerPool.cs" />
+    <Compile Include="ServiceBL\ServProcessor\TemplateUpdater.cs" />
+    <Compile Include="SimpleDAL\DAM\BaseInfoNoteDAM.cs" />
+    <Compile Include="SimpleDAL\DAM\CTDRecordDAM.cs" />
+    <Compile Include="SimpleDAL\DAM\CustomTColDefDAM.cs" />
+    <Compile Include="SimpleDAL\DAM\CustomTColMapDAM.cs" />
+    <Compile Include="SimpleDAL\DBCP\DAMBase.cs" />
+    <Compile Include="SimpleDAL\DAM\LibraryNodeDAM.cs" />
+    <Compile Include="SimpleDAL\DAM\DelayWorkNoteDAM.cs" />
+    <Compile Include="SimpleDAL\DBCP\SQLiteConnPicker.cs" />
+    <Compile Include="SimpleDAL\DBCP\SQLiteHelper.cs" />
+    <Compile Include="SimpleDAL\POO\CustomTColDef.cs" />
+    <Compile Include="SimpleDAL\POO\CustomTColMap.cs" />
+    <Compile Include="SimpleDAL\POO\DBVersionNote.cs" />
+    <Compile Include="SimpleDAL\POO\LibraryNode.cs" />
+    <Compile Include="SimpleDAL\POO\DelayWorkNote.cs" />
+    <Compile Include="ViewLL\Manager\HomeViewManager.cs" />
+    <Compile Include="ViewLL\Manager\IDCMVeiwManger.cs" />
+    <Compile Include="ViewLL\Manager\LibFieldManager.cs" />
+    <Compile Include="ViewLL\Manager\ManagerI.cs" />
+    <Compile Include="ViewLL\Win\ExportTypeDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewLL\Win\ExportTypeDlg.Designer.cs">
+      <DependentUpon>ExportTypeDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewLL\Win\HomeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewLL\Win\HomeView.Designer.cs">
+      <DependentUpon>HomeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewLL\Win\IDCMForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewLL\Win\IDCMForm.Designer.cs">
+      <DependentUpon>IDCMForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewLL\Win\LibFieldSettingDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewLL\Win\LibFieldSettingDlg.Designer.cs">
+      <DependentUpon>LibFieldSettingDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewLL\Win\LibFieldSettingView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewLL\Win\LibFieldSettingView.Designer.cs">
+      <DependentUpon>LibFieldSettingView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewLL\Win\ProcessDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewLL\Win\ProcessDlg.Designer.cs">
+      <DependentUpon>ProcessDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewLL\Win\StartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewLL\Win\StartForm.Designer.cs">
+      <DependentUpon>StartForm.cs</DependentUpon>
+    </Compile>
+    <Content Include="AddedEI\AddedEI.txt" />
+    <Content Include="OverallSC\OverallSC.txt" />
+    <Content Include="ServiceBL\ServiceBL.txt" />
+    <Content Include="SimpleDAL\SimpleDAL.txt" />
+    <Content Include="ViewLL\ViewLL.txt" />
+    <EmbeddedResource Include="ViewLL\Win\ExportTypeDlg.resx">
+      <DependentUpon>ExportTypeDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\HomeView.resx">
+      <DependentUpon>HomeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\IDCMForm.resx">
+      <DependentUpon>IDCMForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\LibFieldSettingDlg.resx">
+      <DependentUpon>LibFieldSettingDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\LibFieldSettingView.resx">
+      <DependentUpon>LibFieldSettingView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\ProcessDlg.resx">
+      <DependentUpon>ProcessDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\StartForm.resx">
+      <DependentUpon>StartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Resources\uploading2_cut1.gif" />
+    <None Include="Resources\upload.png" />
+    <None Include="Resources\up.png" />
+    <None Include="Resources\search.png" />
+    <None Include="Resources\remove1.png" />
+    <None Include="Resources\remove.png" />
+    <None Include="Resources\refresh.png" />
+    <None Include="Resources\online.png" />
+    <None Include="Resources\newRecord.png" />
+    <None Include="Resources\newDoc.png" />
+    <None Include="Resources\local.png" />
+    <None Include="Resources\layout2.png" />
+    <None Include="Resources\initView.png" />
+    <None Include="Resources\import1.png" />
+    <None Include="Resources\import.png" />
+    <None Include="Resources\help.png" />
+    <None Include="Resources\gcm_logo.png" />
+    <None Include="Resources\folder.gif" />
+    <None Include="Resources\File.bmp" />
+    <None Include="Resources\export.png" />
+    <None Include="Resources\download.png" />
+    <None Include="Resources\down.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\del_note.gif" />
+    <None Include="Resources\btn.jpg" />
+    <None Include="Resources\bg2.jpg" />
+    <None Include="Resources\base.gif" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="ControlMBL\ControlMBL.txt" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AddedEI\Support\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

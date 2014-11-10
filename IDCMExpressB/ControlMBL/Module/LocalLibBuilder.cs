@@ -1,0 +1,291 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Resources;
+using IDCM.SimpleDAL.POO;
+using System.Data;
+using System.Data.SQLite;
+using IDCM.ServiceBL.DataTransfer;
+using System.Drawing;
+using IDCM.ViewLL.Manager;
+using IDCM.SimpleDAL.DBCP;
+using IDCM.ServiceBL;
+using IDCM.ServiceBL.Handle;
+using IDCM.ServiceBL.CmdChannel;
+using IDCM.SimpleDAL.DAM;
+using IDCM.AppContext;
+
+namespace IDCM.ControlMBL.Module
+{
+    class LocalLibBuilder
+    {
+        #region 构造&析构
+        /// <summary>
+        /// 初始化个人资源目录树
+        /// </summary>
+        /// <param name="libTree"></param>
+        public LocalLibBuilder(TreeView _baseTree, TreeView _libTree)
+        {
+            baseTree = _baseTree;
+            libTree = _libTree;
+            //reset（baseTree & customTree）
+            baseTree.Nodes.Clear();
+            libTree.Nodes.Clear();
+        }
+        ~LocalLibBuilder()
+        {
+            Dispose();
+        }
+        public void Dispose()
+        {
+            baseTree = null;
+            libTree = null;
+        }
+        #endregion
+        #region 实例对象保持部分
+        private TreeNode rootNode_all = null;
+
+        public TreeNode RootNode_all
+        {
+            get { return rootNode_all; }
+        }
+        private TreeNode rootNode_unfiled = null;
+
+        public TreeNode RootNode_unfiled
+        {
+            get { return rootNode_unfiled; }
+        }
+        private TreeNode rootNode_trash = null;
+
+        public TreeNode RootNode_trash
+        {
+            get { return rootNode_trash; }
+        }
+        private TreeNode selectedNode_Current = null;
+        public TreeNode SelectedNode_Current
+        {
+            get { return selectedNode_Current; }
+        }
+        private TreeView baseTree;
+
+        public TreeView BaseTree
+        {
+            get { return baseTree; }
+        }
+        private TreeView libTree;
+
+        public TreeView LibTree
+        {
+            get { return libTree; }
+        }
+        #endregion
+
+        /// <summary>
+        /// 根据当前焦点的TreeNode筛选可用的右键菜单显示列表项
+        /// </summary>
+        /// <param name="cms"></param>
+        /// <param name="snode"></param>
+        public static void filterContextMenuItems(ContextMenuStrip cms, TreeNode snode)
+        {
+            foreach (ToolStripItem tsItem in cms.Items)
+            {
+                if (tsItem is ToolStripSeparator)
+                    continue;
+                tsItem.Visible = false;
+            }
+            if (snode == null)
+            {
+                cms.Items["CreateGroupSet"].Visible = true;
+                cms.Items["CreateGroup"].Visible = true;
+                cms.Items["CreateSmartGroup"].Visible = true;
+            }
+            else
+            {
+                if (snode.Parent == null)
+                {
+                    cms.Items["CreateGroupSet"].Visible = true;
+                    cms.Items["RenameGroupSet"].Visible = true;
+                    cms.Items["DeleteGroupSet"].Visible = true;
+                    cms.Items["CreateGroup"].Visible = true;
+                }
+                else
+                {
+                    cms.Items["CreateGroup"].Visible = true;
+                    cms.Items["RenameGroup"].Visible = true;
+                    cms.Items["DeleteGroup"].Visible = true;
+                    cms.Items["CreateSmartGroup"].Visible = true;
+                }
+            }
+        }
+        /// <summary>
+        /// 根据指定焦点的TreeNode获取归档数据集
+        /// </summary>
+        public void loadTreeSet()
+        {
+            // 添加默认的三个根节点（All Strains，Unfiled，Trash）其Name应为负数值的字符串表示
+            rootNode_all = new TreeNode("All Strains", 0, 0);
+            rootNode_all.Name = LibraryNodeDAM.REC_ALL.ToString();
+            rootNode_unfiled = new TreeNode("Unfiled", 0, 0);
+            rootNode_unfiled.Name = LibraryNodeDAM.REC_UNFILED.ToString();
+            rootNode_trash = new TreeNode("Trash", 0, 0);
+            rootNode_trash.Name = LibraryNodeDAM.REC_TRASH.ToString();
+            baseTree.Nodes.Add(rootNode_all);
+            baseTree.Nodes.Add(rootNode_unfiled);
+            baseTree.Nodes.Add(rootNode_trash);
+            /////////////////////////////////////////////////////////////////
+            List<LibraryNode> pnodes = LibraryNodeDAM.findParentNodes();
+            if (pnodes == null || pnodes.Count == 0)
+            {
+                LibraryNode node = new LibraryNode("My Group Set (Temp)", "GroupSet", "My Group Set (Temp)", -1);
+                LibraryNodeDAM.saveLibraryNode(node);
+                long newlid = node.Lid;
+                pnodes = LibraryNodeDAM.findParentNodes();
+            }
+            foreach (LibraryNode dr in pnodes)
+            {
+                TreeNode gsNode = new TreeNode(dr.Name, 1, 1);
+                gsNode.Name = dr.Lid.ToString();
+                libTree.Nodes.Add(gsNode);
+            }
+            foreach(TreeNode lnode in libTree.Nodes)
+            {
+                long pid=Convert.ToInt64(lnode.Name);
+                List<LibraryNode> subnodes = LibraryNodeDAM.findSubNodes(pid);
+                if (subnodes != null)
+                {
+                    foreach (LibraryNode node in subnodes)
+                    {
+                        TreeNode gsubNode = new TreeNode(node.Name, 2, 2);
+                        gsubNode.Name = node.Lid.ToString();
+                        lnode.Nodes.Add(gsubNode);
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// 删除节点操作
+        /// </summary>
+        /// <param name="treeNode"></param>
+        internal void deleteNode(TreeNode treeNode)
+        {
+            long referNameId = Convert.ToInt64(treeNode.Name);
+            int res=LibraryNodeDAM.delNodeCascaded(referNameId);
+            treeNode.Remove();
+#if DEBUG
+            System.Diagnostics.Debug.Assert(res > 0);
+#endif
+        }
+        /// <summary>
+        /// addGroupSet
+        /// </summary>
+        /// <param name="treeView_library"></param>
+        internal void addGroupSet(TreeNode treeNode)
+        {
+            LibraryNode lnode = new LibraryNode("New Group Set", "GroupSet");
+            TreeNode gsNode = new TreeNode(lnode.Name, 1, 1);
+            TreeNode tpnode = treeNode != null ? treeNode : selectedNode_Current;
+#if DEBUG
+            System.Diagnostics.Debug.Assert(tpnode != null);
+#endif
+            int insertIndex = tpnode == null ? 0 : tpnode.Index + 1;
+            if (tpnode != null && tpnode.Level > 0)
+            {
+                insertIndex = tpnode.Parent.Index + 1;
+            }
+            libTree.Nodes.Insert(insertIndex, gsNode);
+            gsNode.EnsureVisible();
+
+            lnode.Pid=-1;
+            lnode.Lorder=insertIndex;
+            LibraryNodeDAM.insertLibraryNode(lnode);
+            gsNode.Name = lnode.Lid.ToString();
+            ///////////////////////////
+            libTree.LabelEdit = true;
+            gsNode.BeginEdit();
+        }
+        /// <summary>
+        /// addGroup
+        /// </summary>
+        /// <param name="treeView_library"></param>
+        internal void addGroup(TreeNode treeNode)
+        {
+            TreeNode tpnode = treeNode != null ? treeNode : selectedNode_Current;
+#if DEBUG
+            System.Diagnostics.Debug.Assert(tpnode != null);
+#endif
+            int insetIndex = 0;
+            if (tpnode != null && tpnode.Level > 0)
+            {
+                tpnode = tpnode.Parent;
+                insetIndex = tpnode.Index + 1;
+            }
+            long referNameId = Convert.ToInt64(tpnode.Name);
+            LibraryNode pnode = LibraryNodeDAM.findLibraryNode(referNameId);
+            if (pnode != null)
+            {
+                LibraryNode lnode = new LibraryNode("New Group", "Group");
+                lnode.Pid = pnode.Lid;
+                TreeNode gsNode = new TreeNode(lnode.Name, 2, 2);
+                if(insetIndex>=0)
+                    tpnode.Nodes.Insert(insetIndex, gsNode);
+                else
+                    tpnode.Nodes.Add(gsNode);
+                gsNode.EnsureVisible();
+                lnode.Lorder = insetIndex;
+                LibraryNodeDAM.insertLibraryNode(lnode);
+                gsNode.Name = lnode.Lid.ToString();
+                libTree.LabelEdit = true;
+                gsNode.BeginEdit();
+            }
+        }
+        /// <summary>
+        /// 节点重命名提交操作
+        /// </summary>
+        /// <param name="treeNode"></param>
+        internal void renameNode(TreeNode treeNode,string label)
+        {
+            if (label == null || label.Length < 1)
+                treeNode.EndEdit(true);
+            else
+            {
+                LibraryNodeDAM.updateLibraryNode(treeNode.Name, "Name", label);
+            }
+        }
+        /// <summary>
+        /// 更新分类目录关联文档数显示
+        /// </summary>
+        /// <param name="focusNode"></param>
+        public void updateLibRecCount(TreeNode focusNode = null)
+        {
+            UpdateHomeLibCountHandler ulch = null;
+            if (focusNode == null)
+                ulch = new UpdateHomeLibCountHandler(baseTree, libTree);
+            else
+                ulch = new UpdateHomeLibCountHandler(focusNode);
+            CmdConsole.call(ulch);
+        }
+        /// <summary>
+        /// 选中节点标记处理方法
+        /// </summary>
+        /// <param name="snode"></param>
+        /// <param name="baseTree"></param>
+        /// <param name="libTree"></param>
+        public void noteCurSelectedNode(TreeNode snode)
+        {
+            TreeView lastTree = null;
+            if (selectedNode_Current != null)
+            {
+                lastTree=selectedNode_Current.TreeView;
+                lastTree.SelectedNode = null;
+            }
+            selectedNode_Current = snode;
+            if (lastTree!=null && !snode.TreeView.Equals(lastTree))
+            {
+                lastTree.Refresh();
+            }
+            snode.TreeView.Refresh();
+        }
+    }
+}

@@ -1,0 +1,9 @@
+﻿业务构建层 ServiceBuilderLayer, SBL
+//包含构件//
+逻辑事务调度中心 CommandChannel
+逻辑事务处理器 handle
+共享组件模块 Commons
+逻辑事务配置服务中心
+业务缓冲区 ServiceBuffer
+计算事务服务中心DataProcessCenter
+数据事务交互中心DataTransferCenter

@@ -1,0 +1,8 @@
+﻿总体支撑构件 OverallSupportComponent,OSC
+//包含构件//
+组件装配服务 Plugin
+开放式接口服务 OAI
+共享同步维护中心 ShareSync
+日志托管中心 LogManager
+异常托管中心 ErrorManager
+通用实现工具包 Commons

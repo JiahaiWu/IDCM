@@ -1,0 +1,7 @@
+﻿视窗布局层 ViewLayoutLayer, ViewLL
+
+//包含构件//
+视窗统合管理器 Manager
+基本页面布局 Win
+    View.design (Form->View->Dialog)
+    基本页面组件的事件处理中转层 View.cs

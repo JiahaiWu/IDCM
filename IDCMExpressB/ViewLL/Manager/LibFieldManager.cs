@@ -1,0 +1,122 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using IDCM.ViewLL.Win;
+using System.Windows.Forms;
+using IDCM.ControlMBL.Module;
+using IDCM.AppContext;
+
+namespace IDCM.ViewLL.Manager
+{
+    class LibFieldManager : ManagerI
+    {
+        #region 构造&析构
+        public LibFieldManager()
+        {
+            libFieldView = new LibFieldSettingView();
+            LongTermHandleNoter.note(libFieldView);
+            libFieldView.setManager(this);
+            filedBuilder = new LibFieldBuilder(libFieldView.getTemplateChx(), libFieldView.getFieldDGV());
+        }
+        ~LibFieldManager()
+        {
+            dispose();
+        }
+        #endregion
+        #region 实例对象保持部分
+        public void dispose()
+        {
+            if (libFieldView != null && !libFieldView.IsDisposed)
+            {
+                libFieldView.Close();
+                libFieldView.Dispose();
+                libFieldView = null;
+            }
+            if (filedBuilder != null)
+            {
+                filedBuilder.Dispose();
+                filedBuilder = null;
+            }
+        }
+        //页面窗口实例
+        private volatile LibFieldSettingView libFieldView = null;
+        private volatile LibFieldBuilder filedBuilder = null;
+
+        internal LibFieldBuilder FiledBuilder
+        {
+            get { return filedBuilder; }
+        }
+        #endregion
+        #region 接口实例化部分
+        /// <summary>
+        /// Manager对象实例化初始化请求方法,一般需支持内置窗口的检查与重建操作。
+        /// @author JiahaiWu
+        /// </summary>
+        /// <returns></returns>
+        public bool initView(bool activeShow = true)
+        {
+            if (libFieldView == null || libFieldView.IsDisposed)
+            {
+                libFieldView = new LibFieldSettingView();
+                LongTermHandleNoter.note(libFieldView);
+                libFieldView.setManager(this);
+                filedBuilder = new LibFieldBuilder(libFieldView.getTemplateChx(), libFieldView.getFieldDGV());
+            }
+            if (activeShow)
+            {
+                libFieldView.Show();
+                libFieldView.Activate();
+            }
+            else
+            {
+                libFieldView.Hide();
+            }
+            return true;
+        }
+        public void setMaxToNormal()
+        {
+            if (libFieldView.WindowState.Equals(FormWindowState.Maximized))
+                libFieldView.WindowState = FormWindowState.Normal;
+        }
+        public void setToMaxmize(bool activeFront = false)
+        {
+            libFieldView.WindowState = FormWindowState.Maximized;
+            if (activeFront)
+            {
+                libFieldView.Show();
+                libFieldView.Activate();
+            }
+        }
+        public void setMdiParent(Form pForm)
+        {
+            libFieldView.MdiParent = pForm;
+        }
+        #endregion
+
+        public void selectTemplate(int sIndex)
+        {
+            filedBuilder.selectTemplate(sIndex);
+        }
+        public void submitSetting()
+        {
+            filedBuilder.submitCustomSetting();
+        }
+        public bool checkFields()
+        {
+            return filedBuilder.checkFieldsInCustom();
+        }
+        public void appendField(DataGridViewRow dgvr, string groupName)
+        {
+            filedBuilder.appendField(dgvr, groupName);
+        }
+        public void removeField(DataGridViewRow dgvr)
+        {
+            filedBuilder.removeField(dgvr);
+        }
+        public void overwriteField(DataGridViewRow dgvr, string groupName)
+        {
+            filedBuilder.overwriteField(dgvr, groupName);
+        }
+    }
+}

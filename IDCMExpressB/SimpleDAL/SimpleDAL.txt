@@ -1,0 +1,5 @@
+﻿简单数据访问持久层 SimpleDataAccessLayer, SDAL
+//包含构件//
+数据访问映射代理服务
+数据对象集 Po
+数据访问池

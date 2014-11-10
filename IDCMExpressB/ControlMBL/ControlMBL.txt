@@ -1,0 +1,6 @@
+﻿控件模组构建层 ControlModelBuildLayer, CMBL
+//包含构件//
+动态表现事务处理调度中心 ControlModelBuilder.interface
+动态控件对象保持 ControlModelBuilder.cs
+异步控件服务中心 SynchronizeControlService
+动态表现配置服务中心 DynamicViewConfigCenter
