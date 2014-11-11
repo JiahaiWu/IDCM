@@ -119,11 +119,20 @@ namespace IDCM.ServiceBL.Handle
         /// <returns></returns>
         public Queue<AbsHandler> cascadeHandlers()
         {
-            return null;
+            return nextHandlers;
+        }
+        public void addHandler(AbsHandler nextHandler)
+        {
+            if (nextHandler == null)
+                return;
+            if (nextHandlers == null)
+                nextHandlers = new Queue<AbsHandler>();
+            nextHandlers.Enqueue(nextHandler);
         }
         private TreeView libTree=null;
         private TreeView baseTree=null;
         private TreeNode focusNode = null;
         private volatile bool processing=false;
+        private Queue<AbsHandler> nextHandlers = null;
     }
 }

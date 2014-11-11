@@ -11,6 +11,7 @@ using IDCM.SimpleDAL.DAM;
 using IDCM.ServiceBL.Common.Converter;
 using IDCM.ControlMBL.Module;
 using IDCM.ControlMBL.AsyncInvoker;
+using IDCM.ViewLL.Manager;
 
 namespace IDCM.ServiceBL.Handle
 {
@@ -87,8 +88,9 @@ namespace IDCM.ServiceBL.Handle
             int rIdx = dgvr.DataGridView.Columns[CTDRecordDAM.CTD_RID.ToString()].Index;
             if (dgvr.Cells.Count > rIdx)
             {
-                LocalDataSetBuilder.CURRENT_RID = Convert.ToInt64(dgvr.Cells[rIdx].FormattedValue.ToString());
-                DataTable table = CTDRecordDAM.queryCTDRecord(null, LocalDataSetBuilder.CURRENT_RID.ToString());
+                long rid= Convert.ToInt64(dgvr.Cells[rIdx].FormattedValue.ToString());
+                ((HomeViewManager)HomeViewManager.getInstance()).CURRENT_RID = rid;
+                DataTable table = CTDRecordDAM.queryCTDRecord(null, Convert.ToString(rid));
                 if (table.Rows.Count > 0)
                 {
                     DataRow dr = table.Rows[0];

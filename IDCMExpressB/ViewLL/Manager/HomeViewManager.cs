@@ -8,6 +8,9 @@ using IDCM.AppContext;
 using IDCM.SimpleDAL.DAM;
 using IDCM.ControlMBL.Module;
 using IDCM.ServiceBL.Common;
+using IDCM.ServiceBL.Handle;
+using IDCM.ServiceBL.CmdChannel;
+using IDCM.OverallSC.ShareSync;
 
 namespace IDCM.ViewLL.Manager
 {
@@ -25,6 +28,12 @@ namespace IDCM.ViewLL.Manager
             homeView.setManager(this);
             libBuilder = new LocalLibBuilder(homeView.getBaseTree(), homeView.getLibTree());
             datasetBuilder = new LocalDataSetBuilder(homeView.getItemGridView(), homeView.getAttachTabControl());
+            BackProgressIndicator.addIndicatorBar(homeView.getProgressBar());
+        }
+        public static HomeViewManager getInstance()
+        {
+            ManagerI hvm = IDCMAppContext.MainManger.getManager(typeof(HomeViewManager));
+            return hvm == null ? null : (hvm as HomeViewManager);
         }
         ~HomeViewManager()
         {
@@ -34,12 +43,7 @@ namespace IDCM.ViewLL.Manager
         #region 实例对象保持部分
         public void dispose()
         {
-            if (homeView != null && !homeView.IsDisposed)
-            {
-                homeView.Close();
-                homeView.Dispose();
-                homeView = null;
-            }
+            isDisposed = true;
             if (libBuilder != null)
             {
                 libBuilder.Dispose();
@@ -50,11 +54,20 @@ namespace IDCM.ViewLL.Manager
                 datasetBuilder.Dispose();
                 datasetBuilder = null;
             }
+            if (homeView != null && !homeView.IsDisposed)
+            {
+                homeView.Close();
+                homeView.Dispose();
+                homeView = null;
+            }
         }
+        
+        private volatile bool isDisposed = false;
         //页面窗口实例
         private volatile HomeView homeView = null;
         private volatile LocalLibBuilder libBuilder = null;
         private volatile LocalDataSetBuilder datasetBuilder = null;
+        
         #endregion
         #region 接口实例化部分
         /// <summary>
@@ -106,27 +119,80 @@ namespace IDCM.ViewLL.Manager
         {
             homeView.MdiParent = pForm;
         }
+        public bool IsDisposed()
+        {
+            return isDisposed;
+        }
         #endregion
 
         public void loadDataSetView(TreeNode tnode)
         {
-            datasetBuilder.loadDataSetView(tnode);
+            datasetBuilder.loadDataSetView();
+            updateDataSet(tnode);
         }
         public void loadTreeSet()
         {
             libBuilder.loadTreeSet();
         }
+        /// <summary>
+        /// 导入数据文档
+        /// </summary>
+        /// <param name="fpath"></param>
         public void importData(string fpath)
         {
-            datasetBuilder.importData(fpath, homeView.getBaseTree(), homeView.getLibTree());
+            if (fpath.ToLower().EndsWith("xls") || fpath.ToLower().EndsWith(".xlsx"))
+            {
+                ExcelImportHandler eih = new ExcelImportHandler(fpath, datasetBuilder.CURRENT_LID, datasetBuilder.CURRENT_PLID);
+                eih.addHandler(new UpdateHomeDataViewHandler(libBuilder.SelectedNode_Current, homeView.getItemGridView()));
+                UpdateHomeLibCountHandler uhlch = new UpdateHomeLibCountHandler(homeView.getLibTree(), homeView.getBaseTree());
+                eih.addHandler(uhlch);
+                uhlch.addHandler(new SelectDataRowHandler(homeView.getItemGridView(), homeView.getAttachTabControl()));
+                CmdConsole.call(eih, CmdConsole.CmdReqOption.L);
+            }
         }
+        /// <summary>
+        /// 导出数据文档
+        /// </summary>
+        /// <param name="fpath"></param>
         public void exportData(ExportType etype, string fpath)
         {
-            datasetBuilder.exportData(etype, fpath);
+            DataGridView itemDGV = homeView.getItemGridView();
+            AbsHandler handler = null;
+            switch (etype)
+            {
+                case ExportType.Excel:
+                    handler = new ExcelExportHandler(fpath, itemDGV);
+                    CmdConsole.call(handler);
+                    break;
+                case ExportType.JSONList:
+                    handler = new JSONListExportHandler(fpath, itemDGV);
+                    CmdConsole.call(handler);
+                    break;
+                case ExportType.TSV:
+                    handler = new TextExportHandler(fpath, itemDGV, "\t");
+                    CmdConsole.call(handler);
+                    break;
+                case ExportType.CSV:
+                    handler = new TextExportHandler(fpath, itemDGV, ",");
+                    CmdConsole.call(handler);
+                    break;
+                default:
+                    MessageBox.Show("Unsupport export type!");
+                    break;
+            }
         }
-        public void updateLibRecCount(TreeNode node = null)
+        /// <summary>
+        /// 更新分类目录关联文档数显示
+        /// </summary>
+        /// <param name="focusNode"></param>
+        public void updateLibRecCount(TreeNode focusNode = null)
         {
-            libBuilder.updateLibRecCount(node);
+            UpdateHomeLibCountHandler ulch = null;
+            if (focusNode == null)
+                ulch = new UpdateHomeLibCountHandler(homeView.getLibTree(),homeView.getBaseTree());
+            else
+                ulch = new UpdateHomeLibCountHandler(focusNode);
+            CmdConsole.call(ulch);
         }
         public void selectViewRecord(DataGridViewRow dgvr)
         {
@@ -155,13 +221,22 @@ namespace IDCM.ViewLL.Manager
 
         public void noteCurSelectedNode(TreeNode node)
         {
-            libBuilder.noteCurSelectedNode(node);
+           bool needUpdateData= libBuilder.noteCurSelectedNode(node);
+           if (needUpdateData)
+               updateDataSet(node);
         }
+        /// <summary>
+        /// 根据指定的数据集合加载数据报表显示
+        /// </summary>
         public void updateDataSet(TreeNode filterNode)
         {
-
-            datasetBuilder.updateDataSet(filterNode);
+            datasetBuilder.noteDataSetLib(filterNode); //待考虑顺序问题///////////
+            UpdateHomeDataViewHandler uhdvh = new UpdateHomeDataViewHandler(filterNode, homeView.getItemGridView());
+            uhdvh.addHandler(new SelectDataRowHandler(homeView.getItemGridView(), homeView.getAttachTabControl()));
+            uhdvh.addHandler(new UpdateHomeLibCountHandler(filterNode));
+            CmdConsole.call(uhdvh);
         }
+        
         public void addNewRecord()
         {
             datasetBuilder.addNewRecord();
@@ -173,32 +248,18 @@ namespace IDCM.ViewLL.Manager
         }
         public long CURRENT_RID
         {
-            get { return LocalDataSetBuilder.CURRENT_RID; }
+            get { return datasetBuilder.CURRENT_RID; }
+            set { datasetBuilder.CURRENT_RID=value; }
         }
         public long CURRENT_LID
         {
             get { return datasetBuilder.CURRENT_LID; }
         }
-        /// <summary>
-        /// 基于总控对象装载容器查找特定控件元素，支持静态化访问形式（仅用于常驻组件访问需要）。
-        /// 如果查找成功，则返回目标对象。
-        /// @author JiahaiWu 2015-11-01
-        /// </summary>
-        public static TreeNode RootNode_unfiled
+        public TreeNode RootNode_unfiled
         {
             get
             {
-                if (IDCMAppContext.MainManger != null)
-                {
-                    ManagerI hvm = IDCMAppContext.MainManger.getManager(typeof(HomeViewManager));
-                    if (hvm != null)
-                    {
-                        LocalLibBuilder llb = (hvm as HomeViewManager).libBuilder;
-                        if (llb != null)
-                            return llb.RootNode_unfiled;
-                    }
-                }
-                return null;
+                return libBuilder.RootNode_unfiled;
             }
         }
     }

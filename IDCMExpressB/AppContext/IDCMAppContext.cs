@@ -38,14 +38,18 @@ namespace IDCM.AppContext
                 // to know when both forms are closed.
                 Form startForm = new StartForm();
                 mainManger = new IDCMVeiwManger();
-                if (startForm.ShowDialog() == DialogResult.OK)
+                DialogResult res = startForm.ShowDialog();
+                if (res == DialogResult.OK)
                 {
                     startForm.Dispose();
                     mainManger.initForm(true);
                 }
                 else
                 {
-                    MessageBox.Show("Failed to load and open the Workspace!", "Error", MessageBoxButtons.OK);
+                    if (res != DialogResult.Cancel)
+                    {
+                        MessageBox.Show("Failed to load and open the Workspace!", "Error", MessageBoxButtons.OK);
+                    }
                     startForm.Dispose();
                     mainManger.Dispose();
                 }

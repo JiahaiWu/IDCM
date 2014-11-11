@@ -19,6 +19,11 @@ namespace IDCM.ViewLL.Manager
             libFieldView.setManager(this);
             filedBuilder = new LibFieldBuilder(libFieldView.getTemplateChx(), libFieldView.getFieldDGV());
         }
+        public static LibFieldManager getInstance()
+        {
+            ManagerI hvm = IDCMAppContext.MainManger.getManager(typeof(LibFieldManager));
+            return hvm == null ? null : (hvm as LibFieldManager);
+        }
         ~LibFieldManager()
         {
             dispose();
@@ -27,18 +32,21 @@ namespace IDCM.ViewLL.Manager
         #region 实例对象保持部分
         public void dispose()
         {
+            isDisposed = true;
+
+            if (filedBuilder != null)
+            {
+                filedBuilder.Dispose();
+                filedBuilder = null;
+            }
             if (libFieldView != null && !libFieldView.IsDisposed)
             {
                 libFieldView.Close();
                 libFieldView.Dispose();
                 libFieldView = null;
             }
-            if (filedBuilder != null)
-            {
-                filedBuilder.Dispose();
-                filedBuilder = null;
-            }
         }
+        private volatile bool isDisposed = false;
         //页面窗口实例
         private volatile LibFieldSettingView libFieldView = null;
         private volatile LibFieldBuilder filedBuilder = null;
@@ -91,6 +99,10 @@ namespace IDCM.ViewLL.Manager
         public void setMdiParent(Form pForm)
         {
             libFieldView.MdiParent = pForm;
+        }
+        public bool IsDisposed()
+        {
+            return isDisposed;
         }
         #endregion
 

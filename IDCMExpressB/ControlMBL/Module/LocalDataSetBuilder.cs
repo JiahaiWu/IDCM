@@ -49,14 +49,19 @@ namespace IDCM.ControlMBL.Module
             get { return CUR_LID; }
         }
         private long CUR_PLID = LibraryNodeDAM.REC_ALL;
-        private static long CUR_RID = -1L;
 
-        public static long CURRENT_RID
+        public long CURRENT_PLID
+        {
+            get { return CUR_PLID; }
+        }
+        
+        private long CUR_RID = -1L;
+
+        public long CURRENT_RID
         {
             get { return CUR_RID; }
-            set { CUR_RID = value; }
+            set { CUR_RID=value; }
         }
-        //private Object SYNC_ROOT = new Object();
         #endregion
 
         /// <summary>
@@ -86,22 +91,28 @@ namespace IDCM.ControlMBL.Module
         /// <param name="dgv"></param>
         /// <param name="dataset"></param>
         /// <param name="colMap"></param>
-        public void loadDataSetView(TreeNode filteNode)
+        public void loadDataSetView()
         {
             List<string> viewAttrs = ColumnMappingHolder.getViewAttrs();
             lock (ShareSyncLockers.LocalDataGridView_Lock)
             {
-                //行列表头显示
-                loadDGVColumns(viewAttrs);
-                loadReferences(viewAttrs);
+                if (itemDGV.ColumnCount > 0)
+                {
+                    DGVAsyncUtil.syncRemoveAllRow(itemDGV);
+                    resetReferences(viewAttrs);
+                }
+                else
+                {
+                    //行列表头显示
+                    loadDGVColumns(viewAttrs);
+                    loadReferences(viewAttrs);
+                }
             }
-            ////////////////////////////
-            updateDataSet(filteNode);
         }
         /// <summary>
-        /// 根据指定的数据集合加载数据报表显示
+        /// 标记目标数据报表关联文档目录键值
         /// </summary>
-        public void updateDataSet(TreeNode filterNode)
+        public void noteDataSetLib(TreeNode filterNode)
         {
             long lid = Convert.ToInt64(filterNode.Name);
 
@@ -115,10 +126,6 @@ namespace IDCM.ControlMBL.Module
                 CUR_LID = lid;
                 CUR_PLID = lid;
             }
-            UpdateHomeDataViewHandler uhdvh = new UpdateHomeDataViewHandler(filterNode,itemDGV);
-            uhdvh.addHandler(new SelectDataRowHandler(itemDGV, attachTC));
-            uhdvh.addHandler(new UpdateHomeLibCountHandler(filterNode));
-            CmdConsole.call(uhdvh);
         }
         /// <summary>
         /// 删除数据归档目标，置入未分类目录
@@ -142,7 +149,7 @@ namespace IDCM.ControlMBL.Module
                     CUR_PLID = lid;
                 }
                 itemDGV.Rows.Clear();
-                showReferences(viewAttrs, null);
+                resetReferences(viewAttrs);
                 string filterLids = lid.ToString();
                 if (lid > 0)
                 {
@@ -279,6 +286,14 @@ namespace IDCM.ControlMBL.Module
             tabPage.Controls.Add(ridLabel);
         }
         /// <summary>
+        /// 根据指定的数据行置空所有附加的属性信息
+        /// </summary>
+        /// <param name="viewAttrs"></param>
+        public void resetReferences(List<string> viewAttrs)
+        {
+            showReferences(viewAttrs, null);
+        }
+        /// <summary>
         /// 根据指定的数据行更新显示附加的属性信息
         /// </summary>
         /// <param name="viewAttrs"></param>
@@ -322,66 +337,16 @@ namespace IDCM.ControlMBL.Module
         /// <param name="dgv"></param>
         public void addNewRecord()
         {
-            long nuid = CTDRecordDAM.addNewRecord(CUR_LID, CUR_PLID);
+            long nuid = CTDRecordDAM.addNewRecord(CUR_LID, CURRENT_PLID);
             if (nuid > 0)
             {
                 int idx = itemDGV.Rows.Add();
                 itemDGV.Rows[idx].Cells[CTDRecordDAM.CTD_RID].Value = nuid;
                 itemDGV.Rows[idx].Cells[CTDRecordDAM.CTD_LID].Value = CUR_LID;
-                itemDGV.Rows[idx].Cells[CTDRecordDAM.CTD_PLID].Value = CUR_PLID;
+                itemDGV.Rows[idx].Cells[CTDRecordDAM.CTD_PLID].Value = CURRENT_PLID;
             }
         }
-        /// <summary>
-        /// 导入数据文档
-        /// </summary>
-        /// <param name="fpath"></param>
-        public void importData(string fpath, TreeView _baseTree, TreeView _libTree)
-        {
-            if (Data_importing)
-            {
-                if (MessageBox.Show("仍有后台任务正在执行中，是否插入执行？", "确认信息", MessageBoxButtons.OKCancel) != DialogResult.OK)
-                {
-                    return;
-                }
-            }
-            if (fpath.ToLower().EndsWith("xls") || fpath.ToLower().EndsWith(".xlsx"))
-            {
-                ExcelImportHandler eih = new ExcelImportHandler(fpath, itemDGV, attachTC);
-                UpdateHomeLibCountHandler ulch = new UpdateHomeLibCountHandler(_libTree, _baseTree);
-                eih.addHandler(ulch);
-                CmdConsole.call(eih, CmdConsole.CmdReqOption.L);
-            }
-        }
-        /// <summary>
-        /// 导出数据文档
-        /// </summary>
-        /// <param name="fpath"></param>
-        public void exportData(ExportType etype,string fpath)
-        {
-            AbsHandler handler = null;
-            switch (etype)
-            {
-                case ExportType.Excel:
-                    handler = new ExcelExportHandler(fpath, itemDGV);
-                    CmdConsole.call(handler);
-                    break;
-                case ExportType.JSONList:
-                    handler = new JSONListExportHandler(fpath, itemDGV);
-                    CmdConsole.call(handler);
-                    break;
-                case ExportType.TSV:
-                    handler = new TextExportHandler(fpath, itemDGV, "\t");
-                    CmdConsole.call(handler);
-                    break;
-                case ExportType.CSV:
-                    handler = new TextExportHandler(fpath, itemDGV, ",");
-                    CmdConsole.call(handler);
-                    break;
-                default:
-                    MessageBox.Show("Unsupport export type!");
-                    break;
-            }
-        }
+        
         /// <summary>
         /// 伴随用户修改操作同步更新记录属性信息
         /// </summary>
@@ -421,10 +386,6 @@ namespace IDCM.ControlMBL.Module
                 }
             }
         }
-        /// <summary>
-        /// Data_importing_tag
-        /// </summary>
-        private static bool Data_importing = false;
         private DataGridView itemDGV;
 
         public DataGridView ItemDGV

@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("All References");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Unfiled");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Trash");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("All References");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Unfiled");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Trash");
             System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("My Group (Temp)");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeView));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("All Strains");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("节点1");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("节点2");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("All Strains");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("节点1");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("节点2");
             this.statusStripBottom = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel_bottom = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton_layout = new System.Windows.Forms.ToolStripSplitButton();
@@ -185,9 +185,12 @@
             // toolStripProgressBar_bottom
             // 
             this.toolStripProgressBar_bottom.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripProgressBar_bottom.Margin = new System.Windows.Forms.Padding(3, 3, 40, 3);
+            this.toolStripProgressBar_bottom.CausesValidation = false;
+            this.toolStripProgressBar_bottom.Margin = new System.Windows.Forms.Padding(2, 2, 50, 2);
             this.toolStripProgressBar_bottom.Name = "toolStripProgressBar_bottom";
-            this.toolStripProgressBar_bottom.Size = new System.Drawing.Size(200, 17);
+            this.toolStripProgressBar_bottom.Size = new System.Drawing.Size(200, 19);
+            this.toolStripProgressBar_bottom.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.toolStripProgressBar_bottom.Visible = false;
             // 
             // tableLayoutPanel_main
             // 
@@ -261,19 +264,19 @@
             this.treeView_library.Location = new System.Drawing.Point(0, 98);
             this.treeView_library.Margin = new System.Windows.Forms.Padding(0);
             this.treeView_library.Name = "treeView_library";
-            treeNode8.Name = "Root";
-            treeNode8.Tag = "0";
-            treeNode8.Text = "All References";
-            treeNode9.Name = "Unfiled";
-            treeNode9.Text = "Unfiled";
-            treeNode10.Name = "Trash";
-            treeNode10.Text = "Trash";
+            treeNode1.Name = "Root";
+            treeNode1.Tag = "0";
+            treeNode1.Text = "All References";
+            treeNode2.Name = "Unfiled";
+            treeNode2.Text = "Unfiled";
+            treeNode3.Name = "Trash";
+            treeNode3.Text = "Trash";
             treeNode11.Name = "MyGroup";
             treeNode11.Text = "My Group (Temp)";
             this.treeView_library.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode8,
-            treeNode9,
-            treeNode10,
+            treeNode1,
+            treeNode2,
+            treeNode3,
             treeNode11});
             this.treeView_library.SelectedImageIndex = 0;
             this.treeView_library.ShowRootLines = false;
@@ -332,16 +335,16 @@
             this.treeView_base.Location = new System.Drawing.Point(0, 28);
             this.treeView_base.Margin = new System.Windows.Forms.Padding(0);
             this.treeView_base.Name = "treeView_base";
-            treeNode1.Name = "-1";
-            treeNode1.Text = "All Strains";
-            treeNode2.Name = "节点1";
-            treeNode2.Text = "节点1";
-            treeNode3.Name = "节点2";
-            treeNode3.Text = "节点2";
+            treeNode4.Name = "-1";
+            treeNode4.Text = "All Strains";
+            treeNode5.Name = "节点1";
+            treeNode5.Text = "节点1";
+            treeNode6.Name = "节点2";
+            treeNode6.Text = "节点2";
             this.treeView_base.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3});
+            treeNode4,
+            treeNode5,
+            treeNode6});
             this.treeView_base.SelectedImageIndex = 0;
             this.treeView_base.ShowRootLines = false;
             this.treeView_base.Size = new System.Drawing.Size(215, 70);

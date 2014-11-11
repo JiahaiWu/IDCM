@@ -6,6 +6,7 @@ using IDCM.ViewLL.Win;
 using System.Windows.Forms;
 using IDCM.AppContext;
 
+
 namespace IDCM.ViewLL.Manager
 {
     /// <summary>
@@ -73,13 +74,13 @@ namespace IDCM.ViewLL.Manager
         {
             ManagerI obj = null;
             subManagers.TryGetValue(manager, out obj);
-            if (obj == null)
+            if (obj == null || obj.IsDisposed())
             {
                 obj = Activator.CreateInstance(manager) as ManagerI;
                 subManagers[manager] = obj;
+                obj.initView(false);
+                obj.setMdiParent(this.mainForm);
             }
-            obj.initView(false);
-            obj.setMdiParent(this.mainForm);
             return obj;
         }
         /// <summary>
@@ -105,6 +106,5 @@ namespace IDCM.ViewLL.Manager
             }
             return false;
         }
-       
     }
 }

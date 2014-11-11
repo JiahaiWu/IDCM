@@ -114,6 +114,7 @@
     <Compile Include="ControlMBL\AsyncInvoker\ControlAsyncUtil.cs" />
     <Compile Include="ControlMBL\AsyncInvoker\DateTimePikcerAsyncUtil.cs" />
     <Compile Include="ControlMBL\AsyncInvoker\DGVAsyncUtil.cs" />
+    <Compile Include="ControlMBL\Module\BackProgressIndicator.cs" />
     <Compile Include="ControlMBL\Module\LibFieldBuilder.cs" />
     <Compile Include="ControlMBL\Module\LocalDataSetBuilder.cs" />
     <Compile Include="ControlMBL\Module\LocalLibBuilder.cs" />

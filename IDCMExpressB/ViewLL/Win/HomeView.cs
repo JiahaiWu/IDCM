@@ -82,25 +82,25 @@ namespace IDCM.ViewLL.Win
         {
             if (e.Node != null)
             {
-                treeView_base.SelectedNode = e.Node;
-                manager.noteCurSelectedNode(e.Node);
+                //左键(激活节点选定事件，并将触发必要的右侧数据表单的更新显示)
+                if (e.Button == MouseButtons.Left)
+                {
+                    treeView_base.SelectedNode = e.Node;
+                    manager.noteCurSelectedNode(e.Node);
+                }
+                //右键（不会激活节点选定事件，事件触发节点信息通过匿名委托方法绑定到弹出菜单项的事件方法中去）
+                if (e.Button == MouseButtons.Right)
+                {
+                    foreach (ToolStripItem tsItem in contextMenuStrip_base.Items)
+                    {
+                        if (tsItem is ToolStripSeparator)
+                            continue;
+                        ControlUtil.ClearEvent(tsItem, "Click");
+                        tsItem.Click += delegate(object tsender, EventArgs te) { toolStripMenuItem_base_Click(tsender, te, e.Node); };
+                    }
+                    contextMenuStrip_base.Show(treeView_base, e.X, e.Y);
+                }
             }
-            //左键
-            if (e.Button == MouseButtons.Left && e.Node != null)
-            {
-                manager.updateDataSet(e.Node);
-            }
-            //右键
-            if (e.Button != MouseButtons.Right || e.Node == null)
-                return;
-            foreach (ToolStripItem tsItem in contextMenuStrip_base.Items)
-            {
-                if (tsItem is ToolStripSeparator)
-                    continue;
-                ControlUtil.ClearEvent(tsItem, "Click");
-                tsItem.Click += delegate(object tsender, EventArgs te) { toolStripMenuItem_base_Click(tsender, te, e.Node); };
-            }
-            contextMenuStrip_base.Show(treeView_base, e.X, e.Y);
         }
         /// <summary>
         /// 左键或右键单击的自定义分组事件处理方法
@@ -572,7 +572,10 @@ namespace IDCM.ViewLL.Win
         {
             return this.tabControl_attach;
         }
-
+        public ToolStripProgressBar getProgressBar()
+        {
+            return toolStripProgressBar_bottom;
+        }
         private void treeView_library_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
         {
             e.Cancel = true;

@@ -25,7 +25,7 @@ namespace IDCM.ServiceBL.Handle
         {
             bool res=false;
             TextExporter exporter = new TextExporter();
-            res = exporter.exportExcel(textPath, dgv_data, spliter);
+            res = exporter.exportText(textPath, dgv_data, spliter);
             return new object[] { res};
         }
         /// <summary>

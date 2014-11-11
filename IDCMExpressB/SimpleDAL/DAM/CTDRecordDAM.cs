@@ -263,10 +263,12 @@ namespace IDCM.SimpleDAL.DAM
             if (rid==null)
             {
                 rid=BaseInfoNoteDAM.nextSeqID().ToString();
-                mapValues.Add(CTD_LID, LibraryNodeDAM.REC_UNFILED.ToString());
-                mapValues.Add(CTD_PLID, LibraryNodeDAM.REC_ALL.ToString());
             }else
                 mapValues.Remove(CTD_RID);
+            if(!mapValues.ContainsKey(CTD_LID))
+                mapValues.Add(CTD_LID, LibraryNodeDAM.REC_UNFILED.ToString());
+            if (!mapValues.ContainsKey(CTD_PLID))
+                mapValues.Add(CTD_PLID, LibraryNodeDAM.REC_ALL.ToString());
             SQLiteCommand cmd = new SQLiteCommand();
             StringBuilder cmdBuilder = new StringBuilder();
             cmdBuilder.Append("replace into " + table_name + "("+ CTD_RID);

@@ -30,5 +30,9 @@ namespace IDCM.OverallSC.ShareSync
         /// 用于内存处理过程中所需唯一标识的共享锁对象
         /// </summary>
         public static object processSerialIncrement_Lock = new object();
+        /// <summary>
+        /// 用于反馈后台任务执行任务计数的共享锁对象
+        /// </summary>
+        public static object BackEndProgress_Lock = new object();
     }
 }

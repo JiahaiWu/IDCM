@@ -32,7 +32,6 @@ namespace IDCM.ServiceBL.DataTransfer
                                 Byte[] info = new UTF8Encoding(true).GetBytes(strbuilder.ToString());
                                 BinaryWriter bw = new BinaryWriter(fs);
                                 fs.Write(info, 0, info.Length);
-                                bw.Close();
                                 strbuilder.Length = 0;
                             }
                         }
@@ -42,7 +41,6 @@ namespace IDCM.ServiceBL.DataTransfer
                         Byte[] info = new UTF8Encoding(true).GetBytes(strbuilder.ToString());
                         BinaryWriter bw = new BinaryWriter(fs);
                         fs.Write(info, 0, info.Length);
-                        bw.Close();
                         strbuilder.Length = 0;
                     }
                     fs.Close();

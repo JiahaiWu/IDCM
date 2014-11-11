@@ -13,12 +13,22 @@ using IDCM.ControlMBL.AsyncInvoker;
 
 namespace IDCM.ServiceBL.Handle
 {
+    /// <summary>
+    /// 根据选中节点更新数据表记录显示
+    /// </summary>
     class UpdateHomeDataViewHandler:AbsHandler
     {
-        public UpdateHomeDataViewHandler(TreeNode filterNode,DataGridView dgv)
+        /// <summary>
+        /// 指定查询的节点和目标数据表单，以及是否指定快速失效模式
+        /// </summary>
+        /// <param name="filterNode"></param>
+        /// <param name="dgv"></param>
+        /// <param name="failFast"></param>
+        public UpdateHomeDataViewHandler(TreeNode filterNode,DataGridView dgv,bool failFast=true)
         {
             this.filterNode = filterNode;
             this.dgv = dgv;
+            this.failFast = failFast;
         }
         /// <summary>
         /// 后台任务执行方法的主体部分，异步执行代码段！
@@ -28,31 +38,35 @@ namespace IDCM.ServiceBL.Handle
         public Object doWork(BackgroundWorker worker, bool cancel, List<Object> args)
         {
             bool res = false;
-            List<string> viewAttrs = ColumnMappingHolder.getViewAttrs();
-            long lid = Convert.ToInt64(filterNode.Name);
-            DGVAsyncUtil.syncRemoveAllRow(dgv);
-            string filterLids = lid.ToString();
-            if (lid > 0)
+            if(!failFast || filterNode.Name.Equals(HomeViewManager.getInstance().CURRENT_LID.ToString()))
             {
-                long[] lids = LibraryNodeDAM.extractToLids(lid);
-                if (lids != null)
+                List<string> viewAttrs = ColumnMappingHolder.getViewAttrs();
+                long lid = Convert.ToInt64(filterNode.Name);
+                DGVAsyncUtil.syncRemoveAllRow(dgv);
+                string filterLids = lid.ToString();
+                if (lid > 0)
                 {
-                    filterLids = "";
-                    foreach (long _lid in lids)
+                    long[] lids = LibraryNodeDAM.extractToLids(lid);
+                    if (lids != null)
                     {
-                        filterLids += "," + _lid;
+                        filterLids = "";
+                        foreach (long _lid in lids)
+                        {
+                            filterLids += "," + _lid;
+                        }
+                        filterLids = filterLids.Substring(1);
                     }
-                    filterLids = filterLids.Substring(1);
                 }
-            }
-            //数据查询与装载
-            DataTable records = CTDRecordDAM.queryCTDRecord(filterLids);
-            if (records != null && records.Rows.Count > 0)
-            {
-                foreach (DataRow dr in records.Rows)
+                //数据查询与装载
+                DataTable records = CTDRecordDAM.queryCTDRecord(filterLids);
+                if (records != null && records.Rows.Count > 0)
                 {
-                    loadCTableData(dr, viewAttrs);
+                    foreach (DataRow dr in records.Rows)
+                    {
+                        loadCTableData(dr, viewAttrs);
+                    }
                 }
+                res = true;
             }
             return new object[] { res};
         }
@@ -82,11 +96,16 @@ namespace IDCM.ServiceBL.Handle
         /// <param name="args"></param>
         public void complete(BackgroundWorker worker, bool canceled, Exception error, List<Object> args)
         {
-            if (canceled)
+            if (canceled || (args.Count>0 && args[0].Equals(false)))
+            {
+                if(nextHandlers!=null)
+                    nextHandlers.Clear();
                 return;
+            }
             if (error != null)
             {
                 MessageBox.Show("ERROR::" + error.Message + "\n" + error.StackTrace);
+                nextHandlers.Clear();
                 return;
             }
         }
@@ -118,6 +137,7 @@ namespace IDCM.ServiceBL.Handle
         }
         private TreeNode filterNode;
         private DataGridView dgv;
+        private bool failFast = true;
         private Queue<AbsHandler> nextHandlers = null;
     }
 }

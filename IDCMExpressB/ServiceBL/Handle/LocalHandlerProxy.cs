@@ -6,6 +6,7 @@ using IDCM.ServiceBL.ServBuf;
 using IDCM.ServiceBL.Common;
 using System.ComponentModel;
 using System.Threading;
+using IDCM.ControlMBL.Module;
 
 namespace IDCM.ServiceBL.Handle
 {
@@ -42,6 +43,7 @@ namespace IDCM.ServiceBL.Handle
             else
                 args.Add(e.Argument);
             BackgroundWorker worker = (BackgroundWorker)sender;
+            worker.ReportProgress(0);
             e.Result=handler.doWork(worker,e.Cancel,args);
         }
         /// <summary>
@@ -59,6 +61,8 @@ namespace IDCM.ServiceBL.Handle
             else
                 args.Add(e.Result);
             BackgroundWorker worker = (BackgroundWorker)sender;
+            BackProgressIndicator.endBackProgress();
+            //////////////////////////////////////////
             handler.complete(worker,e.Cancelled,e.Error, args);
             //////////////////////////////
             BGWorkerPool.removeWorker(worker);
@@ -115,6 +119,10 @@ namespace IDCM.ServiceBL.Handle
             else
                 args.Add(e.UserState);
             BackgroundWorker worker = (BackgroundWorker)sender;
+            if (e.ProgressPercentage == 0)
+            {
+                BackProgressIndicator.startBackProgress();
+            }
             handler.progressChanged(worker,e.ProgressPercentage,args);
         }
         /// <summary>

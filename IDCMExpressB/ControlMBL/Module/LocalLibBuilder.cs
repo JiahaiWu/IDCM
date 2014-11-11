@@ -253,39 +253,34 @@ namespace IDCM.ControlMBL.Module
                 LibraryNodeDAM.updateLibraryNode(treeNode.Name, "Name", label);
             }
         }
+        
         /// <summary>
-        /// 更新分类目录关联文档数显示
-        /// </summary>
-        /// <param name="focusNode"></param>
-        public void updateLibRecCount(TreeNode focusNode = null)
-        {
-            UpdateHomeLibCountHandler ulch = null;
-            if (focusNode == null)
-                ulch = new UpdateHomeLibCountHandler(baseTree, libTree);
-            else
-                ulch = new UpdateHomeLibCountHandler(focusNode);
-            CmdConsole.call(ulch);
-        }
-        /// <summary>
-        /// 选中节点标记处理方法
+        /// 选中节点标记处理方法，
+        /// 对baseTree和libTree共享一个目标节点，标记选中节点是需要清除既有的节点状态标记。
+        /// 如果目标节点和历史焦点节点不一致，即返回状态为真，表示需要更新数据记录状态。
         /// </summary>
         /// <param name="snode"></param>
         /// <param name="baseTree"></param>
         /// <param name="libTree"></param>
-        public void noteCurSelectedNode(TreeNode snode)
+        public bool noteCurSelectedNode(TreeNode snode)
         {
+            bool needUpdateData = (snode!=null && snode != selectedNode_Current);
+            if (snode == null)
+                return needUpdateData;
             TreeView lastTree = null;
             if (selectedNode_Current != null)
             {
                 lastTree=selectedNode_Current.TreeView;
-                lastTree.SelectedNode = null;
             }
-            selectedNode_Current = snode;
-            if (lastTree!=null && !snode.TreeView.Equals(lastTree))
+            if (lastTree != null && !snode.TreeView.Equals(lastTree))
             {
+                lastTree.SelectedNode = null;
                 lastTree.Refresh();
             }
+            selectedNode_Current = snode;
+            snode.TreeView.SelectedNode = selectedNode_Current;
             snode.TreeView.Refresh();
+            return needUpdateData;
         }
     }
 }
