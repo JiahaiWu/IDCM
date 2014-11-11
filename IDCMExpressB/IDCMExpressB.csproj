@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSharpTest.Net.Library">
+      <HintPath>..\packages\CSharpTest.Net.Library.2.14.126.467\lib\net40\CSharpTest.Net.Library.dll</HintPath>
+    </Reference>
     <Reference Include="Dapper, Version=1.38.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Dapper.1.38\lib\net40\Dapper.dll</HintPath>
@@ -115,6 +118,7 @@
     <Compile Include="ControlMBL\AsyncInvoker\DateTimePikcerAsyncUtil.cs" />
     <Compile Include="ControlMBL\AsyncInvoker\DGVAsyncUtil.cs" />
     <Compile Include="ControlMBL\Module\BackProgressIndicator.cs" />
+    <Compile Include="ControlMBL\Module\FrontProgressPrompt.cs" />
     <Compile Include="ControlMBL\Module\LibFieldBuilder.cs" />
     <Compile Include="ControlMBL\Module\LocalDataSetBuilder.cs" />
     <Compile Include="ControlMBL\Module\LocalLibBuilder.cs" />
@@ -163,6 +167,7 @@
     <Compile Include="ServiceBL\Handle\UpdateHomeLibCountHandler.cs" />
     <Compile Include="ServiceBL\Handle\UpdateTemplateHandler.cs" />
     <Compile Include="ServiceBL\ServBuf\BGWorkerPool.cs" />
+    <Compile Include="SimpleDAL\DBCP\QueryCmdCache.cs" />
     <Compile Include="ServiceBL\ServProcessor\TemplateUpdater.cs" />
     <Compile Include="SimpleDAL\DAM\BaseInfoNoteDAM.cs" />
     <Compile Include="SimpleDAL\DAM\CTDRecordDAM.cs" />

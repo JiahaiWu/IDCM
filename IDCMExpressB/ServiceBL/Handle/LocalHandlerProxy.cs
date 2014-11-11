@@ -45,6 +45,7 @@ namespace IDCM.ServiceBL.Handle
             BackgroundWorker worker = (BackgroundWorker)sender;
             worker.ReportProgress(0);
             e.Result=handler.doWork(worker,e.Cancel,args);
+            worker.ReportProgress(100);
         }
         /// <summary>
         /// 后台任务执行结束，回调代码段
@@ -61,7 +62,6 @@ namespace IDCM.ServiceBL.Handle
             else
                 args.Add(e.Result);
             BackgroundWorker worker = (BackgroundWorker)sender;
-            BackProgressIndicator.endBackProgress();
             //////////////////////////////////////////
             handler.complete(worker,e.Cancelled,e.Error, args);
             //////////////////////////////
@@ -122,6 +122,10 @@ namespace IDCM.ServiceBL.Handle
             if (e.ProgressPercentage == 0)
             {
                 BackProgressIndicator.startBackProgress();
+            }
+            if (e.ProgressPercentage == 100)
+            {
+                BackProgressIndicator.endBackProgress();
             }
             handler.progressChanged(worker,e.ProgressPercentage,args);
         }

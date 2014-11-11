@@ -76,7 +76,22 @@ namespace IDCM.SimpleDAL.DAM
                 if(rids!=null)
                     cmdBuilder.Append(" ").Append(CTD_RID).Append(" in (").Append(rids).Append(") ");
             }
-            DataTable table = SQLiteHelper.ExecuteDataTable(ConnectStr, cmdBuilder.ToString());
+            string cmdstr = cmdBuilder.ToString();
+            DataTable table = SQLiteHelper.ExecuteDataTable(ConnectStr, cmdstr);
+            cacheCTDRQuery(cmdstr,table.Rows.Count);
+            return table;
+        }
+        /// <summary>
+        /// 根据历史记录SQL，再次查询结果集
+        /// </summary>
+        /// <param name="nodeIds"></param>
+        /// <returns></returns>
+        public static DataTable queryCTDRecordByHistSQL(string histCmd,long limit=0,long offset=0)
+        {
+            if (limit < 1)
+                limit = Int16.MaxValue;
+            string cmdstr=histCmd+" limit "+limit+" offset "+offset;
+            DataTable table = SQLiteHelper.ExecuteDataTable(ConnectStr, cmdstr);
             return table;
         }
         /// <summary>

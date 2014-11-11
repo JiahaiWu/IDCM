@@ -37,12 +37,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LibFieldSettingDlg));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView_fields = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button_submit = new System.Windows.Forms.Button();
-            this.button_cancel = new System.Windows.Forms.Button();
-            this.comboBox_templ = new System.Windows.Forms.ComboBox();
-            this.label_template = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.attr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.attrType = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.isUnique = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -52,6 +46,12 @@
             this.comments = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.moveUp = new System.Windows.Forms.DataGridViewButtonColumn();
             this.moveDown = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button_submit = new System.Windows.Forms.Button();
+            this.button_cancel = new System.Windows.Forms.Button();
+            this.comboBox_templ = new System.Windows.Forms.ComboBox();
+            this.label_template = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_fields)).BeginInit();
             this.panel1.SuspendLayout();
@@ -94,6 +94,102 @@
             this.dataGridView_fields.RowTemplate.Height = 23;
             this.dataGridView_fields.Size = new System.Drawing.Size(739, 394);
             this.dataGridView_fields.TabIndex = 0;
+            // 
+            // attr
+            // 
+            this.attr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.attr.DefaultCellStyle = dataGridViewCellStyle1;
+            this.attr.HeaderText = "Name";
+            this.attr.MaxInputLength = 128;
+            this.attr.Name = "attr";
+            this.attr.ReadOnly = true;
+            this.attr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.attr.ToolTipText = "Field Name";
+            this.attr.Width = 49;
+            // 
+            // attrType
+            // 
+            this.attrType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.attrType.DefaultCellStyle = dataGridViewCellStyle2;
+            this.attrType.HeaderText = "Type";
+            this.attrType.Name = "attrType";
+            this.attrType.ReadOnly = true;
+            this.attrType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.attrType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.attrType.ToolTipText = "Field Type";
+            this.attrType.Width = 61;
+            // 
+            // isUnique
+            // 
+            this.isUnique.HeaderText = "Unique";
+            this.isUnique.Name = "isUnique";
+            this.isUnique.ReadOnly = true;
+            this.isUnique.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isUnique.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.isUnique.Width = 50;
+            // 
+            // defaultVal
+            // 
+            this.defaultVal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.defaultVal.DefaultCellStyle = dataGridViewCellStyle3;
+            this.defaultVal.HeaderText = "Default Value";
+            this.defaultVal.Name = "defaultVal";
+            this.defaultVal.ReadOnly = true;
+            this.defaultVal.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.defaultVal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.defaultVal.Width = 101;
+            // 
+            // restrict
+            // 
+            this.restrict.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.restrict.DefaultCellStyle = dataGridViewCellStyle4;
+            this.restrict.HeaderText = "Restriction Expression ";
+            this.restrict.Name = "restrict";
+            this.restrict.ReadOnly = true;
+            this.restrict.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.restrict.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.restrict.Width = 150;
+            // 
+            // mainField
+            // 
+            this.mainField.HeaderText = "Main";
+            this.mainField.Name = "mainField";
+            this.mainField.ReadOnly = true;
+            this.mainField.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.mainField.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.mainField.Width = 50;
+            // 
+            // comments
+            // 
+            this.comments.HeaderText = "Comments";
+            this.comments.Name = "comments";
+            this.comments.ReadOnly = true;
+            // 
+            // moveUp
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.moveUp.DefaultCellStyle = dataGridViewCellStyle5;
+            this.moveUp.HeaderText = "Up";
+            this.moveUp.Name = "moveUp";
+            this.moveUp.ReadOnly = true;
+            this.moveUp.Width = 50;
+            // 
+            // moveDown
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            this.moveDown.DefaultCellStyle = dataGridViewCellStyle6;
+            this.moveDown.HeaderText = "Down";
+            this.moveDown.Name = "moveDown";
+            this.moveDown.ReadOnly = true;
+            this.moveDown.Width = 50;
             // 
             // panel1
             // 
@@ -162,102 +258,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(757, 478);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // attr
-            // 
-            this.attr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.attr.DefaultCellStyle = dataGridViewCellStyle1;
-            this.attr.HeaderText = "Name";
-            this.attr.MaxInputLength = 128;
-            this.attr.Name = "attr";
-            this.attr.ReadOnly = true;
-            this.attr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.attr.ToolTipText = "Field Name";
-            this.attr.Width = 49;
-            // 
-            // attrType
-            // 
-            this.attrType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.attrType.DefaultCellStyle = dataGridViewCellStyle2;
-            this.attrType.HeaderText = "Type";
-            this.attrType.Name = "attrType";
-            this.attrType.ReadOnly = true;
-            this.attrType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.attrType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.attrType.ToolTipText = "Field Type";
-            this.attrType.Width = 61;
-            // 
-            // isUnique
-            // 
-            this.isUnique.HeaderText = "Unique";
-            this.isUnique.Name = "isUnique";
-            this.isUnique.ReadOnly = true;
-            this.isUnique.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.isUnique.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.isUnique.Width = 50;
-            // 
-            // defaultVal
-            // 
-            this.defaultVal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.defaultVal.DefaultCellStyle = dataGridViewCellStyle3;
-            this.defaultVal.HeaderText = "Default Value";
-            this.defaultVal.Name = "defaultVal";
-            this.defaultVal.ReadOnly = true;
-            this.defaultVal.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.defaultVal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.defaultVal.Width = 110;
-            // 
-            // restrict
-            // 
-            this.restrict.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.restrict.DefaultCellStyle = dataGridViewCellStyle4;
-            this.restrict.HeaderText = "Restriction Expression ";
-            this.restrict.Name = "restrict";
-            this.restrict.ReadOnly = true;
-            this.restrict.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.restrict.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.restrict.Width = 150;
-            // 
-            // mainField
-            // 
-            this.mainField.HeaderText = "Main";
-            this.mainField.Name = "mainField";
-            this.mainField.ReadOnly = true;
-            this.mainField.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.mainField.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.mainField.Width = 50;
-            // 
-            // comments
-            // 
-            this.comments.HeaderText = "Comments";
-            this.comments.Name = "comments";
-            this.comments.ReadOnly = true;
-            // 
-            // moveUp
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.moveUp.DefaultCellStyle = dataGridViewCellStyle5;
-            this.moveUp.HeaderText = "Up";
-            this.moveUp.Name = "moveUp";
-            this.moveUp.ReadOnly = true;
-            this.moveUp.Width = 50;
-            // 
-            // moveDown
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            this.moveDown.DefaultCellStyle = dataGridViewCellStyle6;
-            this.moveDown.HeaderText = "Down";
-            this.moveDown.Name = "moveDown";
-            this.moveDown.ReadOnly = true;
-            this.moveDown.Width = 50;
-            // 
             // LibFieldSettingDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -267,6 +267,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LibFieldSettingDlg";
+            this.ShowInTaskbar = false;
             this.Text = "Library Fields Setting";
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_fields)).EndInit();

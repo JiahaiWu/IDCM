@@ -62,6 +62,16 @@ namespace IDCM.ControlMBL.Module
             get { return CUR_RID; }
             set { CUR_RID=value; }
         }
+        /// <summary>
+        /// 当前表单显示的查询条件缓存
+        /// </summary>
+        private volatile string queryCondtion = null;
+
+        public string QueryCondtion
+        {
+            get { return queryCondtion; }
+        }
+
         #endregion
 
         /// <summary>

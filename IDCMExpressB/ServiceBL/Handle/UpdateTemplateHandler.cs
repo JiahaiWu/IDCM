@@ -8,6 +8,7 @@ using IDCM.ServiceBL.ServProcessor;
 using System.Windows.Forms;
 using IDCM.ViewLL.Manager;
 using IDCM.AppContext;
+using IDCM.ControlMBL.Module;
 
 namespace IDCM.ServiceBL.Handle
 {
@@ -59,6 +60,14 @@ namespace IDCM.ServiceBL.Handle
         /// <param name="args"></param>
         public void progressChanged(BackgroundWorker worker, int progressPercentage, List<Object> args)
         {
+            if (progressPercentage == 0)
+            {
+                FrontProgressPrompt.startFrontProgress();
+            }
+            if (progressPercentage == 100)
+            {
+                FrontProgressPrompt.endFrontProgress();
+            }
         }
         /// <summary>
         /// 后台任务执行结束后的串联执行任务队列。

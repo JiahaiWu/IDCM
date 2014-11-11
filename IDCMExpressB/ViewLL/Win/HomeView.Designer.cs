@@ -32,11 +32,11 @@
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("All References");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Unfiled");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Trash");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("My Group (Temp)");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("My Group (Temp)");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeView));
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("All Strains");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("节点1");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("节点2");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("All Strains");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("节点1");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("节点2");
             this.statusStripBottom = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel_bottom = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton_layout = new System.Windows.Forms.ToolStripSplitButton();
@@ -271,13 +271,13 @@
             treeNode2.Text = "Unfiled";
             treeNode3.Name = "Trash";
             treeNode3.Text = "Trash";
-            treeNode11.Name = "MyGroup";
-            treeNode11.Text = "My Group (Temp)";
+            treeNode4.Name = "MyGroup";
+            treeNode4.Text = "My Group (Temp)";
             this.treeView_library.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
             treeNode3,
-            treeNode11});
+            treeNode4});
             this.treeView_library.SelectedImageIndex = 0;
             this.treeView_library.ShowRootLines = false;
             this.treeView_library.Size = new System.Drawing.Size(215, 411);
@@ -335,16 +335,16 @@
             this.treeView_base.Location = new System.Drawing.Point(0, 28);
             this.treeView_base.Margin = new System.Windows.Forms.Padding(0);
             this.treeView_base.Name = "treeView_base";
-            treeNode4.Name = "-1";
-            treeNode4.Text = "All Strains";
-            treeNode5.Name = "节点1";
-            treeNode5.Text = "节点1";
-            treeNode6.Name = "节点2";
-            treeNode6.Text = "节点2";
+            treeNode5.Name = "-1";
+            treeNode5.Text = "All Strains";
+            treeNode6.Name = "节点1";
+            treeNode6.Text = "节点1";
+            treeNode7.Name = "节点2";
+            treeNode7.Text = "节点2";
             this.treeView_base.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4,
             treeNode5,
-            treeNode6});
+            treeNode6,
+            treeNode7});
             this.treeView_base.SelectedImageIndex = 0;
             this.treeView_base.ShowRootLines = false;
             this.treeView_base.Size = new System.Drawing.Size(215, 70);
@@ -935,6 +935,7 @@
             this.Controls.Add(this.statusStripBottom);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HomeView";
+            this.ShowInTaskbar = false;
             this.Text = "HomeView";
             this.Load += new System.EventHandler(this.HomeView_Load);
             this.Shown += new System.EventHandler(this.HomeView_Shown);

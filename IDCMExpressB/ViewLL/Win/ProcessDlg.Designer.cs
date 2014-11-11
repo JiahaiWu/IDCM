@@ -55,7 +55,7 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Request is in processing, please wait ...";
             // 
-            // Processing
+            // ProcessDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -65,7 +65,8 @@
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "Processing";
+            this.Name = "ProcessDlg";
+            this.ShowInTaskbar = false;
             this.Text = "Processing";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

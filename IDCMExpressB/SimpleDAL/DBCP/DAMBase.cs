@@ -128,6 +128,15 @@ namespace IDCM.SimpleDAL.DBCP
 
         #endregion
 
+        public static void cacheCTDRQuery(string cmdstr,int tcount)
+        {
+            QueryCmdCache.cacheCTDRQuery(cmdstr, tcount);
+        }
+        public static void cacheAggregateQuery(string cmdstr, params long[] values)
+        {
+            QueryCmdCache.cacheAggregateQuery(cmdstr,values);
+        }
+
         protected static SQLiteConnPicker ConnectPicker()
         {
             return new SQLiteConnPicker(connectStr);
