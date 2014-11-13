@@ -149,6 +149,7 @@
     <Compile Include="ServiceBL\Common\ExportType.cs" />
     <Compile Include="ServiceBL\Common\HandleToken.cs" />
     <Compile Include="ServiceBL\Common\ObjectPair.cs" />
+    <Compile Include="ServiceBL\Common\StringSimilarity.cs" />
     <Compile Include="ServiceBL\DataTransfer\ColumnMappingHolder.cs" />
     <Compile Include="ServiceBL\DataTransfer\CTableSetting.cs" />
     <Compile Include="ServiceBL\DataTransfer\CTableSigner.cs" />
@@ -187,6 +188,12 @@
     <Compile Include="ViewLL\Manager\IDCMVeiwManger.cs" />
     <Compile Include="ViewLL\Manager\LibFieldManager.cs" />
     <Compile Include="ViewLL\Manager\ManagerI.cs" />
+    <Compile Include="ViewLL\Win\AttrMapOptionDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewLL\Win\AttrMapOptionDlg.Designer.cs">
+      <DependentUpon>AttrMapOptionDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewLL\Win\ExportTypeDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,12 +211,6 @@
     </Compile>
     <Compile Include="ViewLL\Win\IDCMForm.Designer.cs">
       <DependentUpon>IDCMForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewLL\Win\LibFieldSettingDlg.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ViewLL\Win\LibFieldSettingDlg.Designer.cs">
-      <DependentUpon>LibFieldSettingDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewLL\Win\LibFieldSettingView.cs">
       <SubType>Form</SubType>
@@ -231,9 +232,13 @@
     </Compile>
     <Content Include="AddedEI\AddedEI.txt" />
     <Content Include="OverallSC\OverallSC.txt" />
+    <None Include="Resources\rightArrow.png" />
     <Content Include="ServiceBL\ServiceBL.txt" />
     <Content Include="SimpleDAL\SimpleDAL.txt" />
     <Content Include="ViewLL\ViewLL.txt" />
+    <EmbeddedResource Include="ViewLL\Win\AttrMapOptionDlg.resx">
+      <DependentUpon>AttrMapOptionDlg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewLL\Win\ExportTypeDlg.resx">
       <DependentUpon>ExportTypeDlg.cs</DependentUpon>
     </EmbeddedResource>
@@ -242,9 +247,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ViewLL\Win\IDCMForm.resx">
       <DependentUpon>IDCMForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ViewLL\Win\LibFieldSettingDlg.resx">
-      <DependentUpon>LibFieldSettingDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewLL\Win\LibFieldSettingView.resx">
       <DependentUpon>LibFieldSettingView.cs</DependentUpon>

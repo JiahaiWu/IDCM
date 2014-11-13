@@ -26,7 +26,7 @@ namespace IDCM.SimpleDAL.DAM
             DataTable table = SQLiteHelper.ExecuteDataTable(WorkSpaceHolder.ConnectStr, cmd);
             if (table != null && table.Rows.Count > 0)
             {
-                ColumnMappingHolder.getCacheAttrDBMap();
+                ColumnMappingHolder.queryCacheAttrDBMap();
                 return true;
             }
             else

@@ -11,6 +11,7 @@ using IDCM.ServiceBL.Common;
 using IDCM.ServiceBL.Handle;
 using IDCM.ServiceBL.CmdChannel;
 using IDCM.OverallSC.ShareSync;
+using IDCM.SimpleDAL.DBCP;
 
 namespace IDCM.ViewLL.Manager
 {
@@ -156,24 +157,25 @@ namespace IDCM.ViewLL.Manager
         /// <param name="fpath"></param>
         public void exportData(ExportType etype, string fpath)
         {
-            DataGridView itemDGV = homeView.getItemGridView();
+            //DataGridView itemDGV = homeView.getItemGridView();
+            KeyValuePair<string, int> lastQuery = QueryCmdCache.getLastCDTRQuery();
             AbsHandler handler = null;
             switch (etype)
             {
                 case ExportType.Excel:
-                    handler = new ExcelExportHandler(fpath, itemDGV);
+                    handler = new ExcelExportHandler(fpath, lastQuery.Key,lastQuery.Value);
                     CmdConsole.call(handler);
                     break;
                 case ExportType.JSONList:
-                    handler = new JSONListExportHandler(fpath, itemDGV);
+                    handler = new JSONListExportHandler(fpath, lastQuery.Key, lastQuery.Value);
                     CmdConsole.call(handler);
                     break;
                 case ExportType.TSV:
-                    handler = new TextExportHandler(fpath, itemDGV, "\t");
+                    handler = new TextExportHandler(fpath, lastQuery.Key, lastQuery.Value, "\t");
                     CmdConsole.call(handler);
                     break;
                 case ExportType.CSV:
-                    handler = new TextExportHandler(fpath, itemDGV, ",");
+                    handler = new TextExportHandler(fpath, lastQuery.Key, lastQuery.Value, ",");
                     CmdConsole.call(handler);
                     break;
                 default:

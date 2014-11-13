@@ -9,11 +9,12 @@ using System.Windows.Forms;
 
 namespace IDCM.ViewLL.Win
 {
-    public partial class LibFieldSettingDlg : Form
+    public partial class AttrMapOptionDlg : Form
     {
-        public LibFieldSettingDlg()
+        public AttrMapOptionDlg()
         {
             InitializeComponent();
         }
+
     }
 }

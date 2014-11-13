@@ -11,10 +11,11 @@ namespace IDCM.ServiceBL.Handle
 {
     class JSONListExportHandler:AbsHandler
     {
-        public JSONListExportHandler(string fpath, DataGridView dgv)
+        public JSONListExportHandler(string fpath,  string cmdstr,int tcount)
         {
             this.xlsPath = System.IO.Path.GetFullPath(fpath);
-            this.dgv_data = dgv;
+            this.cmdstr = cmdstr;
+            this.tcount = tcount;
         }
         /// <summary>
         /// 后台任务执行方法的主体部分，异步执行代码段！
@@ -25,7 +26,7 @@ namespace IDCM.ServiceBL.Handle
         {
             bool res=false;
             JSONListExporter exporter = new JSONListExporter();
-            res = exporter.exportJSONList(xlsPath, dgv_data);
+            res = exporter.exportJSONList(xlsPath, cmdstr,tcount);
             return new object[] { res};
         }
         /// <summary>
@@ -68,6 +69,7 @@ namespace IDCM.ServiceBL.Handle
             return null;
         }
         private string xlsPath = null;
-        private DataGridView dgv_data = null;
+        private  string cmdstr;
+        private int tcount;
     }
 }

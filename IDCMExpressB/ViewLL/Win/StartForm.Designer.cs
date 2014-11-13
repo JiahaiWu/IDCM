@@ -57,8 +57,7 @@
             this.label1.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Image = global::IDCM.Properties.Resources.uploading2_cut1;
-            this.label1.Location = new System.Drawing.Point(227, 285);
+            this.label1.Location = new System.Drawing.Point(220, 297);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(120, 22);
             this.label1.TabIndex = 1;

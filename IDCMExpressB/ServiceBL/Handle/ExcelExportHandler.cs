@@ -10,10 +10,11 @@ namespace IDCM.ServiceBL.Handle
 {
     class ExcelExportHandler:AbsHandler
     {
-        public ExcelExportHandler(string fpath, DataGridView dgv)
+        public ExcelExportHandler(string fpath,  string cmdstr,int tcount)
         {
             this.xlsPath = System.IO.Path.GetFullPath(fpath);
-            this.dgv_data = dgv;
+            this.cmdstr = cmdstr;
+            this.tcount = tcount;
         }
         /// <summary>
         /// 后台任务执行方法的主体部分，异步执行代码段！
@@ -24,7 +25,7 @@ namespace IDCM.ServiceBL.Handle
         {
             bool res=false;
             ExcelExporter exporter = new ExcelExporter();
-            res = exporter.exportExcel(xlsPath,dgv_data);
+            res = exporter.exportExcel(xlsPath,cmdstr,tcount);
             return new object[] { res};
         }
         /// <summary>
@@ -67,6 +68,7 @@ namespace IDCM.ServiceBL.Handle
             return null;
         }
         private string xlsPath = null;
-        private DataGridView dgv_data = null;
+        private  string cmdstr;
+        private int tcount;
     }
 }

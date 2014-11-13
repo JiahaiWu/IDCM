@@ -12,5 +12,6 @@ namespace IDCM.OverallSC.ShareSync
         public const string SOCK_LICENSE = "license";
         public const string DB_SUFFIX = ".mrc";
         public const int Max_Attr_Count = 1000;
+        public const int EXPORT_PAGING_COUNT = 1000;
     }
 }

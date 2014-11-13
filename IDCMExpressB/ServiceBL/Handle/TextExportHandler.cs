@@ -10,10 +10,11 @@ namespace IDCM.ServiceBL.Handle
 {
     class TextExportHandler:AbsHandler
     {
-        public TextExportHandler(string fpath, DataGridView dgv,string spliter=" ")
+        public TextExportHandler(string fpath, string cmdstr,int tcount,string spliter=" ")
         {
             this.textPath = System.IO.Path.GetFullPath(fpath);
-            this.dgv_data = dgv;
+            this.cmdstr = cmdstr;
+            this.tcount = tcount;
             this.spliter = spliter;
         }
         /// <summary>
@@ -25,7 +26,7 @@ namespace IDCM.ServiceBL.Handle
         {
             bool res=false;
             TextExporter exporter = new TextExporter();
-            res = exporter.exportText(textPath, dgv_data, spliter);
+            res = exporter.exportText(textPath, cmdstr,tcount, spliter);
             return new object[] { res};
         }
         /// <summary>
@@ -69,6 +70,7 @@ namespace IDCM.ServiceBL.Handle
         }
         private string spliter = null;
         private string textPath = null;
-        private DataGridView dgv_data = null;
+        private string cmdstr=null;
+        private int tcount = 0;
     }
 }

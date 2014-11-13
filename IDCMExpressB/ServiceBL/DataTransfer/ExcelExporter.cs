@@ -9,12 +9,15 @@ using NPOI.XSSF.UserModel;
 using NPOI.SS.Util;
 using System.Data;
 using System.IO;
+using IDCM.ServiceBL.Common.Converter;
+using IDCM.OverallSC.ShareSync;
+using IDCM.SimpleDAL.DAM;
 
 namespace IDCM.ServiceBL.DataTransfer
 {
     class ExcelExporter
     {
-        public bool exportExcel(string filepath, DataGridView dgv)
+        public bool exportExcel(string filepath,string cmdstr, int tcount)
         {
             try
             {
@@ -28,39 +31,32 @@ namespace IDCM.ServiceBL.DataTransfer
                 IRow rowHead = sheet.CreateRow(0);
                 HashSet<int> excludes = new HashSet<int>();
                 //填写表头
-                ICellStyle headStyle = workbook.CreateCellStyle();
-                for (int i = 0; i < dgv.ColumnCount; i++)
+                Dictionary<string, int> maps = ColumnMappingHolder.getCustomViewDBMapping();
+                //填写表头
+                int i = 0;
+                foreach (string key in maps.Keys)
                 {
-                    if (dgv.Columns[i].Name.StartsWith("["))
-                    {
-                        ICell cell = rowHead.CreateCell(i, CellType.String);
-                        cell.SetCellValue(dgv.Columns[i].HeaderText.ToString());
-                        cell.CellStyle.FillBackgroundColor = IndexedColors.Green.Index;
-                    }
-                    else
-                    {
-                        excludes.Add(i);
-                    }
+                    ICell cell = rowHead.CreateCell(i++, CellType.String);
+                    cell.SetCellValue(CVNameConverter.toViewName(key));
+                    cell.CellStyle.FillBackgroundColor = IndexedColors.Green.Index;
                 }
-                CellRangeAddress cra = CellRangeAddress.ValueOf("A1:" + numToExcelIndex(dgv.ColumnCount)+"1");
+                CellRangeAddress cra = CellRangeAddress.ValueOf("A1:" + numToExcelIndex(maps.Count)+"1");
                 sheet.SetAutoFilter(cra);
                 //填写内容
                 int ridx = 1;
-                foreach (DataGridViewRow dgvr in dgv.Rows)
+                int offset = 0;
+                int stepLen =SysConstants.EXPORT_PAGING_COUNT;
+                while (offset < tcount)
                 {
-                    if (dgvr.IsNewRow)
-                        continue;
-                    IRow row = sheet.CreateRow(ridx);
-                    for (int i = 0; i < dgv.ColumnCount; i++)
+                    int lcount = tcount - offset > stepLen ? stepLen : tcount - offset;
+                    DataTable table = CTDRecordDAM.queryCTDRecordByHistSQL(cmdstr, lcount, offset);
+                    foreach (DataRow row in table.Rows)
                     {
-                        if(excludes.Contains(i))
-                            continue;
-                        DataGridViewCell dcell=dgvr.Cells[i];
-                        if (dcell != null && dcell.Value != null)
-                        {
-                            row.CreateCell(i).SetCellValue(dcell.Value.ToString());
-                        }
+                        IRow srow = sheet.CreateRow(ridx);
+                        mergetDataToSheetRow(maps,row,srow);
                     }
+                    if (lcount > stepLen)
+                        offset += stepLen;
                 }
                 using (FileStream fs = File.Create(filepath))
                 {
@@ -74,6 +70,21 @@ namespace IDCM.ServiceBL.DataTransfer
                 return false;
             }
             return true;
+        }
+        protected void mergetDataToSheetRow(Dictionary<string, int> maps,DataRow row,IRow srow)
+        {
+            int idx=0;
+            foreach (KeyValuePair<string, int> kvpair in maps)
+            {
+                if (kvpair.Value > 0)
+                {
+                    string value = row[kvpair.Value].ToString();
+                    srow.CreateCell(idx).SetCellValue(value);
+                }else{
+                    srow.CreateCell(idx);
+                }
+                ++idx;
+            }
         }
         /// <summary>
         /// 用于针对Excel的列名转换实现，1->A

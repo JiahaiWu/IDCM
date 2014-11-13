@@ -19,7 +19,8 @@ namespace IDCM.SimpleDAL.DBCP
         /// <param name="cmdstr"></param>
         internal static void cacheCTDRQuery(string cmdstr,int tcount)
         {
-            lastUserCTDRQuery = cmdstr;
+            int idx = cmdstr.IndexOf("Limit", 0, StringComparison.OrdinalIgnoreCase);
+            lastUserCTDRQuery = idx>0?cmdstr.Substring(0,idx):cmdstr;
             lastUserCTDRQueryCount=tcount;
         }
         /// <summary>
@@ -27,7 +28,7 @@ namespace IDCM.SimpleDAL.DBCP
         /// </summary>
         /// <param name="cmdstr"></param>
         /// <returns></returns>
-        public static KeyValuePair<string,int> getLastCDTRQuery(string cmdstr)
+        public static KeyValuePair<string,int> getLastCDTRQuery()
         {
             return new KeyValuePair<string, int>(lastUserCTDRQuery, lastUserCTDRQueryCount);
         }
@@ -57,12 +58,13 @@ namespace IDCM.SimpleDAL.DBCP
         public static string lastUserCTDRQuery = null;
         public static int lastUserCTDRQueryCount = 0;
         /// <summary>
-        /// 最近的聚合查询数值结果缓存池，目前仅支持先进先出缓存原则。
-        /// </summary>
-        public static LurchTable<string, long[]> aggregateQueryStack = new LurchTable<string, long[]>(LurchTableOrder.Insertion,MaxAggregateQueryStackSize);
-        /// <summary>
         /// 聚合查询数值结果缓存池大小限定
         /// </summary>
         public static int MaxAggregateQueryStackSize = 256;
+        /// <summary>
+        /// 最近的聚合查询数值结果缓存池，目前仅支持先进先出缓存原则。
+        /// </summary>
+        public static LurchTable<string, long[]> aggregateQueryStack = new LurchTable<string, long[]>(LurchTableOrder.Insertion, MaxAggregateQueryStackSize);
+
     }
 }

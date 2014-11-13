@@ -5,12 +5,16 @@ using System.Text;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.IO;
+using IDCM.OverallSC.ShareSync;
+using System.Data;
+using IDCM.SimpleDAL.DAM;
+using IDCM.ServiceBL.Common.Converter;
 
 namespace IDCM.ServiceBL.DataTransfer
 {
     class JSONListExporter
     {
-        public bool exportJSONList(string filepath,DataGridView dgv)
+        public bool exportJSONList(string filepath, string cmdstr, int tcount)
         {
             try
             {
@@ -18,15 +22,19 @@ namespace IDCM.ServiceBL.DataTransfer
                 int count = 0;
                 using (FileStream fs = new FileStream(filepath, FileMode.Create))
                 {
-                    foreach (DataGridViewRow dgvr in dgv.Rows)
+                    Dictionary<string, int> maps = ColumnMappingHolder.getCustomViewDBMapping();
+                    //填写内容////////////////////
+                    int offset = 0;
+                    int stepLen = SysConstants.EXPORT_PAGING_COUNT;
+                    while (offset < tcount)
                     {
-                        if (dgvr.IsNewRow)
-                            continue;
-                        Dictionary<string, string> record = ConverttoRecDict(dgvr);
-                        if (record.Count > 0)
+                        int lcount = tcount - offset > stepLen ? stepLen : tcount - offset;
+                        DataTable table = CTDRecordDAM.queryCTDRecordByHistSQL(cmdstr, lcount, offset);
+                        foreach(DataRow row in table.Rows)
                         {
-                            string jsonStr = JsonConvert.SerializeObject(record);
+                            string jsonStr = convertToJsonStr(maps, row);
                             strbuilder.Append(jsonStr).Append("\n\r");
+                            /////////////
                             if (++count % 100 == 0)
                             {
                                 Byte[] info = new UTF8Encoding(true).GetBytes(strbuilder.ToString());
@@ -35,13 +43,15 @@ namespace IDCM.ServiceBL.DataTransfer
                                 strbuilder.Length = 0;
                             }
                         }
-                    }
-                    if (strbuilder.Length > 0)
-                    {
-                        Byte[] info = new UTF8Encoding(true).GetBytes(strbuilder.ToString());
-                        BinaryWriter bw = new BinaryWriter(fs);
-                        fs.Write(info, 0, info.Length);
-                        strbuilder.Length = 0;
+                        if (strbuilder.Length > 0)
+                        {
+                            Byte[] info = new UTF8Encoding(true).GetBytes(strbuilder.ToString());
+                            BinaryWriter bw = new BinaryWriter(fs);
+                            fs.Write(info, 0, info.Length);
+                            strbuilder.Length = 0;
+                        }
+                        if (lcount > stepLen)
+                            offset += stepLen;
                     }
                     fs.Close();
                 }
@@ -53,16 +63,20 @@ namespace IDCM.ServiceBL.DataTransfer
             }
             return true;
         }
-        protected Dictionary<string, string> ConverttoRecDict(DataGridViewRow dgvr)
+        protected string convertToJsonStr(Dictionary<string, int> maps, DataRow row)
+        {
+            Dictionary<string, string> record = ConvertToRecDict(maps, row);
+            return JsonConvert.SerializeObject(record);
+        }
+        protected Dictionary<string, string> ConvertToRecDict(Dictionary<string, int> maps,DataRow row)
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
-            foreach(DataGridViewCell dgvc in dgvr.Cells)
+            foreach(KeyValuePair<string,int> kvpair in maps)
             {
-                if (dgvc.Value != null && dgvc.OwningColumn.Name.StartsWith("["))
+                if (kvpair.Value > 0)
                 {
-                    string val=dgvc.Value.ToString();
-                    if (val.Length > 0)
-                        dict[dgvc.OwningColumn.HeaderText] = val;
+                    string key = CVNameConverter.toViewName(kvpair.Key);
+                    dict[key] = row[kvpair.Value].ToString();
                 }
             }
             return dict;
