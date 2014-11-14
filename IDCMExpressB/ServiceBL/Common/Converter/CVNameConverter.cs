@@ -9,9 +9,8 @@ namespace IDCM.ServiceBL.Common.Converter
     {
         public static bool isViewWrapName(string attr)
         {
-#if DEBUG
-            System.Diagnostics.Debug.Assert(attr!= null);
-#endif
+            if (attr == null)
+                return false;
             return (attr.StartsWith("[") && attr.StartsWith("]"));
         }
         /// <summary>
@@ -21,9 +20,8 @@ namespace IDCM.ServiceBL.Common.Converter
         /// <returns></returns>
         public static string toViewName(string attr)
         {
-#if DEBUG
-            System.Diagnostics.Debug.Assert(attr!= null);
-#endif
+            if (attr == null)
+                return null;
             if (attr.StartsWith("[") && attr.EndsWith("]"))
                 return attr;
             return "[" + attr + "]";
@@ -35,9 +33,8 @@ namespace IDCM.ServiceBL.Common.Converter
         /// <returns></returns>
         public static string toDBName(string attr)
         {
-#if DEBUG
-            System.Diagnostics.Debug.Assert(attr!= null);
-#endif
+            if (attr == null)
+                return null;
             if (attr.StartsWith("[") && attr.EndsWith("]"))
                 return attr.Substring(1, attr.Length - 2);
             return attr;

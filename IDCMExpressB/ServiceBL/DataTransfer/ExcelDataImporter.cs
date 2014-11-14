@@ -18,6 +18,7 @@ using IDCM.ServiceBL.DataTransfer;
 using IDCM.SimpleDAL.DAM;
 using IDCM.SimpleDAL.POO;
 using IDCM.ServiceBL.Common.Converter;
+using IDCM.ViewLL.Win;
 
 namespace IDCM.ServiceBL.DataTransfer
 {
@@ -81,31 +82,40 @@ namespace IDCM.ServiceBL.DataTransfer
                     xlscols.Add(null);
                 }
             }
+            AttrMapOptionDlg amoDlg = new AttrMapOptionDlg();
+            Dictionary<string, string> dataMapping = new Dictionary<string, string>();
+            amoDlg.setInitCols(xlscols, ColumnMappingHolder.getViewAttrs(false), ref dataMapping);
+            amoDlg.ShowDialog();
             ///////////////////////////////////////////
-            for (int i = skipIdx; i <= rowSize; ++i)
+            if (amoDlg.DialogResult == DialogResult.OK)
             {
-                IRow row = sheet.GetRow(i);
-                if (row == null) continue; //没有数据的行默认是null　
-                ICell headCell = row.GetCell(row.FirstCellNum);
-                if (headCell == null || headCell.ToString().Length == 0 || headCell.ToString().Equals("end!"))
-                    break;
-                Dictionary<string, string> mapValues = new Dictionary<string, string>();
-                for (int j = row.FirstCellNum; j < columnSize; j++)
+                amoDlg.Dispose();
+                for (int i = skipIdx; i <= rowSize; ++i)
                 {
-                    if (row.GetCell(j) != null) //同理，没有数据的单元格都默认是null
+                    IRow row = sheet.GetRow(i);
+                    if (row == null) continue; //没有数据的行默认是null　
+                    ICell headCell = row.GetCell(row.FirstCellNum);
+                    if (headCell == null || headCell.ToString().Length == 0 || headCell.ToString().Equals("end!"))
+                        break;
+                    Dictionary<string, string> mapValues = new Dictionary<string, string>();
+                    for (int j = row.FirstCellNum; j < columnSize; j++)
                     {
-                        string cellData = row.GetCell(j).ToString().Trim();
-                        if (ColumnMappingHolder.getDBOrder(xlscols[j]) > -1)
+                        if (row.GetCell(j) != null) //同理，没有数据的单元格都默认是null
                         {
-                            mapValues[xlscols[j]] = cellData;
-                            int idx = ColumnMappingHolder.getViewOrder(xlscols[j]);
+                            string cellData = row.GetCell(j).ToString().Trim();
+                            if (ColumnMappingHolder.getDBOrder(xlscols[j]) > -1)
+                            {
+                                mapValues[xlscols[j]] = cellData;
+                                int idx = ColumnMappingHolder.getViewOrder(xlscols[j]);
+                            }
                         }
                     }
+                    mapValues[CTDRecordDAM.CTD_LID] = lid;
+                    mapValues[CTDRecordDAM.CTD_PLID] = plid;
+                    long nuid = CTDRecordDAM.mergeRecord(mapValues);
                 }
-                mapValues[CTDRecordDAM.CTD_LID] = lid;
-                mapValues[CTDRecordDAM.CTD_PLID] = plid;
-                long nuid = CTDRecordDAM.mergeRecord(mapValues);
-            }
+            }else
+                amoDlg.Dispose();
         }
 
         private static NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();

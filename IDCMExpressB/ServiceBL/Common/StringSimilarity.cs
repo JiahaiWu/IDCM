@@ -19,7 +19,7 @@ namespace IDCM.ServiceBL.Common
         /// <param name="baseList"></param>
         /// <param name="mappingEntries"></param>
         /// <returns></returns>
-        public int computeSimilarMap(IList<string> srcList,IList<string> baseList,ref Dictionary<ObjectPair<string,string>,double> mappingEntries)
+        public static int computeSimilarMap(IList<string> srcList,IList<string> baseList,ref Dictionary<ObjectPair<string,string>,double> mappingEntries)
         {
             HashSet<string> candicates = new HashSet<string>(srcList);
             Dictionary<ObjectPair<string,string>,double> baseMapping = new Dictionary<ObjectPair<string,string>,double>();

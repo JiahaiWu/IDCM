@@ -114,16 +114,27 @@ namespace IDCM.ServiceBL.DataTransfer
             attrMapping.TryGetValue(attr, out kvpair);
             return kvpair==null?-1:kvpair.Key;
         }
-
+        
         /// <summary>
         /// 获取预览字段集序列
         /// </summary>
         /// <returns></returns>
-        public static List<string> getViewAttrs()
+        public static List<string> getViewAttrs(bool withInnerField=true)
         {
             if (attrMapping.Count < 1)
                 queryCacheAttrDBMap();
-            return attrMapping.Keys.ToList<string>();
+            if (withInnerField)
+                return attrMapping.Keys.ToList<string>();
+            else
+            {
+                List<string> res = new List<string>();
+                foreach (string key in attrMapping.Keys)
+                {
+                    if (CVNameConverter.isViewWrapName(key))
+                        res.Add(key);
+                }
+                return res;
+            }
         }
         /// <summary>
         /// 获取预览字段位序值(如查找失败返回-1)
