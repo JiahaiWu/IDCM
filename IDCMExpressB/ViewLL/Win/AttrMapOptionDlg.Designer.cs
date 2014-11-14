@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttrMapOptionDlg));
             this.dataGridView_map = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -40,6 +41,8 @@
             this.radioButton_exact = new System.Windows.Forms.RadioButton();
             this.radioButton_similarity = new System.Windows.Forms.RadioButton();
             this.button_cancel = new System.Windows.Forms.Button();
+            this.contextMenuStrip_destList = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripComboBox_dest = new System.Windows.Forms.ToolStripComboBox();
             this.Column_src = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_alter = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Column_tag = new System.Windows.Forms.DataGridViewImageColumn();
@@ -49,6 +52,7 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.contextMenuStrip_destList.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView_map
@@ -69,7 +73,8 @@
             this.dataGridView_map.RowTemplate.Height = 23;
             this.dataGridView_map.Size = new System.Drawing.Size(710, 429);
             this.dataGridView_map.TabIndex = 0;
-            this.dataGridView_map.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_map_CellClick);
+            this.dataGridView_map.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_map_CellMouseClick);
+            this.dataGridView_map.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView_map_RowPostPaint);
             // 
             // tableLayoutPanel1
             // 
@@ -163,10 +168,25 @@
             this.button_cancel.UseVisualStyleBackColor = true;
             this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
             // 
+            // contextMenuStrip_destList
+            // 
+            this.contextMenuStrip_destList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripComboBox_dest});
+            this.contextMenuStrip_destList.Name = "contextMenuStrip_destList";
+            this.contextMenuStrip_destList.Size = new System.Drawing.Size(182, 51);
+            // 
+            // toolStripComboBox_dest
+            // 
+            this.toolStripComboBox_dest.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.toolStripComboBox_dest.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBox_dest.Margin = new System.Windows.Forms.Padding(0);
+            this.toolStripComboBox_dest.Name = "toolStripComboBox_dest";
+            this.toolStripComboBox_dest.Size = new System.Drawing.Size(121, 25);
+            // 
             // Column_src
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_src.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_src.DefaultCellStyle = dataGridViewCellStyle15;
             this.Column_src.HeaderText = "From Attr";
             this.Column_src.Name = "Column_src";
             this.Column_src.ReadOnly = true;
@@ -179,20 +199,22 @@
             this.Column_alter.ReadOnly = true;
             this.Column_alter.Text = "...";
             this.Column_alter.ToolTipText = "...";
+            this.Column_alter.UseColumnTextForButtonValue = true;
             this.Column_alter.Width = 60;
             // 
             // Column_tag
             // 
-            this.Column_tag.HeaderText = "";
+            this.Column_tag.HeaderText = "To";
             this.Column_tag.Image = global::IDCM.Properties.Resources.rightArrow;
+            this.Column_tag.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Column_tag.Name = "Column_tag";
             this.Column_tag.ReadOnly = true;
             // 
             // Column_dest
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_dest.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column_dest.HeaderText = "To Attr";
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_dest.DefaultCellStyle = dataGridViewCellStyle16;
+            this.Column_dest.HeaderText = "Dest Attr";
             this.Column_dest.Name = "Column_dest";
             this.Column_dest.ReadOnly = true;
             this.Column_dest.Width = 150;
@@ -220,6 +242,7 @@
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.contextMenuStrip_destList.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -235,6 +258,8 @@
         private System.Windows.Forms.RadioButton radioButton_exact;
         private System.Windows.Forms.RadioButton radioButton_similarity;
         private System.Windows.Forms.Button button_cancel;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip_destList;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBox_dest;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_src;
         private System.Windows.Forms.DataGridViewButtonColumn Column_alter;
         private System.Windows.Forms.DataGridViewImageColumn Column_tag;

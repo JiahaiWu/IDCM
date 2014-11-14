@@ -115,7 +115,7 @@ namespace IDCM.ServiceBL.DataTransfer
             if (vals.Length > 0)
             {
                 CustomTColDef ctcd = new CustomTColDef();
-                ctcd.Attr = CVNameConverter.toViewName(vals[0]);
+                ctcd.Attr = CVNameConverter.toDBName(vals[0]);
                 ctcd.AttrType = vals.Length > 1 ? vals[1] : AttrTypeConverter.IDCM_String;
                 ctcd.IsRequire = vals.Length > 2 ? Convert.ToBoolean(vals[2]) : false;
                 ctcd.IsUnique = vals.Length > 3 ? Convert.ToBoolean(vals[3]) : false;

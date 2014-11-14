@@ -11,14 +11,14 @@ namespace IDCM.ServiceBL.Common.Converter
         {
             if (attr == null)
                 return false;
-            return (attr.StartsWith("[") && attr.StartsWith("]"));
+            return (attr.StartsWith("[") && attr.EndsWith("]"));
         }
         /// <summary>
-        /// toViewName
+        /// toDBName
         /// </summary>
         /// <param name="attr"></param>
         /// <returns></returns>
-        public static string toViewName(string attr)
+        public static string toDBName(string attr)
         {
             if (attr == null)
                 return null;
@@ -27,11 +27,11 @@ namespace IDCM.ServiceBL.Common.Converter
             return "[" + attr + "]";
         }
         /// <summary>
-        /// toDBName
+        /// toViewName
         /// </summary>
         /// <param name="attr"></param>
         /// <returns></returns>
-        public static string toDBName(string attr)
+        public static string toViewName(string attr)
         {
             if (attr == null)
                 return null;

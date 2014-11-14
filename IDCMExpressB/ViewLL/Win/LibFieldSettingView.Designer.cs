@@ -62,7 +62,6 @@
             this.toolStripMenuItem_down = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_del = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox_progress = new System.Windows.Forms.PictureBox();
             this.button_check = new System.Windows.Forms.Button();
             this.button_submit = new System.Windows.Forms.Button();
             this.button_cancel = new System.Windows.Forms.Button();
@@ -76,7 +75,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_fields)).BeginInit();
             this.contextMenuStrip_field.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_progress)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -298,7 +296,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightCyan;
-            this.panel1.Controls.Add(this.pictureBox_progress);
             this.panel1.Controls.Add(this.button_check);
             this.panel1.Controls.Add(this.button_submit);
             this.panel1.Controls.Add(this.button_cancel);
@@ -310,16 +307,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(997, 50);
             this.panel1.TabIndex = 1;
-            // 
-            // pictureBox_progress
-            // 
-            this.pictureBox_progress.Image = global::IDCM.Properties.Resources.uploading2_cut1;
-            this.pictureBox_progress.Location = new System.Drawing.Point(706, 6);
-            this.pictureBox_progress.Name = "pictureBox_progress";
-            this.pictureBox_progress.Size = new System.Drawing.Size(166, 31);
-            this.pictureBox_progress.TabIndex = 5;
-            this.pictureBox_progress.TabStop = false;
-            this.pictureBox_progress.Visible = false;
             // 
             // button_check
             // 
@@ -436,7 +423,6 @@
             this.contextMenuStrip_field.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_progress)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -474,6 +460,5 @@
         private System.Windows.Forms.DataGridViewImageColumn Down;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Reuse;
         private System.Windows.Forms.DataGridViewButtonColumn Overwrite;
-        private System.Windows.Forms.PictureBox pictureBox_progress;
     }
 }

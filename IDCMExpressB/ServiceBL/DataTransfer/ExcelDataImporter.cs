@@ -103,10 +103,11 @@ namespace IDCM.ServiceBL.DataTransfer
                         if (row.GetCell(j) != null) //同理，没有数据的单元格都默认是null
                         {
                             string cellData = row.GetCell(j).ToString().Trim();
-                            if (ColumnMappingHolder.getDBOrder(xlscols[j]) > -1)
+                            string mapName = null;
+                            dataMapping.TryGetValue(xlscols[j], out mapName);
+                            if (mapName != null)
                             {
-                                mapValues[xlscols[j]] = cellData;
-                                int idx = ColumnMappingHolder.getViewOrder(xlscols[j]);
+                                mapValues[mapName] = cellData;
                             }
                         }
                     }

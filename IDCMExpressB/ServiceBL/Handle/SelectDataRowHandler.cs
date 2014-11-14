@@ -56,7 +56,7 @@ namespace IDCM.ServiceBL.Handle
                 if (ctl is Panel)
                 {
                     int idx = Convert.ToInt32(ctl.Name.Substring("referPanel_".Length));
-                    string attr = CVNameConverter.toDBName(viewAttrs[idx]);
+                    string attr = CVNameConverter.toViewName(viewAttrs[idx]);
                     Control ictl = ctl.Controls[attr];
                     if (ictl != null)
                     {

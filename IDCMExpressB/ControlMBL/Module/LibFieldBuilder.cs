@@ -166,7 +166,7 @@ namespace IDCM.ControlMBL.Module
         }
         public void overwriteField(DataGridViewRow dgvr, string groupName)
         {
-            string attr = CVNameConverter.toViewName(dgvr.Cells["attr"].Value.ToString());
+            string attr = CVNameConverter.toDBName(dgvr.Cells["attr"].Value.ToString());
             if (existNameInCustomTCD(attr))
             {
                 removeNameInCustomTCD(attr);

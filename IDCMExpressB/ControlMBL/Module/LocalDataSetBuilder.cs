@@ -216,7 +216,7 @@ namespace IDCM.ControlMBL.Module
                     Type colType = AttrTypeConverter.getDGVColType(ctcd.AttrType);
                     DataGridViewColumn dgvCol = Activator.CreateInstance(colType) as DataGridViewColumn;
                     dgvCol.Name = ctcd.Attr;
-                    dgvCol.HeaderText = CVNameConverter.toDBName(ctcd.Attr);
+                    dgvCol.HeaderText = CVNameConverter.toViewName(ctcd.Attr);
                     if (ctcd.Attr.Equals(CTDRecordDAM.CTD_RID) || attr.Equals(CTDRecordDAM.CTD_PLID) || attr.Equals(CTDRecordDAM.CTD_LID))
                     {
                         dgvCol.Visible = false;
@@ -266,7 +266,7 @@ namespace IDCM.ControlMBL.Module
                 label.BorderStyle = BorderStyle.None;
                 label.BackColor = Color.WhiteSmoke;
                 label.Name = "referLabel_" + ctcd.Attr;
-                string pattr =CVNameConverter.toDBName(ctcd.Attr);
+                string pattr =CVNameConverter.toViewName(ctcd.Attr);
                 label.Text = pattr;
                 label.Font = new Font(label.Font, label.Font.Style ^ FontStyle.Bold);
                 label.Height = 14;
@@ -321,7 +321,7 @@ namespace IDCM.ControlMBL.Module
                 if (ctl is Panel)
                 {
                     int idx = Convert.ToInt32(ctl.Name.Substring("referPanel_".Length));
-                    string attr =CVNameConverter.toDBName(viewAttrs[idx]);
+                    string attr =CVNameConverter.toViewName(viewAttrs[idx]);
                     Control ictl = ctl.Controls[attr];
                     if (ictl != null)
                     {

@@ -142,9 +142,7 @@ namespace IDCM.ViewLL.Win
 
         private void button_submit_Click(object sender, EventArgs e)
         {
-            this.pictureBox_progress.Show();
             manager.submitSetting();
-            this.pictureBox_progress.Hide();
             this.Close();
             this.Dispose();
         }
