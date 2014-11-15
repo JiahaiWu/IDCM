@@ -14,6 +14,10 @@ namespace IDCM.ControlMBL.Module
         {
             bars.AddLast(progressBar);
         }
+        public static void removeIndicatorBar(ToolStripProgressBar progressBar)
+        {
+            bars.Remove(progressBar);
+        }
         public static void startBackProgress()
         {
             foreach (ToolStripProgressBar bar in bars)

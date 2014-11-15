@@ -36,23 +36,25 @@ namespace IDCM.AppContext
 
                 // Create both application forms and handle the Closed event
                 // to know when both forms are closed.
-                Form startForm = new StartForm(workspacePath);
+                //Form startForm = new StartForm(workspacePath);
                 mainManger = new IDCMVeiwManger();
-                DialogResult res = startForm.ShowDialog();
-                if (res == DialogResult.OK)
-                {
-                    startForm.Dispose();
-                    mainManger.initForm(true);
-                }
-                else
-                {
-                    if (res != DialogResult.Cancel)
-                    {
-                        MessageBox.Show("Failed to load and open the Workspace!", "Error", MessageBoxButtons.OK);
-                    }
-                    startForm.Dispose();
-                    mainManger.Dispose();
-                }
+                mainManger.initForm(true);
+
+                //DialogResult res = startForm.ShowDialog();
+                //if (res == DialogResult.OK)
+                //{
+                //    startForm.Dispose();
+                //    mainManger.initForm(true);
+                //}
+                //else
+                //{
+                //    if (res != DialogResult.Cancel)
+                //    {
+                //        MessageBox.Show("Failed to load and open the Workspace!", "Error", MessageBoxButtons.OK);
+                //    }
+                //    startForm.Dispose();
+                //    mainManger.Dispose();
+                //}
                 LongTermHandleNoter.checkForIdle();
                 //Run HandleInstanceMonitor
                 monitor.Interval = 3000;

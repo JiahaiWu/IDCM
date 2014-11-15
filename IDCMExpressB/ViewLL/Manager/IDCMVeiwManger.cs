@@ -5,7 +5,8 @@ using System.Text;
 using IDCM.ViewLL.Win;
 using System.Windows.Forms;
 using IDCM.AppContext;
-
+using IDCM.ServiceBL.Handle;
+using IDCM.ServiceBL.CmdChannel;
 
 namespace IDCM.ViewLL.Manager
 {
@@ -40,8 +41,8 @@ namespace IDCM.ViewLL.Manager
         #endregion
         #region 实例对象保持部分
         //主页面窗口实例
-        internal volatile IDCMForm mainForm = null;
-        internal volatile Dictionary<Type, ManagerI> subManagers = null;
+        internal IDCMForm mainForm = null;
+        internal Dictionary<Type, ManagerI> subManagers = null;
         #endregion
 
         /// <summary>
@@ -105,6 +106,35 @@ namespace IDCM.ViewLL.Manager
                 return view != null;
             }
             return false;
+        }
+        /// <summary>
+        /// 显示等待提示页面，并隐式地激活直属视图实例及其必要的窗口显示操作。
+        /// </summary>
+        /// <param name="manager"></param>
+        /// <param name="activeFront"></param>
+        /// <returns></returns>
+        public void activeChildViewAwait(Type manager, bool activeFront = false)
+        {
+            Form startForm = new StartForm();
+            startForm.Show();
+            startForm.Update();
+            bool res = activeChildView(manager, activeFront);
+            startForm.Close();
+            startForm.Dispose();
+        }
+        /// <summary>
+        /// 关闭当前工作空间，仅保留主框架窗口
+        /// </summary>
+        /// <returns></returns>
+        public bool closeWorkSpaceHolder()
+        {
+            foreach (ManagerI ma in subManagers.Values)
+            {
+                ma.dispose();
+            }
+            subManagers.Clear();
+            WorkSpaceHolder.close();
+            return true;
         }
     }
 }

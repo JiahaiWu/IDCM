@@ -54,7 +54,7 @@ namespace IDCM.ViewLL.Win
 
         private void IDCMForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            WorkSpaceHolder.close();
+            manager.closeWorkSpaceHolder();
         }
         /// <summary>
         /// 打开或新建一个本地数据库
@@ -68,7 +68,7 @@ namespace IDCM.ViewLL.Win
                 DialogResult res = MessageBox.Show("A workspace is in working, you need close it first. Choose \"OK\" to close workspace or choose \"Cancel\" to quit.", "Close Workspace Notice", MessageBoxButtons.OKCancel);
                 if (res.Equals(DialogResult.OK))
                 {
-                    WorkSpaceHolder.close();
+                    manager.closeWorkSpaceHolder();
                 }
                 else
                     return;
@@ -77,7 +77,7 @@ namespace IDCM.ViewLL.Win
             {
                 WorkSpaceHolder.startInstance();
             }
-            manager.activeChildView(typeof(HomeViewManager), true);
+            manager.activeChildViewAwait(typeof(HomeViewManager), true);
         }
         /// <summary>
         /// 打开或新建一个本地数据库
@@ -91,7 +91,7 @@ namespace IDCM.ViewLL.Win
                 DialogResult res = MessageBox.Show("A workspace is in working, you need close it first. Choose \"OK\" to close workspace or choose \"Cancel\" to quit.", "Close Workspace Notice", MessageBoxButtons.OKCancel);
                 if (res.Equals(DialogResult.OK))
                 {
-                    WorkSpaceHolder.close();
+                    manager.closeWorkSpaceHolder();
                 }
                 else
                     return;
@@ -100,7 +100,7 @@ namespace IDCM.ViewLL.Win
             {
                 WorkSpaceHolder.startInstance();
             }
-            manager.activeChildView(typeof(HomeViewManager), true);
+            manager.activeChildViewAwait(typeof(HomeViewManager), true);
         }
         /// <summary>
         /// 关闭一个本地数据库
@@ -111,7 +111,7 @@ namespace IDCM.ViewLL.Win
         {
             if (WorkSpaceHolder.InWorking)
             {
-                WorkSpaceHolder.close();
+                manager.closeWorkSpaceHolder();
             }
         }
         /// <summary>
@@ -130,7 +130,7 @@ namespace IDCM.ViewLL.Win
         /// <param name="e"></param>
         private void IDCMForm_Shown(object sender, EventArgs e)
         {
-            manager.activeChildView(typeof(HomeViewManager), true);
+            manager.activeChildViewAwait(typeof(HomeViewManager), true);
         }
     }
 }

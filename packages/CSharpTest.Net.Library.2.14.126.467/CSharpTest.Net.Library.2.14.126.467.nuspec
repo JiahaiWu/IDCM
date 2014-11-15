@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>CSharpTest.Net.Library</id>
+    <version>2.14.126.467</version>
+    <title>CSharpTest.Net.Library</title>
+    <authors>Roger Knapp</authors>
+    <owners>Roger Knapp</owners>
+    <licenseUrl>http://csharptest.net/src/LICENSE-2.0.txt</licenseUrl>
+    <projectUrl>http://code.google.com/p/csharptest-net/</projectUrl>
+    <iconUrl>http://csharptest.net/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>==DEPRECATED==
+
+Source moved/split into several repositories/packages: 
+
+https://www.nuget.org/packages/CSharpTest.Net.Collections/
+https://www.nuget.org/packages/CSharpTest.Net.Commands/
+https://www.nuget.org/packages/CSharpTest.Net.RpcLibrary/
+https://www.nuget.org/packages/CSharpTest.Net.Tools/
+
+Repositories are located under the following account:
+
+https://github.com/csharptest</description>
+    <summary>CSharpTest.Net.Library is a collection of unrelated helper classes and utilities for a wide variety of uses.</summary>
+    <releaseNotes>See the main project page (http://code.google.com/p/csharptest-net/) for release notes.</releaseNotes>
+    <copyright>Copyright 2008-2011 by Roger Knapp, Licensed under the Apache License, Version 2.0</copyright>
+    <language>en-US</language>
+    <tags>Class Library Clone DeepClone CommandLine CommandInterpreter ArgumentList Crypto Cryptography IO Stream HTML XML Parser IPC Events Process ProcessRunner ScriptRunner Serialization Synchronization Threading</tags>
+    <references>
+      <reference file="CSharpTest.Net.Library.dll" />
+    </references>
+  </metadata>
+</package>

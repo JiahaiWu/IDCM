@@ -26,17 +26,22 @@ namespace IDCM.AppContext
         /// 检查目标工作空间的文档是否已占用，如果被占用则执行退出操作;
         /// </summary>
         /// <param name="workspacePath"></param>
-        public static void checkWorkSpaceSingleton(string lockFilePath = null)
+        public static void checkWorkSpaceSingleton(string preparepath = null)
         {
-            if (lockFilePath != null)
+            if (preparepath != null)
             {
-                if (FileUtil.isFileInUse(lockFilePath) == true)
+                if (FileUtil.isFileInUse(preparepath) == true)
                 {
                     DialogResult res = MessageBox.Show("The Client is in working. Choose \"OK\" to change a workspace or choose \"Cancel\" to quit.", "Duplicated Workspace Notice", MessageBoxButtons.OKCancel);
                     if (res.Equals(DialogResult.Cancel))
                     {
                         System.Environment.Exit(0);
                     }
+                }
+                if (preparepath != null && File.Exists(preparepath))
+                {
+                    IDCMEnvironment.CURRENT_WORKSPACE = Path.GetDirectoryName(preparepath);
+                    IDCMEnvironment.LUID = Path.GetFileName(preparepath);
                 }
             }
             if (checkDuplicateProcess() != null)
@@ -129,13 +134,8 @@ namespace IDCM.AppContext
         /// 初始化用户工作空间
         /// </summary>
         /// <returns></returns>
-        public static bool verifyForLoad(string preparepath=null)
+        public static bool verifyForLoad()
         {
-            if (preparepath != null && File.Exists(preparepath))
-            {
-                IDCMEnvironment.CURRENT_WORKSPACE = Path.GetDirectoryName(preparepath);
-                IDCMEnvironment.LUID = Path.GetFileName(preparepath);
-            }
             if (IDCMEnvironment.CURRENT_WORKSPACE == null)
                 IDCMEnvironment.CURRENT_WORKSPACE = IDCMEnvironment.DEFAULT_WORKSPACE;
             FileInfo mrcFile = new FileInfo(IDCMEnvironment.CURRENT_WORKSPACE + "/" + IDCMEnvironment.LUID);

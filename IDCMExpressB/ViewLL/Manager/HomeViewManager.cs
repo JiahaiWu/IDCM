@@ -12,6 +12,7 @@ using IDCM.ServiceBL.Handle;
 using IDCM.ServiceBL.CmdChannel;
 using IDCM.OverallSC.ShareSync;
 using IDCM.SimpleDAL.DBCP;
+using IDCM.ControlMBL.AsyncInvoker;
 
 namespace IDCM.ViewLL.Manager
 {
@@ -57,6 +58,7 @@ namespace IDCM.ViewLL.Manager
             }
             if (homeView != null && !homeView.IsDisposed)
             {
+                BackProgressIndicator.removeIndicatorBar(homeView.getProgressBar());
                 homeView.Close();
                 homeView.Dispose();
                 homeView = null;
