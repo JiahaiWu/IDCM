@@ -22,7 +22,7 @@ namespace IDCM.AppContext
     /// </summary>
     class IDCMAppContext : ApplicationContext
     {
-        public IDCMAppContext()
+        public IDCMAppContext(string workspacePath=null)
         {
             if (!hasInited)
             {
@@ -32,11 +32,11 @@ namespace IDCM.AppContext
                 //初始化检测...
                 //检查当前目录下的进程实例是否已存在，如果存在执行退出操作;
                 //检查目标工作空间的文档是否已占用，如果被占用则执行退出操作;
-                WorkSpaceHolder.checkWorkSpaceSingleton();
+                WorkSpaceHolder.checkWorkSpaceSingleton(workspacePath);
 
                 // Create both application forms and handle the Closed event
                 // to know when both forms are closed.
-                Form startForm = new StartForm();
+                Form startForm = new StartForm(workspacePath);
                 mainManger = new IDCMVeiwManger();
                 DialogResult res = startForm.ShowDialog();
                 if (res == DialogResult.OK)

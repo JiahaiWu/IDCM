@@ -202,6 +202,53 @@ namespace IDCM.SimpleDAL.DAM
             SQLiteHelper.ExecuteNonQuery(ConnectStr, cmdBuilder.ToString());
         }
         /// <summary>
+        /// 彻底删除目标归档目录的数据记录
+        /// </summary>
+        /// <param name="nodeIds"></param>
+        /// <param name="rids"></param>
+        public static void dropCTCRecordLid(string nodeIds = null, string rids = null)
+        {
+            SQLiteCommand cmd = new SQLiteCommand();
+            StringBuilder cmdBuilder = new StringBuilder("delete from " + table_name);
+            if (nodeIds != null || rids != null)
+            {
+                cmdBuilder.Append(" where ");
+                if (nodeIds != null)
+                {
+                    cmdBuilder.Append(CTDRecordDAM.CTD_LID);
+                    if (nodeIds.StartsWith("-"))
+                    {
+                        if (nodeIds.Equals(LibraryNodeDAM.REC_ALL.ToString()))
+                        {
+                            cmdBuilder.Append("<>" + LibraryNodeDAM.REC_TRASH);
+                        }
+                        else if (nodeIds.Equals(LibraryNodeDAM.REC_TRASH.ToString()))
+                        {
+                            cmdBuilder.Append("=" + LibraryNodeDAM.REC_TRASH);
+                        }
+                        else if (nodeIds.Equals(LibraryNodeDAM.REC_TEMP.ToString()))
+                        {
+                            cmdBuilder.Append("=" + LibraryNodeDAM.REC_TEMP);
+                        }
+                        else if (nodeIds.Equals(LibraryNodeDAM.REC_UNFILED.ToString()))
+                        {
+                            cmdBuilder.Append("=" + LibraryNodeDAM.REC_UNFILED).Append(" or " + CTDRecordDAM.CTD_RID + " is NULL ");
+                        }
+                        else
+                        {
+                            throw new NotSupportedException("Un Supported query condition using queryCTDRecord Method! The condition named is " + nodeIds + ".");
+                        }
+                    }
+                    else
+                        cmdBuilder.Append(" in (").Append(nodeIds).Append(") ");
+                }
+                if (rids != null)
+                    cmdBuilder.Append(" ").Append(CTD_RID).Append(" in (").Append(rids).Append(") ");
+            }
+            SQLiteHelper.ExecuteNonQuery(ConnectStr, cmdBuilder.ToString());
+        }
+        
+        /// <summary>
         /// 更新数据记录
         /// </summary>
         /// <param name="uid"></param>

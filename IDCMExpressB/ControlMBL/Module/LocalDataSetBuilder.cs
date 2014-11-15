@@ -138,11 +138,11 @@ namespace IDCM.ControlMBL.Module
             }
         }
         /// <summary>
-        /// 删除数据归档目标，置入未分类目录
+        /// 删除数据归档目标的数据记录，置入未分类目录
         /// </summary>
         /// <param name="filteNode"></param>
         /// <param name="lid"></param>
-        public void trashDataSet(TreeNode filteNode, int newlid = LibraryNodeDAM.REC_UNFILED)
+        public void trashDataSet(TreeNode filteNode, int newlid = LibraryNodeDAM.REC_TRASH)
         {
             List<string> viewAttrs = ColumnMappingHolder.getViewAttrs();
             long lid = Convert.ToInt64(filteNode.Name);
@@ -175,9 +175,50 @@ namespace IDCM.ControlMBL.Module
                     }
                 }
                 //数据归档更新
-                CTDRecordDAM.updateCTCRecordLid(newlid, LibraryNodeDAM.REC_UNFILED, filterLids);
+                CTDRecordDAM.updateCTCRecordLid(newlid, LibraryNodeDAM.REC_ALL, filterLids);
             }
         }
+        /// <summary>
+        /// 删除数据归档目标的数据记录，置入未分类目录
+        /// </summary>
+        /// <param name="filteNode"></param>
+        public void dropDataSet(TreeNode filteNode)
+        {
+            List<string> viewAttrs = ColumnMappingHolder.getViewAttrs();
+            long lid = Convert.ToInt64(filteNode.Name);
+            lock (ShareSyncLockers.LocalDataGridView_Lock)
+            {
+                if (filteNode.Level > 0)
+                {
+                    CUR_LID = lid;
+                    CUR_PLID = Convert.ToInt64(filteNode.Parent.Name);
+                }
+                else
+                {
+                    CUR_LID = lid;
+                    CUR_PLID = lid;
+                }
+                itemDGV.Rows.Clear();
+                resetReferences(viewAttrs);
+                string filterLids = lid.ToString();
+                if (lid > 0)
+                {
+                    long[] lids = LibraryNodeDAM.extractToLids(lid);
+                    if (lids != null)
+                    {
+                        filterLids = "";
+                        foreach (long _lid in lids)
+                        {
+                            filterLids += "," + _lid;
+                        }
+                        filterLids = filterLids.Substring(1);
+                    }
+                }
+                //数据归档更新
+                CTDRecordDAM.dropCTCRecordLid(filterLids);
+            }
+        }
+        
         /// <summary>
         /// 转换数据对象值到列表显示
         /// </summary>

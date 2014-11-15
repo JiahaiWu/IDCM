@@ -29,17 +29,17 @@ namespace IDCM.ControlMBL.Utilities
             foreach (Delegate dx in d.GetInvocationList())
                 eventInfo.RemoveEventHandler(control, dx);
         }
-        public static void ClearEvent(Component component, string eventname)
+        public static void ClearEvent(ToolStripItem component, string eventname)
         {
             if (component == null) return;
             if (string.IsNullOrEmpty(eventname)) return;
 
             BindingFlags mPropertyFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic;
             BindingFlags mFieldFlags = BindingFlags.Static | BindingFlags.NonPublic;
-            Type controlType = typeof(System.Windows.Forms.Control);
+            Type controlType = typeof(ToolStripItem);
             PropertyInfo propertyInfo = controlType.GetProperty("Events", mPropertyFlags);
             EventHandlerList eventHandlerList = (EventHandlerList)propertyInfo.GetValue(component, null);
-            FieldInfo fieldInfo = (typeof(Component)).GetField("Event" + eventname, mFieldFlags);
+            FieldInfo fieldInfo = (typeof(ToolStripItem)).GetField("Event" + eventname, mFieldFlags);
             Delegate d = eventHandlerList[fieldInfo.GetValue(component)];
 
             if (d == null) return;
@@ -55,7 +55,7 @@ namespace IDCM.ControlMBL.Utilities
 
             BindingFlags mPropertyFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic;
             BindingFlags mFieldFlags = BindingFlags.Static | BindingFlags.NonPublic;
-            Type controlType = typeof(System.Windows.Forms.Control);
+            Type controlType = typeof(ToolStripComboBox);
             PropertyInfo propertyInfo = controlType.GetProperty("Events", mPropertyFlags);
             EventHandlerList eventHandlerList = (EventHandlerList)propertyInfo.GetValue(component, null);
             FieldInfo fieldInfo = (typeof(ToolStripComboBox)).GetField("Event" + eventname, mFieldFlags);

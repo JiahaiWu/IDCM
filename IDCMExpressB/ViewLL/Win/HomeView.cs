@@ -232,7 +232,6 @@ namespace IDCM.ViewLL.Win
                 DialogResult res = MessageBox.Show("Are you sure to delete the selected Node named " + node.Text, "Confirm Delete", MessageBoxButtons.OKCancel);
                 if (res == DialogResult.OK)
                 {
-                    manager.trashDataSet(node);
                     manager.deleteNode(node);
                 }
             }
@@ -251,7 +250,7 @@ namespace IDCM.ViewLL.Win
                 DialogResult res = MessageBox.Show("Are you sure to Empty Data", "Confirm Empty", MessageBoxButtons.OKCancel);
                 if (res == DialogResult.OK)
                 {
-                    MessageBox.Show("UnImplicated");
+                    manager.trashDataSet(node);
                 }
             }
         }

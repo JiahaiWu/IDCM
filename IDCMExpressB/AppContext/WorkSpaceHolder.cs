@@ -129,8 +129,13 @@ namespace IDCM.AppContext
         /// 初始化用户工作空间
         /// </summary>
         /// <returns></returns>
-        public static bool verifyForLoad()
+        public static bool verifyForLoad(string preparepath=null)
         {
+            if (preparepath != null && File.Exists(preparepath))
+            {
+                IDCMEnvironment.CURRENT_WORKSPACE = Path.GetDirectoryName(preparepath);
+                IDCMEnvironment.LUID = Path.GetFileName(preparepath);
+            }
             if (IDCMEnvironment.CURRENT_WORKSPACE == null)
                 IDCMEnvironment.CURRENT_WORKSPACE = IDCMEnvironment.DEFAULT_WORKSPACE;
             FileInfo mrcFile = new FileInfo(IDCMEnvironment.CURRENT_WORKSPACE + "/" + IDCMEnvironment.LUID);

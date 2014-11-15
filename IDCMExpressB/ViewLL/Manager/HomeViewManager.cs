@@ -143,8 +143,8 @@ namespace IDCM.ViewLL.Manager
         {
             if (fpath.ToLower().EndsWith("xls") || fpath.ToLower().EndsWith(".xlsx"))
             {
-                ExcelImportHandler eih = new ExcelImportHandler(fpath, datasetBuilder.CURRENT_LID, datasetBuilder.CURRENT_PLID);
-                eih.addHandler(new UpdateHomeDataViewHandler(libBuilder.SelectedNode_Current, homeView.getItemGridView()));
+                ExcelImportHandler eih = new ExcelImportHandler(fpath, LibraryNodeDAM.REC_UNFILED, LibraryNodeDAM.REC_ALL);
+                eih.addHandler(new UpdateHomeDataViewHandler(libBuilder.RootNode_unfiled, homeView.getItemGridView()));
                 UpdateHomeLibCountHandler uhlch = new UpdateHomeLibCountHandler(homeView.getLibTree(), homeView.getBaseTree());
                 eih.addHandler(uhlch);
                 uhlch.addHandler(new SelectDataRowHandler(homeView.getItemGridView(), homeView.getAttachTabControl()));
@@ -200,13 +200,27 @@ namespace IDCM.ViewLL.Manager
         {
             datasetBuilder.selectViewRecord(dgvr);
         }
-        public void trashDataSet(TreeNode filteNode, int newlid = LibraryNodeDAM.REC_UNFILED)
+        public void trashDataSet(TreeNode filteNode, int newlid = LibraryNodeDAM.REC_TRASH)
         {
-            datasetBuilder.trashDataSet(filteNode, newlid);
+            if(filteNode.Equals(libBuilder.RootNode_trash))
+            {
+                datasetBuilder.dropDataSet(filteNode);
+            }else{
+                datasetBuilder.trashDataSet(filteNode, newlid);
+            }
+            UpdateHomeDataViewHandler uhdvh = new UpdateHomeDataViewHandler(filteNode, homeView.getItemGridView());
+            UpdateHomeLibCountHandler uhlch = new UpdateHomeLibCountHandler(homeView.getLibTree(), homeView.getBaseTree());
+            uhdvh.addHandler(uhlch);
+            CmdConsole.call(uhdvh, CmdConsole.CmdReqOption.L);
         }
         public void deleteNode(TreeNode treeNode)
         {
+            datasetBuilder.trashDataSet(treeNode, LibraryNodeDAM.REC_TRASH);
             libBuilder.deleteNode(treeNode);
+            UpdateHomeDataViewHandler uhdvh = new UpdateHomeDataViewHandler(libBuilder.RootNode_all, homeView.getItemGridView());
+            UpdateHomeLibCountHandler uhlch = new UpdateHomeLibCountHandler(homeView.getLibTree(), homeView.getBaseTree());
+            uhdvh.addHandler(uhlch);
+            CmdConsole.call(uhdvh, CmdConsole.CmdReqOption.L);
         }
         public void addGroup(TreeNode treeNode)
         {

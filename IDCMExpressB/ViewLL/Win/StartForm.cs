@@ -16,7 +16,7 @@ namespace IDCM.ViewLL.Win
 {
     public partial class StartForm : Form
     {
-        public StartForm()
+        public StartForm(string workspacePath=null)
         {
             InitializeComponent();
         }
@@ -28,7 +28,7 @@ namespace IDCM.ViewLL.Win
         private void StartForm_Shown(object sender, EventArgs e)
         {
             //检查用户工作空间有效性
-            if (WorkSpaceHolder.verifyForLoad())
+            if (WorkSpaceHolder.verifyForLoad(preparepath))
             {
                 if (CustomTColDefDAM.checkTableSetting())
                     this.DialogResult = DialogResult.OK;
@@ -41,5 +41,6 @@ namespace IDCM.ViewLL.Win
             }
             this.Close();
         }
+        private string preparepath=null;
     }
 }

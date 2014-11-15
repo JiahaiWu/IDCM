@@ -12,11 +12,22 @@ namespace IDCM
         /// 应用程序的主入口点。
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new IDCMAppContext());
+            string ws=null;
+            if (args.Length > 0)
+            {
+                for (int i=0;i<args.Length-1;i++)
+                {
+                    if (args[i].Equals("-ws"))
+                    {
+                        ws = args[i + 1].Trim(new char[]{'"'});
+                    }
+                }
+            }
+            Application.Run(new IDCMAppContext(ws));
         }
     }
 }

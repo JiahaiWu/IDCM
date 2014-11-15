@@ -173,9 +173,6 @@ namespace IDCM.ControlMBL.Module
             long referNameId = Convert.ToInt64(treeNode.Name);
             int res=LibraryNodeDAM.delNodeCascaded(referNameId);
             treeNode.Remove();
-#if DEBUG
-            System.Diagnostics.Debug.Assert(res > 0);
-#endif
         }
         /// <summary>
         /// addGroupSet
