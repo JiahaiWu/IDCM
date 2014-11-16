@@ -123,6 +123,15 @@ namespace IDCM.SimpleDAL.DBCP
                 + "StartCount INTEGER default 0,"
                 + "LastResult TEXT);";
             strbuilder.Append(cmd).Append("\n");
+            //创建用户身份认证信息
+            cmd = "Create Table if Not Exists " + typeof(AuthInfo).Name + "("
+                + "username primary key,"
+                + "password TEXT,"
+                + "jsessionid TEXT,"
+                + "loginFlag INTEGER default 0,"
+                + "autoLogin INTEGER default 0,"
+                + "timestamp INTEGER default 0);";
+            strbuilder.Append(cmd).Append("\n");
             return strbuilder.ToString();
         }
 

@@ -24,6 +24,10 @@ namespace IDCM.ViewLL.Manager
             mainForm.setManager(this);
             subManagers = new Dictionary<Type, ManagerI>();
         }
+        public static IDCMVeiwManger getInstance()
+        {
+            return IDCMAppContext.MainManger;
+        }
         ~IDCMVeiwManger()
         {
             Dispose();
@@ -97,11 +101,16 @@ namespace IDCM.ViewLL.Manager
                 ManagerI view = getManager(manager);
                 if (activeFront)
                 {
-                    foreach (ManagerI ma in subManagers.Values)
+                    if(manager.IsSubclassOf(typeof(RetainerA)))
                     {
-                        ma.setMaxToNormal();
+                        view.initView(true);
+                    }else{
+                        foreach (ManagerI ma in subManagers.Values)
+                        {
+                            ma.setMaxToNormal();
+                        }
+                        view.setToMaxmize(activeFront);
                     }
-                    view.setToMaxmize(activeFront);
                 }
                 return view != null;
             }
@@ -135,6 +144,17 @@ namespace IDCM.ViewLL.Manager
             subManagers.Clear();
             WorkSpaceHolder.close();
             return true;
+        }
+        /// <summary>
+        /// 更新用户身份认证状态
+        /// </summary>
+        /// <param name="uname"></param>
+        public void updateUserStatus(string uname = null)
+        {
+            string tip = "Off Line";
+            if (uname != null)
+                tip = "On Line: " + uname;
+            mainForm.setLoginTip(tip);
         }
     }
 }

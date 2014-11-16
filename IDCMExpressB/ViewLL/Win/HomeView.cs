@@ -575,6 +575,7 @@ namespace IDCM.ViewLL.Win
         {
             return toolStripProgressBar_bottom;
         }
+
         private void treeView_library_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
         {
             e.Cancel = true;
@@ -623,6 +624,7 @@ namespace IDCM.ViewLL.Win
                 }
             }
         }
+
         private static NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
     }
 }

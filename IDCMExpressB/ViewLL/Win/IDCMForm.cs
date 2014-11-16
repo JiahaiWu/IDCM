@@ -13,6 +13,7 @@ using System.Configuration;
 using IDCM.ServiceBL;
 using IDCM.ServiceBL.Common;
 using IDCM.AppContext;
+using IDCM.ControlMBL.AsyncInvoker;
 
 namespace IDCM.ViewLL.Win
 {
@@ -34,11 +35,11 @@ namespace IDCM.ViewLL.Win
         {
 #if DEBUG
             ToolStripMenuItem reserMenuItem = new ToolStripMenuItem("Reset DB");
-            (MenuStrip_IDCM.Items[3] as ToolStripMenuItem).DropDownItems.Add(reserMenuItem);
+            (MenuStrip_IDCM.Items[1] as ToolStripMenuItem).DropDownItems.Add(reserMenuItem);
             reserMenuItem.Click += new EventHandler(IDCM.AddedEI.Debug.DBReseter.resetDataSource);
 
             ToolStripMenuItem testMenuItem = new ToolStripMenuItem("Test Sqlite sync");
-            (MenuStrip_IDCM.Items[3] as ToolStripMenuItem).DropDownItems.Add(testMenuItem);
+            (MenuStrip_IDCM.Items[1] as ToolStripMenuItem).DropDownItems.Add(testMenuItem);
             testMenuItem.Click += new EventHandler(IDCM.AddedEI.Test.SqLiteTester.doTest);
 #endif
             //Thread.CurrentThread.Name = "IDCMForm" + HandleToken.nextTempID();
@@ -78,6 +79,10 @@ namespace IDCM.ViewLL.Win
                 WorkSpaceHolder.startInstance();
             }
             manager.activeChildViewAwait(typeof(HomeViewManager), true);
+        }
+        public void setLoginTip(string tip=null)
+        {
+            ToolStripItemAsyncUtil.SyncSetText(this.toolStripTextBox_user, tip);
         }
         /// <summary>
         /// 打开或新建一个本地数据库
@@ -131,6 +136,16 @@ namespace IDCM.ViewLL.Win
         private void IDCMForm_Shown(object sender, EventArgs e)
         {
             manager.activeChildViewAwait(typeof(HomeViewManager), true);
+            manager.activeChildView(typeof(AuthenticationRetainer), false);
+        }
+        /// <summary>
+        /// 身份认证信息配置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void authToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            manager.activeChildView(typeof(AuthenticationRetainer), true);
         }
     }
 }

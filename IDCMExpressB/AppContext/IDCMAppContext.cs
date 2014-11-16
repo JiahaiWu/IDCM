@@ -39,22 +39,6 @@ namespace IDCM.AppContext
                 //Form startForm = new StartForm(workspacePath);
                 mainManger = new IDCMVeiwManger();
                 mainManger.initForm(true);
-
-                //DialogResult res = startForm.ShowDialog();
-                //if (res == DialogResult.OK)
-                //{
-                //    startForm.Dispose();
-                //    mainManger.initForm(true);
-                //}
-                //else
-                //{
-                //    if (res != DialogResult.Cancel)
-                //    {
-                //        MessageBox.Show("Failed to load and open the Workspace!", "Error", MessageBoxButtons.OK);
-                //    }
-                //    startForm.Dispose();
-                //    mainManger.Dispose();
-                //}
                 LongTermHandleNoter.checkForIdle();
                 //Run HandleInstanceMonitor
                 monitor.Interval = 3000;
@@ -102,13 +86,13 @@ namespace IDCM.AppContext
             }
         }
         /// <summary>
-        /// HandleInstanceMonitors
+        /// HandleInstanceMonitor
         /// </summary>
         private static System.Windows.Forms.Timer monitor = new System.Windows.Forms.Timer();
         private static volatile bool hasInited = false;
         private static IDCMVeiwManger mainManger = null;
 
-        public static IDCMVeiwManger MainManger
+        internal static IDCMVeiwManger MainManger
         {
             get
             {

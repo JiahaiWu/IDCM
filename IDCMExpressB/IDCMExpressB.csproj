@@ -120,6 +120,7 @@
     <Compile Include="ControlMBL\AsyncInvoker\ControlAsyncUtil.cs" />
     <Compile Include="ControlMBL\AsyncInvoker\DateTimePikcerAsyncUtil.cs" />
     <Compile Include="ControlMBL\AsyncInvoker\DGVAsyncUtil.cs" />
+    <Compile Include="ControlMBL\AsyncInvoker\ToolStripItemAsyncUtil.cs" />
     <Compile Include="ControlMBL\Module\BackProgressIndicator.cs" />
     <Compile Include="ControlMBL\Module\FrontProgressPrompt.cs" />
     <Compile Include="ControlMBL\Module\LibFieldBuilder.cs" />
@@ -170,7 +171,9 @@
     <Compile Include="ServiceBL\Handle\UpdateHomeDataViewHandler.cs" />
     <Compile Include="ServiceBL\Handle\UpdateHomeLibCountHandler.cs" />
     <Compile Include="ServiceBL\Handle\UpdateTemplateHandler.cs" />
+    <Compile Include="ServiceBL\NetTransfer\SignInExecutor.cs" />
     <Compile Include="ServiceBL\ServBuf\BGWorkerPool.cs" />
+    <Compile Include="SimpleDAL\DAM\AuthInfoDAM.cs" />
     <Compile Include="SimpleDAL\DBCP\QueryCmdCache.cs" />
     <Compile Include="ServiceBL\ServProcessor\TemplateUpdater.cs" />
     <Compile Include="SimpleDAL\DAM\BaseInfoNoteDAM.cs" />
@@ -182,15 +185,18 @@
     <Compile Include="SimpleDAL\DAM\DelayWorkNoteDAM.cs" />
     <Compile Include="SimpleDAL\DBCP\SQLiteConnPicker.cs" />
     <Compile Include="SimpleDAL\DBCP\SQLiteHelper.cs" />
+    <Compile Include="SimpleDAL\POO\AuthInfo.cs" />
     <Compile Include="SimpleDAL\POO\CustomTColDef.cs" />
     <Compile Include="SimpleDAL\POO\CustomTColMap.cs" />
     <Compile Include="SimpleDAL\POO\DBVersionNote.cs" />
     <Compile Include="SimpleDAL\POO\LibraryNode.cs" />
     <Compile Include="SimpleDAL\POO\DelayWorkNote.cs" />
+    <Compile Include="ViewLL\Manager\AuthenticationRetainer.cs" />
     <Compile Include="ViewLL\Manager\HomeViewManager.cs" />
     <Compile Include="ViewLL\Manager\IDCMVeiwManger.cs" />
     <Compile Include="ViewLL\Manager\LibFieldManager.cs" />
     <Compile Include="ViewLL\Manager\ManagerI.cs" />
+    <Compile Include="ViewLL\Manager\RetainerA.cs" />
     <Compile Include="ViewLL\Win\AttrMapOptionDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,11 +227,23 @@
     <Compile Include="ViewLL\Win\LibFieldSettingView.Designer.cs">
       <DependentUpon>LibFieldSettingView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewLL\Win\LoginStatusDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewLL\Win\LoginStatusDlg.Designer.cs">
+      <DependentUpon>LoginStatusDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewLL\Win\ProcessDlg.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ViewLL\Win\ProcessDlg.Designer.cs">
       <DependentUpon>ProcessDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewLL\Win\SignInDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewLL\Win\SignInDlg.Designer.cs">
+      <DependentUpon>SignInDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewLL\Win\StartForm.cs">
       <SubType>Form</SubType>
@@ -254,8 +272,14 @@
     <EmbeddedResource Include="ViewLL\Win\LibFieldSettingView.resx">
       <DependentUpon>LibFieldSettingView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\LoginStatusDlg.resx">
+      <DependentUpon>LoginStatusDlg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewLL\Win\ProcessDlg.resx">
       <DependentUpon>ProcessDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\SignInDlg.resx">
+      <DependentUpon>SignInDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewLL\Win\StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
@@ -345,7 +369,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets')" />
+  <!-- 
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  -->
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

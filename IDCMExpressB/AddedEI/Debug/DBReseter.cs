@@ -22,7 +22,9 @@ namespace IDCM.AddedEI.Debug
             SQLiteHelper.ExecuteNonQuery(ConnectStr, "delete from LibraryNode;"
                 , "delete from CustomTColDef;"
                 ,"delete from CTDRecord;"
-                ,"delete from CustomTColMap;");
+                , "delete from CustomTColMap;"
+                , "delete from DelayWorkNote;"
+                , "delete from AuthInfo");
             Console.WriteLine("reset DataSource end!");
             System.Environment.Exit(0);
         }
