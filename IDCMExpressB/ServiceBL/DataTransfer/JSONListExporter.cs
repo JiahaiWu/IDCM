@@ -50,8 +50,7 @@ namespace IDCM.ServiceBL.DataTransfer
                             fs.Write(info, 0, info.Length);
                             strbuilder.Length = 0;
                         }
-                        if (lcount > stepLen)
-                            offset += stepLen;
+                        offset += lcount;
                     }
                     fs.Close();
                 }
@@ -76,7 +75,8 @@ namespace IDCM.ServiceBL.DataTransfer
                 if (kvpair.Value > 0)
                 {
                     string key = CVNameConverter.toViewName(kvpair.Key);
-                    dict[key] = row[kvpair.Value].ToString();
+                    int k = kvpair.Value > SysConstants.Max_Attr_Count ? kvpair.Value - SysConstants.Max_Attr_Count : kvpair.Value;
+                    dict[key] = row[k].ToString();
                 }
             }
             return dict;

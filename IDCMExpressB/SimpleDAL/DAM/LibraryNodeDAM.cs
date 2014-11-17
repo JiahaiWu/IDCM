@@ -98,7 +98,7 @@ namespace IDCM.SimpleDAL.DAM
                 ic = SQLiteHelper.ExecuteNonQuery(ConnectStr, cmd);
             }
 #if DEBUG
-            System.Diagnostics.Debug.Assert(instance.Lid < 1);
+            System.Diagnostics.Debug.Assert(instance.Lid >0);
 #endif
             return ic;
         }

@@ -53,10 +53,9 @@ namespace IDCM.ServiceBL.DataTransfer
                     foreach (DataRow row in table.Rows)
                     {
                         IRow srow = sheet.CreateRow(ridx);
-                        mergetDataToSheetRow(maps,row,srow);
+                        mergeDataToSheetRow(maps, row, srow);
                     }
-                    if (lcount > stepLen)
-                        offset += stepLen;
+                    offset += lcount;
                 }
                 using (FileStream fs = File.Create(filepath))
                 {
@@ -71,14 +70,15 @@ namespace IDCM.ServiceBL.DataTransfer
             }
             return true;
         }
-        protected void mergetDataToSheetRow(Dictionary<string, int> maps,DataRow row,IRow srow)
+        protected void mergeDataToSheetRow(Dictionary<string, int> maps,DataRow row,IRow srow)
         {
             int idx=0;
             foreach (KeyValuePair<string, int> kvpair in maps)
             {
                 if (kvpair.Value > 0)
                 {
-                    string value = row[kvpair.Value].ToString();
+                    int k = kvpair.Value > SysConstants.Max_Attr_Count ? kvpair.Value - SysConstants.Max_Attr_Count : kvpair.Value;
+                    string value = row[k].ToString();
                     srow.CreateCell(idx).SetCellValue(value);
                 }else{
                     srow.CreateCell(idx);

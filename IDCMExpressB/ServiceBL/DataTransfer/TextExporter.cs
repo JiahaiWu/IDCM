@@ -74,8 +74,7 @@ namespace IDCM.ServiceBL.DataTransfer
                             fs.Write(info, 0, info.Length);
                             strbuilder.Length = 0;
                         }
-                        if (lcount > stepLen)
-                            offset += stepLen;
+                        offset += lcount;
                     }
                     fs.Close();
                 }
@@ -95,12 +94,14 @@ namespace IDCM.ServiceBL.DataTransfer
             for (j = 0; j < maps.Count - 1; j++)
             {
                 idx = maps.ElementAt(j).Value;
+                idx = idx > SysConstants.Max_Attr_Count ? idx - SysConstants.Max_Attr_Count : idx;
                 if(idx>=0)
                     strbuilder.Append(row[idx]).Append(spliter);
             }
             idx = maps.ElementAt(j).Value;
+            idx = idx > SysConstants.Max_Attr_Count ? idx - SysConstants.Max_Attr_Count : idx;
             if (idx >= 0)
-            strbuilder.Append(row[idx]);
+                strbuilder.Append(row[idx]);
             return strbuilder.ToString();
         }
     }
