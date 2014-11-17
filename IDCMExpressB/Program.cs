@@ -14,20 +14,30 @@ namespace IDCM
         [STAThread]
         static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            string ws=null;
-            if (args.Length > 0)
+            try
             {
-                for (int i=0;i<args.Length-1;i++)
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                string ws = null;
+                if (args.Length > 0)
                 {
-                    if (args[i].Equals("-ws"))
+                    for (int i = 0; i < args.Length - 1; i++)
                     {
-                        ws = args[i + 1].Trim(new char[]{'"'});
+                        if (args[i].Equals("-ws"))
+                        {
+                            ws = args[i + 1].Trim(new char[] { '"' });
+                        }
                     }
                 }
+                Application.Run(new IDCMAppContext(ws));
             }
-            Application.Run(new IDCMAppContext(ws));
+            catch (Exception ex)
+            {
+                MessageBox.Show("FATAL!" + ex.Message + "\n" + ex.StackTrace);
+                log.Info("FATAL!", ex);
+            }
         }
+
+        private static NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
     }
 }

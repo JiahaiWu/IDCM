@@ -349,13 +349,16 @@
 		<row><td>IDCM.exe2</td><td>{9307A86B-B5ED-4F68-B2A0-3F709A643AF2}</td><td>INSTALLDIR</td><td>2</td><td/><td>idcm.exe2</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{4DAF0B38-28DB-43CE-8738-080E53723838}</td><td>DATABASEDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{DCED8DB0-28D3-4572-8298-F6C4716FFD7A}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{5D3F39C9-9C10-44DC-9C21-C5B89AECE263}</td><td>X86</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT3</td><td>{98E6A257-87B2-4240-A350-7F4571C82674}</td><td>X64</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>NLog.dll2</td><td>{6149D596-B04A-4628-A420-ADE5BE7B5478}</td><td>INSTALLDIR</td><td>2</td><td/><td>nlog.dll2</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>NPOI.OOXML.dll2</td><td>{E126A8D9-17D6-4FFC-AC8D-E25E7080B0D3}</td><td>INSTALLDIR</td><td>2</td><td/><td>npoi.ooxml.dll2</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>NPOI.OpenXml4Net.dll2</td><td>{8A10AEDC-E59D-4335-865D-55D8908AA4FB}</td><td>INSTALLDIR</td><td>2</td><td/><td>npoi.openxml4net.dll2</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>NPOI.OpenXmlFormats.dll2</td><td>{D9FF22BE-8DB5-4769-BBC0-0570BC748875}</td><td>INSTALLDIR</td><td>2</td><td/><td>npoi.openxmlformats.dll2</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>NPOI.dll2</td><td>{E899A73C-521E-45CB-BFA7-CB5A7398D0DF}</td><td>INSTALLDIR</td><td>2</td><td/><td>npoi.dll2</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Newtonsoft.Json.dll2</td><td>{00DB4B53-B4FF-4180-9FAC-4DBF884ADA45}</td><td>INSTALLDIR</td><td>2</td><td/><td>newtonsoft.json.dll2</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>SQLite.Interop.dll</td><td>{08C86B10-345D-4AB1-AB02-5499A3952F5D}</td><td>INSTALLDIR</td><td>2</td><td/><td>sqlite.interop.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>SQLite.Interop.dll</td><td>{AA4159AB-E74A-4D63-B81E-1E731D552C69}</td><td>X86</td><td>2</td><td/><td>sqlite.interop.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>SQLite.Interop.dll1</td><td>{405035CF-20AF-4F7F-9214-6D1CA5E12DF5}</td><td>X64</td><td>2</td><td/><td>sqlite.interop.dll1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>System.Data.SQLite.EF6.dll2</td><td>{62177A03-C7CB-4817-83B6-03ECA7947CD2}</td><td>INSTALLDIR</td><td>2</td><td/><td>system.data.sqlite.ef6.dll2</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>System.Data.SQLite.dll2</td><td>{85CD2B18-C65F-466D-89C5-4B0F0095D959}</td><td>INSTALLDIR</td><td>2</td><td/><td>system.data.sqlite.dll2</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>nunit.framework.dll2</td><td>{061955EB-F259-4296-A178-2DD4AB9406A5}</td><td>INSTALLDIR</td><td>2</td><td/><td>nunit.framework.dll2</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1068,6 +1071,8 @@
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
 		<row><td>DATABASEDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>X64</td><td>ISX_DEFAULTCOMPONENT3</td></row>
+		<row><td>X86</td><td>ISX_DEFAULTCOMPONENT2</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -1186,6 +1191,8 @@
 		<row><td>USERPROFILE</td><td>TARGETDIR</td><td>.:USERPR~1|UserProfile</td><td/><td>0</td><td/></row>
 		<row><td>WindowsFolder</td><td>TARGETDIR</td><td>.:Windows</td><td/><td>0</td><td/></row>
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
+		<row><td>X64</td><td>INSTALLDIR</td><td>x64</td><td/><td>0</td><td/></row>
+		<row><td>X86</td><td>INSTALLDIR</td><td>x86</td><td/><td>0</td><td/></row>
 		<row><td>idcmin_1_idcminstaller</td><td>imcasn_1_imcas_nic</td><td>IDCMIN~1|IDCMInstaller</td><td/><td>1</td><td/></row>
 		<row><td>imcasn_1_imcas_nic</td><td>ProgramMenuFolder</td><td>IMCASN~1|IMCAS NIC</td><td/><td>1</td><td/></row>
 	</table>
@@ -1889,6 +1896,8 @@
 		<row><td>AlwaysInstall</td><td>IDCM.exe2</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT2</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT3</td></row>
 		<row><td>AlwaysInstall</td><td>NLog.dll2</td></row>
 		<row><td>AlwaysInstall</td><td>NPOI.OOXML.dll2</td></row>
 		<row><td>AlwaysInstall</td><td>NPOI.OpenXml4Net.dll2</td></row>
@@ -1896,6 +1905,7 @@
 		<row><td>AlwaysInstall</td><td>NPOI.dll2</td></row>
 		<row><td>AlwaysInstall</td><td>Newtonsoft.Json.dll2</td></row>
 		<row><td>AlwaysInstall</td><td>SQLite.Interop.dll</td></row>
+		<row><td>AlwaysInstall</td><td>SQLite.Interop.dll1</td></row>
 		<row><td>AlwaysInstall</td><td>System.Data.SQLite.EF6.dll2</td></row>
 		<row><td>AlwaysInstall</td><td>System.Data.SQLite.dll2</td></row>
 		<row><td>AlwaysInstall</td><td>nunit.framework.dll2</td></row>
@@ -1942,7 +1952,8 @@
 		<row><td>npoi.xml2</td><td>ISX_DEFAULTCOMPONENT1</td><td>NPOI.xml</td><td>0</td><td/><td/><td/><td>1</td><td>E:\MyDevProject\VisualProjects\IDCMExpressB\IDCMExpressB\bin\Debug\NPOI.xml</td><td>1</td><td/></row>
 		<row><td>nunit.framework.dll2</td><td>nunit.framework.dll2</td><td>NUNITF~1.DLL|nunit.framework.dll</td><td>0</td><td/><td/><td/><td>1</td><td>E:\MyDevProject\VisualProjects\IDCMExpressB\IDCMExpressB\bin\Debug\nunit.framework.dll</td><td>1</td><td/></row>
 		<row><td>nunit.framework.xml2</td><td>ISX_DEFAULTCOMPONENT1</td><td>NUNITF~1.XML|nunit.framework.xml</td><td>0</td><td/><td/><td/><td>1</td><td>E:\MyDevProject\VisualProjects\IDCMExpressB\IDCMExpressB\bin\Debug\nunit.framework.xml</td><td>1</td><td/></row>
-		<row><td>sqlite.interop.dll</td><td>SQLite.Interop.dll</td><td>SQLITE~1.DLL|SQLite.Interop.dll</td><td>0</td><td/><td/><td/><td>1</td><td>E:\MyDevProject\VisualProjects\IDCMExpressB\IDCMExpressB\bin\Debug\x64\SQLite.Interop.dll</td><td>1</td><td/></row>
+		<row><td>sqlite.interop.dll</td><td>SQLite.Interop.dll</td><td>SQLITE~1.DLL|SQLite.Interop.dll</td><td>0</td><td/><td/><td/><td>1</td><td>E:\MyDevProject\VisualProjects\IDCMExpressB\IDCMExpressB\bin\Debug\x86\SQLite.Interop.dll</td><td>1</td><td/></row>
+		<row><td>sqlite.interop.dll1</td><td>SQLite.Interop.dll1</td><td>SQLITE~1.DLL|SQLite.Interop.dll</td><td>0</td><td/><td/><td/><td>1</td><td>E:\MyDevProject\VisualProjects\IDCMExpressB\IDCMExpressB\bin\Debug\x64\SQLite.Interop.dll</td><td>1</td><td/></row>
 		<row><td>system.data.sqlite.dll2</td><td>System.Data.SQLite.dll2</td><td>SYSTEM~1.DLL|System.Data.SQLite.dll</td><td>0</td><td/><td/><td/><td>1</td><td>E:\MyDevProject\VisualProjects\IDCMExpressB\IDCMExpressB\bin\Debug\System.Data.SQLite.dll</td><td>1</td><td/></row>
 		<row><td>system.data.sqlite.ef6.dll2</td><td>System.Data.SQLite.EF6.dll2</td><td>SYSTEM~1.DLL|System.Data.SQLite.EF6.dll</td><td>0</td><td/><td/><td/><td>1</td><td>E:\MyDevProject\VisualProjects\IDCMExpressB\IDCMExpressB\bin\Debug\System.Data.SQLite.EF6.dll</td><td>1</td><td/></row>
 		<row><td>system.data.sqlite.xml2</td><td>ISX_DEFAULTCOMPONENT1</td><td>SYSTEM~1.XML|System.Data.SQLite.xml</td><td>0</td><td/><td/><td/><td>1</td><td>E:\MyDevProject\VisualProjects\IDCMExpressB\IDCMExpressB\bin\Debug\System.Data.SQLite.xml</td><td>1</td><td/></row>
@@ -2100,13 +2111,16 @@
 		<row><td>IDCM.exe2</td><td/><td/><td>_540848C7_C681_4F16_80C2_DE70A2E346A2_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_5F45385D_6C66_48ED_AAAB_400C447107EF_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_2925C5D5_0337_4720_818A_CFE2ED84EE40_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_7E7805FD_DCE1_4D2A_8E5E_A44CC212CA51_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT3</td><td/><td/><td>_B928F066_D631_451A_8EC0_9E12DFDAA94E_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>NLog.dll2</td><td/><td/><td>_51FD1CE0_8C40_4FFF_B82A_1F26C59D19C1_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>NPOI.OOXML.dll2</td><td/><td/><td>_093A66DD_D999_4A62_BDFF_8F1561816CCF_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>NPOI.OpenXml4Net.dll2</td><td/><td/><td>_8806EC3B_18A9_4A00_B479_F080B9A07EF2_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>NPOI.OpenXmlFormats.dll2</td><td/><td/><td>_6F4ED516_BA7D_45A8_BB55_6D7C27CFF172_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>NPOI.dll2</td><td/><td/><td>_E8EE941F_7B97_410C_BF68_F2796EDCC13F_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Newtonsoft.Json.dll2</td><td/><td/><td>_E486E77A_91BD_4E36_8B16_914005FF4A29_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>SQLite.Interop.dll</td><td/><td/><td>_CA2601D5_EADD_44A4_AB6F_D1E4828078F2_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>SQLite.Interop.dll</td><td/><td/><td>_396C49A3_C533_47CD_9174_8780EB1A8FBA_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>SQLite.Interop.dll1</td><td/><td/><td>_057C43EC_E9DF_40ED_BFE8_FEC7EE051D4D_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>System.Data.SQLite.EF6.dll2</td><td/><td/><td>_121EE2AC_9616_4CD2_87B4_EEAEB910D4A6_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>System.Data.SQLite.dll2</td><td/><td/><td>_9FFE8B31_DC9E_4C39_86C8_DDF8E29C7672_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>nunit.framework.dll2</td><td/><td/><td>_E5CD2CC5_23F1_4E16_8CB7_00235D928227_FILTER</td><td/><td/><td/><td/></row>
@@ -3543,6 +3557,7 @@
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>LAUNCH~1.EXE|Launch IDCM.exe</td><td>0</td><td/><td>2107775184</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>1033</td><td>LAUNCH~1.EXE|Launch IDCM.vshost.exe</td><td>0</td><td/><td>2107775184</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME3</td><td>1033</td><td>IDCM</td><td>0</td><td/><td>2107800497</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME4</td><td>1033</td><td>LAUNCH~1.EXE|Launch IDCM.exe</td><td>0</td><td/><td>-1918721105</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>1033</td><td>From the list of servers below, select the database server you would like to target.</td><td>0</td><td/><td>2107805551</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>1033</td><td>From the list of catalog names below, select the database catalog you would like to target.</td><td>0</td><td/><td>2107805551</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_TEMPLATE</td><td>1033</td><td>[IS_SQLBROWSE_INTRO]</td><td>0</td><td/><td>2107805551</td></row>
@@ -3944,9 +3959,8 @@
 		<col def="I2">ISIconIndex</col>
 		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\setupicon.ico</td><td>0</td></row>
 		<row><td>IDCM.exe1_1D01A953B5A24C97B0E864A5D8A4C463.exe</td><td/><td>&lt;ISProjectFolder&gt;\003_05.ico</td><td>0</td></row>
-		<row><td>IDCM.exe1_99D65EF85C50480696A77CF707EBA351.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
 		<row><td>IDCM.exe_1CD5587047FB4FA292C21BD03B44382C.exe</td><td/><td>&lt;ISProjectFolder&gt;\003_05.ico</td><td>0</td></row>
-		<row><td>IDCM.exe_FDADCC75044347CDB0BAE0C8A4972994.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
+		<row><td>IDCM.exe_B5E49EB19DB6463CA3000840362DA073.exe</td><td/><td>E:\MyDevProject\VisualProjects\IDCMExpressB\IDCMExpressB\bin\Debug\IDCM.exe</td><td>0</td></row>
 		<row><td>IDCM.vshost.exe_D0733F0CF625415C99BE5D2BD87BC37E.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
 	</table>
 
@@ -4453,9 +4467,9 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>ProductCode</td><td>{42590FBE-AA7C-4A1E-8DCD-0A61172CE78E}</td><td/></row>
+		<row><td>ProductCode</td><td>{B3BCADC1-4B6F-459F-80C9-2A8538FD5034}</td><td/></row>
 		<row><td>ProductName</td><td>IDCMInstaller</td><td/></row>
-		<row><td>ProductVersion</td><td>0.01.0003</td><td/></row>
+		<row><td>ProductVersion</td><td>0.01.0005</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
@@ -4617,8 +4631,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>IDCM.exe</td><td>idcmin_1_idcminstaller</td><td>##IDS_SHORTCUT_DISPLAY_NAME3##</td><td>IDCM.exe2</td><td>AlwaysInstall</td><td/><td/><td/><td>IDCM.exe_FDADCC75044347CDB0BAE0C8A4972994.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>IDCM.exe1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME3##</td><td>IDCM.exe2</td><td>AlwaysInstall</td><td/><td/><td/><td>IDCM.exe1_99D65EF85C50480696A77CF707EBA351.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>IDCM.exe</td><td>idcmin_1_idcminstaller</td><td>##IDS_SHORTCUT_DISPLAY_NAME4##</td><td>IDCM.exe2</td><td>AlwaysInstall</td><td/><td/><td/><td>IDCM.exe_B5E49EB19DB6463CA3000840362DA073.exe</td><td>1</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">
