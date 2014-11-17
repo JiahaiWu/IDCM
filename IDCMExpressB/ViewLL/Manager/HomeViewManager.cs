@@ -297,6 +297,12 @@ namespace IDCM.ViewLL.Manager
             frontFindDlg.Visible = true;
             frontFindDlg.Activate();
         }
+        public void quickSearch(string findTerm)
+        {
+           DataGridViewCell ncell= datasetBuilder.quickSearch(findTerm);
+           if(ncell!=null)
+               setDGVCellHit(ncell);
+        }
         public void frontSearchNext()
         {
             frontFindDlg.findDown();

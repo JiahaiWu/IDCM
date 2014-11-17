@@ -173,13 +173,13 @@ namespace IDCM.ViewLL.Win
                 case Keys.Control | Keys.F://打开查找菜单
                     manager.showDBDataSearch();
                     break;
-                case Keys.Shift | Keys.F://打开前端记录查找菜单
+                case Keys.Control | Keys.Shift | Keys.F://打开前端记录查找菜单
                     manager.frontDataSearch();
                     break;
-                case Keys.Shift | Keys.N:
+                case Keys.Control | Keys.Shift | Keys.N:
                     manager.frontSearchNext();
                     break;
-                case Keys.Shift | Keys.P:
+                case Keys.Control | Keys.Shift | Keys.P:
                     manager.frontSearchPrev();
                     break;
                 default:

@@ -631,7 +631,37 @@ namespace IDCM.ViewLL.Win
                 }
             }
         }
+        /// <summary>
+        /// For Quick search
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton_qsearch_Click(object sender, EventArgs e)
+        {
+            string findTerm = this.toolStripTextBox_quickSearch.Text.Trim();
+            manager.quickSearch(findTerm);
+        }
+        private void toolStripTextBox_quickSearch_Enter(object sender, EventArgs e)
+        {
+            this.toolStripTextBox_quickSearch.Text = "";
+            //this.toolStripTextBox_quickSearch.Owner.Update();
+        }
 
+        private void toolStripTextBox_quickSearch_Leave(object sender, EventArgs e)
+        {
+            if (this.toolStripTextBox_quickSearch.Text.Trim().Length < 1)
+                this.toolStripTextBox_quickSearch.Text = "Quick Search";
+        }
+
+        private void toolStripTextBox_quickSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string findTerm = this.toolStripTextBox_quickSearch.Text.Trim();
+                manager.quickSearch(findTerm);
+            }
+        }
+        
         private static NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
     }
 }

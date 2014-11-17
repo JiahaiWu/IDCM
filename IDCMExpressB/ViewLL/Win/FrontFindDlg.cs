@@ -85,7 +85,7 @@ namespace IDCM.ViewLL.Win
                 }
                 if (ncell == null)
                 {
-                    MessageBox.Show("已到达结尾，查找遍历结束");
+                    MessageBox.Show("It's reached the end, and traverse over.");
                     this.Hide();
                 }
             }
@@ -120,7 +120,7 @@ namespace IDCM.ViewLL.Win
                 }
                 if (ncell == null)
                 {
-                    MessageBox.Show("已到达结尾，查找遍历结束");
+                    MessageBox.Show("It's reached the end, and traverse over.");
                     this.Hide();
                 }
             }

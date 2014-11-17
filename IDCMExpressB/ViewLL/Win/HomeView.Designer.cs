@@ -94,7 +94,7 @@
             this.toolStripButton_refresh = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBox_quickSearch = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_qsearch = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
             this.contextMenuStrip_lib = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -692,7 +692,7 @@
             this.toolStripButton_refresh,
             this.toolStripSeparator3,
             this.toolStripTextBox_quickSearch,
-            this.toolStripButton10,
+            this.toolStripButton_qsearch,
             this.toolStripSeparator4,
             this.toolStripButton11});
             this.toolStrip_home.Location = new System.Drawing.Point(0, 0);
@@ -827,16 +827,20 @@
             this.toolStripTextBox_quickSearch.Name = "toolStripTextBox_quickSearch";
             this.toolStripTextBox_quickSearch.Size = new System.Drawing.Size(200, 27);
             this.toolStripTextBox_quickSearch.Text = "Quick Search";
+            this.toolStripTextBox_quickSearch.Enter += new System.EventHandler(this.toolStripTextBox_quickSearch_Enter);
+            this.toolStripTextBox_quickSearch.Leave += new System.EventHandler(this.toolStripTextBox_quickSearch_Leave);
+            this.toolStripTextBox_quickSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox_quickSearch_KeyDown);
             this.toolStripTextBox_quickSearch.TextChanged += new System.EventHandler(this.toolStripTextBox_quickSearch_TextChanged);
             // 
-            // toolStripButton10
+            // toolStripButton_qsearch
             // 
-            this.toolStripButton10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton10.Image = global::IDCM.Properties.Resources.search;
-            this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton10.Name = "toolStripButton10";
-            this.toolStripButton10.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButton10.Text = "toolStripButton10";
+            this.toolStripButton_qsearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton_qsearch.Image = global::IDCM.Properties.Resources.search;
+            this.toolStripButton_qsearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_qsearch.Name = "toolStripButton_qsearch";
+            this.toolStripButton_qsearch.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButton_qsearch.Text = "toolStripButton10";
+            this.toolStripButton_qsearch.Click += new System.EventHandler(this.toolStripButton_qsearch_Click);
             // 
             // toolStripSeparator4
             // 
@@ -1015,7 +1019,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton_upload;
         private System.Windows.Forms.ToolStripButton toolStripButton_refresh;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox_quickSearch;
-        private System.Windows.Forms.ToolStripButton toolStripButton10;
+        private System.Windows.Forms.ToolStripButton toolStripButton_qsearch;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton toolStripButton11;
