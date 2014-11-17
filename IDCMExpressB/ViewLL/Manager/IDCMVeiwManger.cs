@@ -156,5 +156,49 @@ namespace IDCM.ViewLL.Manager
                 tip = "On Line: " + uname;
             mainForm.setLoginTip(tip);
         }
+        public void showDBDataSearch()
+        {
+            HomeViewManager hvManager = (HomeViewManager)getManager(typeof(HomeViewManager));
+            if (hvManager != null)
+            {
+                if (hvManager.isActive())
+                {
+                    hvManager.showDBDataSearch();
+                }
+            }
+        }
+        public void frontDataSearch()
+        {
+            HomeViewManager hvManager = (HomeViewManager)getManager(typeof(HomeViewManager));
+            if (hvManager != null)
+            {
+                if (hvManager.isActive())
+                {
+                    hvManager.frontDataSearch();
+                }
+            }
+        }
+        public void frontSearchNext()
+        {
+            HomeViewManager hvManager = (HomeViewManager)getManager(typeof(HomeViewManager));
+            if (hvManager != null)
+            {
+                if (hvManager.isActive())
+                {
+                    hvManager.frontSearchNext();
+                }
+            }
+        }
+        public void frontSearchPrev()
+        {
+            HomeViewManager hvManager = (HomeViewManager)getManager(typeof(HomeViewManager));
+            if (hvManager != null)
+            {
+                if (hvManager.isActive())
+                {
+                    hvManager.frontSearchPrev();
+                }
+            }
+        }
     }
 }

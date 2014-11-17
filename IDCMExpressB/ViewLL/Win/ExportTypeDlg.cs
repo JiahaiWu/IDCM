@@ -103,7 +103,7 @@ namespace IDCM.ViewLL.Win
         }
 
         private static ExportType lastOptionValue = ExportType.Excel;
-        private static string lastFilePath = "C:/";
+        private static string lastFilePath = "C:\\";
 
         public static string LastFilePath
         {

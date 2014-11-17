@@ -29,32 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LibFieldSettingView));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView_fields = new System.Windows.Forms.DataGridView();
-            this.attr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.attrType = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.isUnique = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.defaultVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.restrict = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mainField = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.comments = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Up = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Down = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Reuse = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Overwrite = new System.Windows.Forms.DataGridViewButtonColumn();
             this.contextMenuStrip_field = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem_copy = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_merge = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,6 +59,18 @@
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.attr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.attrType = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.isUnique = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.defaultVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.restrict = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mainField = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.comments = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Up = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Down = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Reuse = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Overwrite = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_fields)).BeginInit();
             this.contextMenuStrip_field.SuspendLayout();
@@ -116,141 +116,8 @@
             this.dataGridView_fields.TabIndex = 0;
             this.dataGridView_fields.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_fields_CellClick);
             this.dataGridView_fields.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_fields_CellMouseClick);
+            this.dataGridView_fields.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_fields_CellValueChanged);
             this.dataGridView_fields.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView_fields_RowPostPaint);
-            // 
-            // attr
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.attr.DefaultCellStyle = dataGridViewCellStyle1;
-            this.attr.HeaderText = "Name";
-            this.attr.MaxInputLength = 128;
-            this.attr.Name = "attr";
-            this.attr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.attr.ToolTipText = "Field Name";
-            // 
-            // attrType
-            // 
-            this.attrType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.attrType.DefaultCellStyle = dataGridViewCellStyle2;
-            this.attrType.HeaderText = "Type";
-            this.attrType.Name = "attrType";
-            this.attrType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.attrType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.attrType.ToolTipText = "Field Type";
-            this.attrType.Width = 61;
-            // 
-            // isUnique
-            // 
-            this.isUnique.HeaderText = "Unique";
-            this.isUnique.Name = "isUnique";
-            this.isUnique.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.isUnique.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.isUnique.Width = 50;
-            // 
-            // defaultVal
-            // 
-            this.defaultVal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.defaultVal.DefaultCellStyle = dataGridViewCellStyle3;
-            this.defaultVal.HeaderText = "Default Value";
-            this.defaultVal.Name = "defaultVal";
-            this.defaultVal.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.defaultVal.Width = 101;
-            // 
-            // restrict
-            // 
-            this.restrict.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.restrict.DefaultCellStyle = dataGridViewCellStyle4;
-            this.restrict.HeaderText = "Restriction Expression ";
-            this.restrict.Name = "restrict";
-            this.restrict.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.restrict.Width = 150;
-            // 
-            // mainField
-            // 
-            this.mainField.HeaderText = "Main";
-            this.mainField.Name = "mainField";
-            this.mainField.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.mainField.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.mainField.Width = 50;
-            // 
-            // comments
-            // 
-            this.comments.HeaderText = "Comments";
-            this.comments.Name = "comments";
-            // 
-            // Delete
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle5.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle5.NullValue")));
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(1);
-            this.Delete.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Delete.HeaderText = "Delete";
-            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
-            this.Delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Delete.Name = "Delete";
-            this.Delete.ReadOnly = true;
-            this.Delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Delete.Width = 48;
-            // 
-            // Up
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle6.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle6.NullValue")));
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(1);
-            this.Up.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Up.HeaderText = "Up";
-            this.Up.Image = global::IDCM.Properties.Resources.up;
-            this.Up.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Up.Name = "Up";
-            this.Up.ReadOnly = true;
-            this.Up.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Up.Width = 48;
-            // 
-            // Down
-            // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle7.NullValue")));
-            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(1);
-            this.Down.DefaultCellStyle = dataGridViewCellStyle7;
-            this.Down.HeaderText = "Down";
-            this.Down.Image = global::IDCM.Properties.Resources.down;
-            this.Down.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Down.Name = "Down";
-            this.Down.ReadOnly = true;
-            this.Down.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Down.Width = 48;
-            // 
-            // Reuse
-            // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.NullValue = false;
-            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(1);
-            this.Reuse.DefaultCellStyle = dataGridViewCellStyle8;
-            this.Reuse.HeaderText = "Reuse";
-            this.Reuse.Name = "Reuse";
-            this.Reuse.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Reuse.Width = 80;
-            // 
-            // Overwrite
-            // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(1);
-            this.Overwrite.DefaultCellStyle = dataGridViewCellStyle9;
-            this.Overwrite.HeaderText = "Overwrite";
-            this.Overwrite.Name = "Overwrite";
-            this.Overwrite.Text = "Overwrite";
-            this.Overwrite.UseColumnTextForButtonValue = true;
-            this.Overwrite.Width = 80;
             // 
             // contextMenuStrip_field
             // 
@@ -383,10 +250,10 @@
             // 
             // dataGridViewImageColumn2
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle10.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle10.NullValue")));
-            this.dataGridViewImageColumn2.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle21.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle21.NullValue")));
+            this.dataGridViewImageColumn2.DefaultCellStyle = dataGridViewCellStyle21;
             this.dataGridViewImageColumn2.HeaderText = "Up";
             this.dataGridViewImageColumn2.Image = global::IDCM.Properties.Resources.up;
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
@@ -395,16 +262,149 @@
             // 
             // dataGridViewImageColumn3
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle11.NullValue")));
-            this.dataGridViewImageColumn3.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle22.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle22.NullValue")));
+            this.dataGridViewImageColumn3.DefaultCellStyle = dataGridViewCellStyle22;
             this.dataGridViewImageColumn3.HeaderText = "Down";
             this.dataGridViewImageColumn3.Image = global::IDCM.Properties.Resources.down;
             this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
             this.dataGridViewImageColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn3.Width = 32;
+            // 
+            // attr
+            // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.attr.DefaultCellStyle = dataGridViewCellStyle12;
+            this.attr.HeaderText = "Name";
+            this.attr.MaxInputLength = 128;
+            this.attr.Name = "attr";
+            this.attr.ToolTipText = "Field Name";
+            // 
+            // attrType
+            // 
+            this.attrType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.attrType.DefaultCellStyle = dataGridViewCellStyle13;
+            this.attrType.HeaderText = "Type";
+            this.attrType.Name = "attrType";
+            this.attrType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.attrType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.attrType.ToolTipText = "Field Type";
+            this.attrType.Width = 61;
+            // 
+            // isUnique
+            // 
+            this.isUnique.HeaderText = "Unique";
+            this.isUnique.Name = "isUnique";
+            this.isUnique.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isUnique.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.isUnique.Width = 50;
+            // 
+            // defaultVal
+            // 
+            this.defaultVal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.defaultVal.DefaultCellStyle = dataGridViewCellStyle14;
+            this.defaultVal.HeaderText = "Default Value";
+            this.defaultVal.Name = "defaultVal";
+            this.defaultVal.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.defaultVal.Width = 110;
+            // 
+            // restrict
+            // 
+            this.restrict.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.restrict.DefaultCellStyle = dataGridViewCellStyle15;
+            this.restrict.HeaderText = "Restriction Expression ";
+            this.restrict.Name = "restrict";
+            this.restrict.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.restrict.Width = 150;
+            // 
+            // mainField
+            // 
+            this.mainField.HeaderText = "Main";
+            this.mainField.Name = "mainField";
+            this.mainField.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.mainField.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.mainField.Width = 50;
+            // 
+            // comments
+            // 
+            this.comments.HeaderText = "Comments";
+            this.comments.Name = "comments";
+            // 
+            // Delete
+            // 
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle16.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle16.NullValue")));
+            dataGridViewCellStyle16.Padding = new System.Windows.Forms.Padding(1);
+            this.Delete.DefaultCellStyle = dataGridViewCellStyle16;
+            this.Delete.HeaderText = "Delete";
+            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
+            this.Delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
+            this.Delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Delete.Width = 48;
+            // 
+            // Up
+            // 
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle17.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle17.NullValue")));
+            dataGridViewCellStyle17.Padding = new System.Windows.Forms.Padding(1);
+            this.Up.DefaultCellStyle = dataGridViewCellStyle17;
+            this.Up.HeaderText = "Up";
+            this.Up.Image = global::IDCM.Properties.Resources.up;
+            this.Up.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Up.Name = "Up";
+            this.Up.ReadOnly = true;
+            this.Up.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Up.Width = 48;
+            // 
+            // Down
+            // 
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle18.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle18.NullValue")));
+            dataGridViewCellStyle18.Padding = new System.Windows.Forms.Padding(1);
+            this.Down.DefaultCellStyle = dataGridViewCellStyle18;
+            this.Down.HeaderText = "Down";
+            this.Down.Image = global::IDCM.Properties.Resources.down;
+            this.Down.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Down.Name = "Down";
+            this.Down.ReadOnly = true;
+            this.Down.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Down.Width = 48;
+            // 
+            // Reuse
+            // 
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle19.NullValue = false;
+            dataGridViewCellStyle19.Padding = new System.Windows.Forms.Padding(1);
+            this.Reuse.DefaultCellStyle = dataGridViewCellStyle19;
+            this.Reuse.HeaderText = "Reuse";
+            this.Reuse.Name = "Reuse";
+            this.Reuse.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Reuse.Width = 80;
+            // 
+            // Overwrite
+            // 
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.Padding = new System.Windows.Forms.Padding(1);
+            this.Overwrite.DefaultCellStyle = dataGridViewCellStyle20;
+            this.Overwrite.HeaderText = "Overwrite";
+            this.Overwrite.Name = "Overwrite";
+            this.Overwrite.Text = "Overwrite";
+            this.Overwrite.UseColumnTextForButtonValue = true;
+            this.Overwrite.Width = 80;
             // 
             // LibFieldSettingView
             // 

@@ -85,7 +85,7 @@ namespace IDCM.ControlMBL.Module
                 foreach (CustomTColDef ctcd in ctcds)
                 {
                     List<object> vals = new List<object>();
-                    vals.Add(CVNameConverter.toDBName(ctcd.Attr));
+                    vals.Add(CVNameConverter.toViewName(ctcd.Attr));
                     vals.Add(ctcd.AttrType);
                     vals.Add(ctcd.IsUnique);
                     vals.Add(ctcd.DefaultVal);
@@ -145,7 +145,7 @@ namespace IDCM.ControlMBL.Module
         }
         public void appendField(DataGridViewRow dgvr,string groupName)
         {
-            string attr = "[" + dgvr.Cells["attr"].Value.ToString() + "]";
+            string attr = CVNameConverter.toDBName( dgvr.Cells["attr"].Value.ToString() );
             if (!existNameInCustomTCD(attr))
             {
                 customTCDList.AddLast(templDict[groupName][dgvr.Index]);
@@ -155,7 +155,7 @@ namespace IDCM.ControlMBL.Module
         }
         public void removeField(DataGridViewRow dgvr)
         {
-            string attr = "[" + dgvr.Cells["attr"].Value.ToString() + "]";
+            string attr = CVNameConverter.toDBName(dgvr.Cells["attr"].Value.ToString() );
             if (existNameInCustomTCD(attr))
             {
                 removeNameInCustomTCD(attr);

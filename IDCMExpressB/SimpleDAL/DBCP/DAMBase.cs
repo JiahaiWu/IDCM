@@ -42,7 +42,7 @@ namespace IDCM.SimpleDAL.DBCP
         /// <returns></returns>
         public static string startDBInstance()
         {
-            string dbFilePath = IDCMEnvironment.CURRENT_WORKSPACE + "/" + IDCMEnvironment.LUID;
+            string dbFilePath = IDCMEnvironment.CURRENT_WORKSPACE + "\\" + IDCMEnvironment.LUID;
             if (!File.Exists(dbFilePath))
             {
                 SQLiteConnection.CreateFile(dbFilePath);

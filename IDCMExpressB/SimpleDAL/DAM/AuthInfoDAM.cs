@@ -16,7 +16,7 @@ namespace IDCM.SimpleDAL.DAM
             string cmd = "select * from " + typeof(AuthInfo).Name + " order by timestamp desc limit 1;";
             using (SQLiteConnPicker picker = new SQLiteConnPicker(ConnectStr))
             {
-                lastAuthInfo = picker.getConnection().Query<AuthInfo>(cmd).First();
+                lastAuthInfo = picker.getConnection().Query<AuthInfo>(cmd).FirstOrDefault<AuthInfo>();
             }
             return lastAuthInfo;
         }

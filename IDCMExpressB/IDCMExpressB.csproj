@@ -209,6 +209,12 @@
     <Compile Include="ViewLL\Win\ExportTypeDlg.Designer.cs">
       <DependentUpon>ExportTypeDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewLL\Win\FrontFindDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewLL\Win\FrontFindDlg.Designer.cs">
+      <DependentUpon>FrontFindDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewLL\Win\HomeView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -262,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ViewLL\Win\ExportTypeDlg.resx">
       <DependentUpon>ExportTypeDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\FrontFindDlg.resx">
+      <DependentUpon>FrontFindDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewLL\Win\HomeView.resx">
       <DependentUpon>HomeView.cs</DependentUpon>

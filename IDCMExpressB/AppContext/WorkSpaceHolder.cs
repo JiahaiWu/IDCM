@@ -119,7 +119,7 @@ namespace IDCM.AppContext
                     connectStr = DAMBase.startDBInstance();
                     if (connectStr == null)
                     {
-                        MessageBox.Show("Failed to open the data file!  @filepath=" + IDCMEnvironment.CURRENT_WORKSPACE + "/" + IDCMEnvironment.LUID);
+                        MessageBox.Show("Failed to open the data file!  @filepath=" + IDCMEnvironment.CURRENT_WORKSPACE + "\\" + IDCMEnvironment.LUID);
                     }
                     else
                     {
@@ -138,7 +138,7 @@ namespace IDCM.AppContext
         {
             if (IDCMEnvironment.CURRENT_WORKSPACE == null)
                 IDCMEnvironment.CURRENT_WORKSPACE = IDCMEnvironment.DEFAULT_WORKSPACE;
-            FileInfo mrcFile = new FileInfo(IDCMEnvironment.CURRENT_WORKSPACE + "/" + IDCMEnvironment.LUID);
+            FileInfo mrcFile = new FileInfo(IDCMEnvironment.CURRENT_WORKSPACE + "\\" + IDCMEnvironment.LUID);
             if (mrcFile == null || !mrcFile.Exists)
             {
                 if (chooseWorkspace() == false)

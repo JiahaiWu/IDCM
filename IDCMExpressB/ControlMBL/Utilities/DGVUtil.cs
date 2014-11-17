@@ -31,7 +31,7 @@ namespace IDCM.ControlMBL.Utilities
         public static int getRowCount(DataGridView dgv)
         {
             int rowCount = dgv.RowCount;
-            if (dgv.Rows[rowCount - 1].IsNewRow)
+            if (rowCount>0 && dgv.Rows[rowCount - 1].IsNewRow)
                 return rowCount - 1;
             return rowCount;
         }

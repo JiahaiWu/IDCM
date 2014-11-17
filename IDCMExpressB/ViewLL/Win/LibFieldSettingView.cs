@@ -133,6 +133,23 @@ namespace IDCM.ViewLL.Win
             }
         }
 
+        private void dataGridView_fields_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex < 0 || e.RowIndex < 0)
+                return;
+            if (comboBox_templ.SelectedIndex > 0)
+            {
+                if (dataGridView_fields.Columns[e.ColumnIndex].HeaderText.Equals("Reuse"))
+                {
+                    DataGridViewCheckBoxCell dgvc = dataGridView_fields.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell;
+                    if (dgvc.FormattedValue.Equals(true))
+                        manager.appendField(dataGridView_fields.Rows[e.RowIndex], this.comboBox_templ.SelectedItem.ToString());
+                    else
+                        manager.removeField(dataGridView_fields.Rows[e.RowIndex]);
+                }
+            }
+        }
+
         private void button_cancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -227,5 +244,6 @@ namespace IDCM.ViewLL.Win
                 dataGridView_fields.Rows.RemoveAt(rowIndex);
             }
         }
+
     }
 }

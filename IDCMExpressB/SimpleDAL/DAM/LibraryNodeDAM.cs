@@ -24,7 +24,11 @@ namespace IDCM.SimpleDAL.DAM
         /// <returns></returns>
         public static List<LibraryNode> findParentNodes()
         {
-            return findSubNodes(-1);
+            string cmd = "SELECT * FROM " + typeof(LibraryNode).Name + " where pid<0 order by lorder";
+            using (SQLiteConnPicker picker = new SQLiteConnPicker(ConnectStr))
+            {
+                return picker.getConnection().Query<LibraryNode>(cmd).ToList<LibraryNode>();
+            }
         }
         /// <summary>
         /// 查询具有指定父节点ID编号的孩子节点集合
@@ -64,7 +68,7 @@ namespace IDCM.SimpleDAL.DAM
             {
                 instance.Lid = BaseInfoNoteDAM.nextSeqID();
                 string cmd = "insert into LibraryNode(lid,name,type,pid,lorder) values("
-                    + instance.Lid + ",'" + instance.Name + "','" + instance.Type + "'," + (instance.Pid > 0 ? instance.Pid.ToString() : "null") + "," + instance.Lorder + ");";
+                    + instance.Lid + ",'" + instance.Name + "','" + instance.Type + "'," + (instance.Pid > 0 ? instance.Pid.ToString() : "-1") + "," + instance.Lorder + ");";
                 ic = SQLiteHelper.ExecuteNonQuery(ConnectStr, cmd);
             }
 #if DEBUG

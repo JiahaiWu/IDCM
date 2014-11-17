@@ -107,15 +107,22 @@ namespace IDCM.ViewLL.Manager
         /// <returns></returns>
         protected bool checkLoginStatus()
         {
-            long elapsedTicks = DateTime.Now.Ticks - authInfo.Timestamp;
-            TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
-            if (elapsedSpan.TotalMinutes > 15)
+            if (authInfo == null)
             {
-                if (authInfo.Username != null && authInfo.Password != null)
+                authInfo = new AuthInfo();
+            }
+            else
+            {
+                long elapsedTicks = DateTime.Now.Ticks - authInfo.Timestamp;
+                TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+                if (elapsedSpan.TotalMinutes > 15)
                 {
-                    authInfo = SignInExecutor.SignIn(authInfo.Username, authInfo.Password, 2000,authInfo.autoLogin);
+                    if (authInfo.Username != null && authInfo.Password != null)
+                    {
+                        authInfo = SignInExecutor.SignIn(authInfo.Username, authInfo.Password, 2000, authInfo.autoLogin);
+                    }
+                    return false;
                 }
-                return false;
             }
             return authInfo.LoginFlag;
         }

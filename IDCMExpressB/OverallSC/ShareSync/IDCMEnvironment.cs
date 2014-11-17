@@ -22,7 +22,7 @@ namespace IDCM.OverallSC.ShareSync
                 DirectoryInfo di = null;
                 try
                 {
-                    di = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "/" + default_workspace_name);
+                    di = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\" + default_workspace_name);
                     if (!di.Exists)
                     {
                         di.Create();
@@ -30,7 +30,7 @@ namespace IDCM.OverallSC.ShareSync
                 }
                 catch (Exception)
                 {
-                    di = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "/" + default_workspace_name);
+                    di = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\" + default_workspace_name);
                     if (!di.Exists)
                     {
                         di.Create();
@@ -135,7 +135,7 @@ namespace IDCM.OverallSC.ShareSync
                     {
                         //fakeBID = System.Guid.NewGuid().ToString();
                         fakeBID = CUIDGenerator.getUID(CUIDGenerator.Radix_32);
-                        FileUtil.writeToUTF8File(CURRENT_WORKSPACE + "/" + fakeBID + ".key", "");
+                        FileUtil.writeToUTF8File(CURRENT_WORKSPACE + "\\" + fakeBID + ".key", "");
                     }
                     return fakeBID;
                 }

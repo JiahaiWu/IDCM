@@ -13,6 +13,7 @@ using IDCM.ServiceBL.CmdChannel;
 using IDCM.OverallSC.ShareSync;
 using IDCM.SimpleDAL.DBCP;
 using IDCM.ControlMBL.AsyncInvoker;
+using IDCM.ControlMBL.Utilities;
 
 namespace IDCM.ViewLL.Manager
 {
@@ -27,6 +28,10 @@ namespace IDCM.ViewLL.Manager
         {
             homeView = new HomeView();
             LongTermHandleNoter.note(homeView);
+            frontFindDlg = new FrontFindDlg(homeView.getItemGridView());
+            frontFindDlg.setCellHit += new FrontFindDlg.SetHit<DataGridViewCell>(setDGVCellHit);
+            frontFindDlg.cancelCellHit += new FrontFindDlg.CancelHit<DataGridViewCell>(cancelDGVCellHit);
+            LongTermHandleNoter.note(frontFindDlg);
             homeView.setManager(this);
             libBuilder = new LocalLibBuilder(homeView.getBaseTree(), homeView.getLibTree());
             datasetBuilder = new LocalDataSetBuilder(homeView.getItemGridView(), homeView.getAttachTabControl());
@@ -63,6 +68,12 @@ namespace IDCM.ViewLL.Manager
                 homeView.Dispose();
                 homeView = null;
             }
+            if (frontFindDlg != null && !frontFindDlg.IsDisposed)
+            {
+                frontFindDlg.Close();
+                frontFindDlg.Dispose();
+                frontFindDlg = null;
+            }
         }
         
         private volatile bool isDisposed = false;
@@ -70,6 +81,7 @@ namespace IDCM.ViewLL.Manager
         private volatile HomeView homeView = null;
         private volatile LocalLibBuilder libBuilder = null;
         private volatile LocalDataSetBuilder datasetBuilder = null;
+        private FrontFindDlg frontFindDlg = null;
         
         #endregion
         #region 接口实例化部分
@@ -254,7 +266,52 @@ namespace IDCM.ViewLL.Manager
             uhdvh.addHandler(new UpdateHomeLibCountHandler(filterNode));
             CmdConsole.call(uhdvh);
         }
-        
+        public void showDBDataSearch()
+        {
+            homeView.showDBDataSearch();
+        }
+        private void setDGVCellHit(DataGridViewCell cell)
+        {
+            cell.DataGridView.EndEdit();
+            int colCount = DGVUtil.getTextColumnCount(cell.DataGridView);
+            DataGridViewCell rightCell = cell.DataGridView.Rows[cell.RowIndex].Cells[colCount - 1];
+            cell.DataGridView.CurrentCell = rightCell;
+            cell.DataGridView.CurrentCell = cell;
+            cell.Selected = true;
+            cell.DataGridView.BeginEdit(true);
+        }
+        private void cancelDGVCellHit(DataGridViewCell cell)
+        {
+            cell.DataGridView.EndEdit();
+            cell.Selected = false;
+        }
+        public void frontDataSearch()
+        {
+            if (frontFindDlg == null || frontFindDlg.IsDisposed)
+            {
+                frontFindDlg = new FrontFindDlg(homeView.getItemGridView());
+                frontFindDlg.setCellHit += new FrontFindDlg.SetHit<DataGridViewCell>(setDGVCellHit);
+                frontFindDlg.cancelCellHit += new FrontFindDlg.CancelHit<DataGridViewCell>(cancelDGVCellHit);
+            }
+            frontFindDlg.Show();
+            frontFindDlg.Visible = true;
+            frontFindDlg.Activate();
+        }
+        public void frontSearchNext()
+        {
+            frontFindDlg.findDown();
+        }
+        public void frontSearchPrev()
+        {
+            frontFindDlg.findRev();
+        }
+        public bool isActive()
+        {
+            if (homeView == null || homeView.IsDisposed)
+                return false;
+            else
+                return homeView.Visible;
+        }
         public void addNewRecord()
         {
             datasetBuilder.addNewRecord();

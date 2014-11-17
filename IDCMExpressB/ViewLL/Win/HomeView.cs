@@ -439,7 +439,15 @@ namespace IDCM.ViewLL.Win
         {
 
         }
-
+        public void showDBDataSearch()
+        {
+            if (splitContainer_middle.Panel1Collapsed==true)
+            {
+                this.splitContainer_middle.SplitterDistance = 120;
+                this.splitContainer_middle.Panel1Collapsed = false;
+                this.textBox_search1.Focus();
+            }
+        }
         
 
         private void dataGridView_items_MouseDown(object sender, MouseEventArgs e)
@@ -575,7 +583,6 @@ namespace IDCM.ViewLL.Win
         {
             return toolStripProgressBar_bottom;
         }
-
         private void treeView_library_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
         {
             e.Cancel = true;

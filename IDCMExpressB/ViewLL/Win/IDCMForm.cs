@@ -82,7 +82,7 @@ namespace IDCM.ViewLL.Win
         }
         public void setLoginTip(string tip=null)
         {
-            ToolStripItemAsyncUtil.SyncSetText(this.toolStripTextBox_user, tip);
+            ToolStripItemAsyncUtil.SyncSetText(this.ToolStripTextBox_user, tip);
         }
         /// <summary>
         /// 打开或新建一个本地数据库
@@ -146,6 +146,65 @@ namespace IDCM.ViewLL.Win
         private void authToolStripMenuItem_Click(object sender, EventArgs e)
         {
             manager.activeChildView(typeof(AuthenticationRetainer), true);
+        }
+        /******************************************************************
+         * 键盘事件处理方法
+         * @auther JiahaiWu 2014-03-17
+         ******************************************************************/
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.Alt | Keys.F://打开File菜单项
+                    this.ToolStripMenuItem_file.ShowDropDown();
+                    break;
+                case Keys.Alt | Keys.C://打开Configuration菜单项
+                    this.ToolStripMenuItem_cfg.ShowDropDown();
+                    break;
+                case Keys.Alt | Keys.T://打开Tools菜单项
+                    this.ToolStripMenuItem_tool.ShowDropDown();
+                    break;
+                case Keys.Alt | Keys.W://打开Window菜单项
+                    this.ToolStripMenuItem_window.ShowDropDown();
+                    break;
+                case Keys.Alt | Keys.H://打开Help菜单项
+                    this.ToolStripMenuItem_help.ShowDropDown();
+                    break;
+                case Keys.Control | Keys.F://打开查找菜单
+                    manager.showDBDataSearch();
+                    break;
+                case Keys.Shift | Keys.F://打开前端记录查找菜单
+                    manager.frontDataSearch();
+                    break;
+                case Keys.Shift | Keys.N:
+                    manager.frontSearchNext();
+                    break;
+                case Keys.Shift | Keys.P:
+                    manager.frontSearchPrev();
+                    break;
+                default:
+                    return base.ProcessCmdKey(ref msg, keyData);
+            }
+            return true;
+        }
+
+        private void ToolStripMenuItem_tool_DropDownOpening(object sender, EventArgs e)
+        {
+            HomeViewManager hvManager = (HomeViewManager)manager.getManager(typeof(HomeViewManager));
+            if (hvManager != null)
+            {
+                if (hvManager.isActive())
+                {
+                    localSearchToolStripMenuItem.Enabled = true;
+                    frontPageSearchToolStripMenuItem.Enabled = true;
+                }
+                else
+                {
+                    localSearchToolStripMenuItem.Enabled = false;
+                    frontPageSearchToolStripMenuItem.Enabled =false;
+                }
+            }
+            onlineSearchToolStripMenuItem.Enabled = false;
         }
     }
 }

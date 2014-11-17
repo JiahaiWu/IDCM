@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("All References");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Unfiled");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Trash");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("My Group (Temp)");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("All References");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Unfiled");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Trash");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("My Group (Temp)");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeView));
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("All Strains");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("节点1");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("节点2");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("All Strains");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("节点1");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("节点2");
             this.statusStripBottom = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel_bottom = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton_layout = new System.Windows.Forms.ToolStripSplitButton();
@@ -58,7 +58,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox_search2 = new System.Windows.Forms.TextBox();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.panel_searchHead = new System.Windows.Forms.Panel();
@@ -70,7 +70,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox_search1 = new System.Windows.Forms.TextBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dataGridView_items = new System.Windows.Forms.DataGridView();
@@ -264,20 +264,20 @@
             this.treeView_library.Location = new System.Drawing.Point(0, 98);
             this.treeView_library.Margin = new System.Windows.Forms.Padding(0);
             this.treeView_library.Name = "treeView_library";
-            treeNode1.Name = "Root";
-            treeNode1.Tag = "0";
-            treeNode1.Text = "All References";
-            treeNode2.Name = "Unfiled";
-            treeNode2.Text = "Unfiled";
-            treeNode3.Name = "Trash";
-            treeNode3.Text = "Trash";
-            treeNode4.Name = "MyGroup";
-            treeNode4.Text = "My Group (Temp)";
+            treeNode4.Name = "Root";
+            treeNode4.Tag = "0";
+            treeNode4.Text = "All References";
+            treeNode5.Name = "Unfiled";
+            treeNode5.Text = "Unfiled";
+            treeNode6.Name = "Trash";
+            treeNode6.Text = "Trash";
+            treeNode7.Name = "MyGroup";
+            treeNode7.Text = "My Group (Temp)";
             this.treeView_library.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4});
+            treeNode4,
+            treeNode5,
+            treeNode6,
+            treeNode7});
             this.treeView_library.SelectedImageIndex = 0;
             this.treeView_library.ShowRootLines = false;
             this.treeView_library.Size = new System.Drawing.Size(215, 411);
@@ -335,16 +335,16 @@
             this.treeView_base.Location = new System.Drawing.Point(0, 28);
             this.treeView_base.Margin = new System.Windows.Forms.Padding(0);
             this.treeView_base.Name = "treeView_base";
-            treeNode5.Name = "-1";
-            treeNode5.Text = "All Strains";
-            treeNode6.Name = "节点1";
-            treeNode6.Text = "节点1";
-            treeNode7.Name = "节点2";
-            treeNode7.Text = "节点2";
+            treeNode8.Name = "-1";
+            treeNode8.Text = "All Strains";
+            treeNode9.Name = "节点1";
+            treeNode9.Text = "节点1";
+            treeNode10.Name = "节点2";
+            treeNode10.Text = "节点2";
             this.treeView_base.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode6,
-            treeNode7});
+            treeNode8,
+            treeNode9,
+            treeNode10});
             this.treeView_base.SelectedImageIndex = 0;
             this.treeView_base.ShowRootLines = false;
             this.treeView_base.Size = new System.Drawing.Size(215, 70);
@@ -421,7 +421,7 @@
             this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.comboBox4);
-            this.panel2.Controls.Add(this.textBox2);
+            this.panel2.Controls.Add(this.textBox_search2);
             this.panel2.Controls.Add(this.comboBox5);
             this.panel2.Controls.Add(this.comboBox6);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -460,14 +460,14 @@
             this.comboBox4.TabIndex = 3;
             this.comboBox4.Text = "And";
             // 
-            // textBox2
+            // textBox_search2
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBox_search2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(318, 5);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(215, 21);
-            this.textBox2.TabIndex = 2;
+            this.textBox_search2.Location = new System.Drawing.Point(318, 5);
+            this.textBox_search2.Name = "textBox_search2";
+            this.textBox_search2.Size = new System.Drawing.Size(215, 21);
+            this.textBox_search2.TabIndex = 2;
             // 
             // comboBox5
             // 
@@ -555,7 +555,7 @@
             // 
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.textBox_search1);
             this.panel1.Controls.Add(this.comboBox2);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -585,14 +585,14 @@
             this.button1.Text = "+";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // textBox_search1
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBox_search1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(318, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(215, 21);
-            this.textBox1.TabIndex = 2;
+            this.textBox_search1.Location = new System.Drawing.Point(318, 5);
+            this.textBox_search1.Name = "textBox_search1";
+            this.textBox_search1.Size = new System.Drawing.Size(215, 21);
+            this.textBox_search1.TabIndex = 2;
             // 
             // comboBox2
             // 
@@ -1021,7 +1021,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton11;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_search1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button2;
@@ -1029,7 +1029,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox_search2;
         private System.Windows.Forms.ComboBox comboBox5;
         private System.Windows.Forms.ComboBox comboBox6;
         private System.Windows.Forms.ToolStripMenuItem showRefer;
