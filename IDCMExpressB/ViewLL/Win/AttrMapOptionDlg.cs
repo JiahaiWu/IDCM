@@ -18,14 +18,24 @@ namespace IDCM.ViewLL.Win
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// 设置初始化映射源和映射目标字符串集合，并指定有效映射返回字典的引用对象
+        /// </summary>
+        /// <param name="xlscols"></param>
+        /// <param name="dbList"></param>
+        /// <param name="mapping"></param>
         public void setInitCols(List<string> xlscols,List<string> dbList,ref Dictionary<string,string> mapping)
         {
             this.srcCols = xlscols;
             this.destCols = dbList;
             this.mapping = mapping;
-            setSimilarMapping();
+            computeSimilarMapping();
         }
-        public void setSimilarMapping(double threshold=0.8)
+        /// <summary>
+        /// 根据字符串源和目标集合，使用编辑距离的计算方法计算相似度，并以一定的阈值通过筛选相似的映射对
+        /// </summary>
+        /// <param name="threshold"></param>
+        public void computeSimilarMapping(double threshold = 0.7)
         {
             Dictionary<ObjectPair<string, string>, double> mappingEntries = new Dictionary<ObjectPair<string, string>, double>();
             List<string> baseList = new List<string>();
@@ -52,10 +62,13 @@ namespace IDCM.ViewLL.Win
             this.dataGridView_map.Rows.Clear();
             foreach (KeyValuePair<string, string> mappair in mapping)
             {
-                this.dataGridView_map.Rows.Add(new string[] { mappair.Key, null, null, mappair.Value, null });
+                this.dataGridView_map.Rows.Add(new string[] { mappair.Key, null, null, CVNameConverter.toViewName(mappair.Value), null });
             }
             radioButton_similarity.Checked = true;
         }
+        /// <summary>
+        /// 更新引用的字典的有效映射的返回映射对
+        /// </summary>
         public void setExtractMapping()
         {
             HashSet<string> baseSet = new HashSet<string>(destCols);
@@ -78,31 +91,53 @@ namespace IDCM.ViewLL.Win
             }
             radioButton_exact.Checked = true;
         }
+        /// <summary>
+        /// 取消操作事件处理并关闭窗口
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_cancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
+            mapping.Clear();
             this.Close();
         }
-
+        /// <summary>
+        /// 确认映射对配置并关闭窗口
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_confirm_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
-
+        /// <summary>
+        /// 启用模糊匹配模式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radioButton_similarity_CheckedChanged(object sender, EventArgs e)
         {
             if(radioButton_similarity.Checked)
-                setSimilarMapping();
+                computeSimilarMapping();
         }
-
+        /// <summary>
+        /// 启用精确匹配模式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radioButton_exact_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton_exact.Checked)
                 setExtractMapping();
         }
 
-
+        /// <summary>
+        /// 自动行号实现
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView_map_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             System.Drawing.Rectangle rectangle = new System.Drawing.Rectangle(e.RowBounds.Location.X, e.RowBounds.Location.Y, dataGridView_map.RowHeadersWidth - 4, e.RowBounds.Height);
@@ -111,7 +146,11 @@ namespace IDCM.ViewLL.Win
                 dataGridView_map.RowHeadersDefaultCellStyle.ForeColor, TextFormatFlags.VerticalCenter | TextFormatFlags.Right);
             dataGridView_map.AutoResizeRowHeadersWidth(DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders);
         }
-
+        /// <summary>
+        /// 映射编辑事件处理入口
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView_map_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -137,6 +176,13 @@ namespace IDCM.ViewLL.Win
                 }
             }
         }
+        /// <summary>
+        /// 追加映射对配置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="columnIndex"></param>
+        /// <param name="rowIndex"></param>
         private void toolStripComboBox_dest_Changed(object sender, EventArgs e, int columnIndex, int rowIndex)
         {
             string stext=toolStripComboBox_dest.SelectedText;
@@ -146,6 +192,10 @@ namespace IDCM.ViewLL.Win
                 mapping[dataGridView_map.Rows[rowIndex].Cells[0].Value.ToString()] = CVNameConverter.toDBName(stext);
             }
         }
+        /// <summary>
+        /// 获取未匹配的目标字符串集合
+        /// </summary>
+        /// <returns></returns>
         private string[] unboundDestCols()
         {
             List<string> res = new List<string>();
@@ -153,7 +203,7 @@ namespace IDCM.ViewLL.Win
             foreach (string col in destCols)
             {
                 if (!dests.Contains(col))
-                    res.Add(col);
+                    res.Add(CVNameConverter.toViewName(col));
             }
             return res.ToArray();
         }

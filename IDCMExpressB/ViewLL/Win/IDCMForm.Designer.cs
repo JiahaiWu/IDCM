@@ -143,18 +143,21 @@
             this.localSearchToolStripMenuItem.Name = "localSearchToolStripMenuItem";
             this.localSearchToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.localSearchToolStripMenuItem.Text = "Local Search";
+            this.localSearchToolStripMenuItem.Click += new System.EventHandler(this.localSearchToolStripMenuItem_Click);
             // 
             // onlineSearchToolStripMenuItem
             // 
             this.onlineSearchToolStripMenuItem.Name = "onlineSearchToolStripMenuItem";
             this.onlineSearchToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.onlineSearchToolStripMenuItem.Text = "Online Search";
+            this.onlineSearchToolStripMenuItem.Click += new System.EventHandler(this.onlineSearchToolStripMenuItem_Click);
             // 
             // frontPageSearchToolStripMenuItem
             // 
             this.frontPageSearchToolStripMenuItem.Name = "frontPageSearchToolStripMenuItem";
             this.frontPageSearchToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.frontPageSearchToolStripMenuItem.Text = "Front Page Search";
+            this.frontPageSearchToolStripMenuItem.Click += new System.EventHandler(this.frontPageSearchToolStripMenuItem_Click);
             // 
             // ToolStripMenuItem_window
             // 
@@ -235,7 +238,7 @@
             this.ToolStripTextBox_user.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
             this.ToolStripTextBox_user.ReadOnly = true;
             this.ToolStripTextBox_user.ShortcutsEnabled = false;
-            this.ToolStripTextBox_user.Size = new System.Drawing.Size(220, 23);
+            this.ToolStripTextBox_user.Size = new System.Drawing.Size(190, 23);
             this.ToolStripTextBox_user.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // IDCMForm

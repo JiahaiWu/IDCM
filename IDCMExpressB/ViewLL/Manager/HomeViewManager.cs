@@ -143,7 +143,7 @@ namespace IDCM.ViewLL.Manager
         public void loadDataSetView(TreeNode tnode)
         {
             datasetBuilder.loadDataSetView();
-            updateDataSet(tnode);
+            noteCurSelectedNode(tnode);
         }
         public void loadTreeSet()
         {
@@ -172,7 +172,7 @@ namespace IDCM.ViewLL.Manager
         public void exportData(ExportType etype, string fpath)
         {
             //DataGridView itemDGV = homeView.getItemGridView();
-            KeyValuePair<string, int> lastQuery = QueryCmdCache.getLastCDTRQuery();
+            KeyValuePair<string, int> lastQuery = QueryCmdCache.getLastDGVRQuery();
             AbsHandler handler = null;
             switch (etype)
             {
@@ -253,7 +253,9 @@ namespace IDCM.ViewLL.Manager
         {
            bool needUpdateData= libBuilder.noteCurSelectedNode(node);
            if (needUpdateData)
+           {
                updateDataSet(node);
+           }
         }
         /// <summary>
         /// 根据指定的数据集合加载数据报表显示

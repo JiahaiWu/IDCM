@@ -10,6 +10,7 @@ using System.Data;
 using IDCM.SimpleDAL.POO;
 using IDCM.SimpleDAL.DAM;
 using IDCM.ControlMBL.AsyncInvoker;
+using IDCM.SimpleDAL.DBCP;
 
 namespace IDCM.ServiceBL.Handle
 {
@@ -57,8 +58,10 @@ namespace IDCM.ServiceBL.Handle
                         filterLids = filterLids.Substring(1);
                     }
                 }
+                string cmdstr=null;
                 //数据查询与装载
-                DataTable records = CTDRecordDAM.queryCTDRecord(filterLids);
+                DataTable records = CTDRecordDAM.queryCTDRecord(filterLids,null,out cmdstr);
+                QueryCmdCache.cacheDGVQuery(cmdstr, records.Rows.Count);
                 if (records != null && records.Rows.Count > 0)
                 {
                     foreach (DataRow dr in records.Rows)

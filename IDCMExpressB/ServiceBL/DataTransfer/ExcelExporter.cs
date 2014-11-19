@@ -52,7 +52,7 @@ namespace IDCM.ServiceBL.DataTransfer
                     DataTable table = CTDRecordDAM.queryCTDRecordByHistSQL(cmdstr, lcount, offset);
                     foreach (DataRow row in table.Rows)
                     {
-                        IRow srow = sheet.CreateRow(ridx);
+                        IRow srow = sheet.CreateRow(ridx++);
                         mergeDataToSheetRow(maps, row, srow);
                     }
                     offset += lcount;

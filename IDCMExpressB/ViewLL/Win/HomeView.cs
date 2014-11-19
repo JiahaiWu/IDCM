@@ -82,11 +82,11 @@ namespace IDCM.ViewLL.Win
         {
             if (e.Node != null)
             {
+                treeView_base.SelectedNode = e.Node;
+                manager.noteCurSelectedNode(e.Node);
                 //左键(激活节点选定事件，并将触发必要的右侧数据表单的更新显示)
                 if (e.Button == MouseButtons.Left)
                 {
-                    treeView_base.SelectedNode = e.Node;
-                    manager.noteCurSelectedNode(e.Node);
                 }
                 //右键（不会激活节点选定事件，事件触发节点信息通过匿名委托方法绑定到弹出菜单项的事件方法中去）
                 if (e.Button == MouseButtons.Right)
@@ -113,24 +113,24 @@ namespace IDCM.ViewLL.Win
             {
                 treeView_library.SelectedNode = e.Node;
                 manager.noteCurSelectedNode(e.Node);
+                //左键
+                if (e.Button == MouseButtons.Left)
+                {
+                }
+                //右键
+                if (e.Button == MouseButtons.Right)
+                {
+                    LocalLibBuilder.filterContextMenuItems(contextMenuStrip_lib, e.Node);
+                    foreach (ToolStripItem tsItem in contextMenuStrip_lib.Items)
+                    {
+                        if (tsItem is ToolStripSeparator)
+                            continue;
+                        ControlUtil.ClearEvent(tsItem, "Click");
+                        tsItem.Click += delegate(object tsender, EventArgs te) { toolStripMenuItem_lib_Click(tsender, te, e.Node); };
+                    }
+                    contextMenuStrip_lib.Show(treeView_library, e.X, e.Y);
+                }
             }
-            //左键
-            if (e.Button == MouseButtons.Left && e.Node!=null)
-            {
-                manager.updateDataSet(e.Node);
-            }
-            //右键
-            if (e.Button != MouseButtons.Right || e.Node == null)
-                return;
-            LocalLibBuilder.filterContextMenuItems(contextMenuStrip_lib, e.Node);
-            foreach (ToolStripItem tsItem in contextMenuStrip_lib.Items)
-            {
-                if (tsItem is ToolStripSeparator)
-                    continue;
-                ControlUtil.ClearEvent(tsItem, "Click");
-                tsItem.Click += delegate(object tsender, EventArgs te) { toolStripMenuItem_lib_Click(tsender, te, e.Node); };
-            }
-            contextMenuStrip_lib.Show(treeView_library, e.X, e.Y);
         }
         protected void toolStripMenuItem_base_Click(object sender, EventArgs e, TreeNode node)
         {
@@ -279,7 +279,7 @@ namespace IDCM.ViewLL.Win
                 string newMail = string.Format(" ({0})", e.Node.Tag.ToString());
                 e.Graphics.DrawString(newMail, e.Node.TreeView.Font, Brushes.Blue, e.Bounds.Right, e.Bounds.Top);
             }
-            e.Node.Expand();
+            //e.Node.Expand();
         }
 
         private void treeView_base_DrawNode(object sender, DrawTreeNodeEventArgs e)
@@ -300,7 +300,7 @@ namespace IDCM.ViewLL.Win
                 string newMail = string.Format(" ({0})", e.Node.Tag.ToString());
                 e.Graphics.DrawString(newMail, e.Node.TreeView.Font, Brushes.Blue, e.Bounds.Right, e.Bounds.Top);
             }
-            e.Node.Expand();
+            //e.Node.Expand();
         }
         
         /// <summary>

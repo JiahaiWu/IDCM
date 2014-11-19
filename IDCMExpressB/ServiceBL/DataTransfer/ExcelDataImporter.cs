@@ -72,9 +72,10 @@ namespace IDCM.ServiceBL.DataTransfer
             List<string> xlscols = new List<string>(columnSize);
             for (int i = titleRow.FirstCellNum; i < columnSize; i++)
             {
-                if (titleRow.GetCell(i) != null) //同理，没有数据的单元格都默认是null
+                ICell titleCell = titleRow.GetCell(i);
+                if (titleCell != null && titleCell.ToString().Length>0)
                 {
-                    string cellData = titleRow.GetCell(i).ToString();
+                    string cellData = titleCell.ToString();
                     xlscols.Add(CVNameConverter.toViewName(cellData.Trim().ToLower()));
                 }
                 else
@@ -100,7 +101,7 @@ namespace IDCM.ServiceBL.DataTransfer
                     Dictionary<string, string> mapValues = new Dictionary<string, string>();
                     for (int j = row.FirstCellNum; j < columnSize; j++)
                     {
-                        if (row.GetCell(j) != null) //同理，没有数据的单元格都默认是null
+                        if (row.GetCell(j) != null && xlscols[j]!=null) 
                         {
                             string cellData = row.GetCell(j).ToString().Trim();
                             string mapName = null;

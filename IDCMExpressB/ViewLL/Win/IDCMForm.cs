@@ -206,5 +206,20 @@ namespace IDCM.ViewLL.Win
             }
             onlineSearchToolStripMenuItem.Enabled = false;
         }
+
+        private void localSearchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            manager.showDBDataSearch();
+        }
+
+        private void onlineSearchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            manager.showDBDataSearch();
+        }
+
+        private void frontPageSearchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            manager.frontDataSearch();
+        }
     }
 }

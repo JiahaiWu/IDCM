@@ -17,20 +17,20 @@ namespace IDCM.SimpleDAL.DBCP
         /// 数据表单查询条件语句缓存
         /// </summary>
         /// <param name="cmdstr"></param>
-        internal static void cacheCTDRQuery(string cmdstr,int tcount)
+        internal static void cacheDGVQuery(string cmdstr, int tcount)
         {
             int idx = cmdstr.IndexOf("Limit", 0, StringComparison.OrdinalIgnoreCase);
-            lastUserCTDRQuery = idx>0?cmdstr.Substring(0,idx):cmdstr;
-            lastUserCTDRQueryCount=tcount;
+            lastUserDGVRQuery = idx > 0 ? cmdstr.Substring(0, idx) : cmdstr;
+            lastUserDGVRQueryCount = tcount;
         }
         /// <summary>
         /// 最近的用户发起的数据表单查询条件语句
         /// </summary>
         /// <param name="cmdstr"></param>
         /// <returns></returns>
-        public static KeyValuePair<string,int> getLastCDTRQuery()
+        public static KeyValuePair<string,int> getLastDGVRQuery()
         {
-            return new KeyValuePair<string, int>(lastUserCTDRQuery, lastUserCTDRQueryCount);
+            return new KeyValuePair<string, int>(lastUserDGVRQuery, lastUserDGVRQueryCount);
         }
         /// <summary>
         /// 聚合查询数值结果缓存
@@ -55,8 +55,8 @@ namespace IDCM.SimpleDAL.DBCP
         /// <summary>
         /// 最近的用户发起的数据表单查询条件语句
         /// </summary>
-        public static string lastUserCTDRQuery = null;
-        public static int lastUserCTDRQueryCount = 0;
+        public static string lastUserDGVRQuery = null;
+        public static int lastUserDGVRQueryCount = 0;
         /// <summary>
         /// 聚合查询数值结果缓存池大小限定
         /// </summary>

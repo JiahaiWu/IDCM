@@ -261,21 +261,23 @@ namespace IDCM.ControlMBL.Module
         /// <param name="libTree"></param>
         public bool noteCurSelectedNode(TreeNode snode)
         {
-            bool needUpdateData = (snode!=null && snode != selectedNode_Current);
             if (snode == null)
-                return needUpdateData;
+                return false;
+            TreeNode lastNode = selectedNode_Current;
+            selectedNode_Current = snode;
+            bool needUpdateData = snode != lastNode;
             TreeView lastTree = null;
-            if (selectedNode_Current != null)
+            if (lastNode != null)
             {
-                lastTree=selectedNode_Current.TreeView;
+                lastTree = lastNode.TreeView;
             }
             if (lastTree != null && !snode.TreeView.Equals(lastTree))
             {
                 lastTree.SelectedNode = null;
+                lastTree.HideSelection = false;
                 lastTree.Refresh();
             }
-            selectedNode_Current = snode;
-            snode.TreeView.SelectedNode = selectedNode_Current;
+            snode.TreeView.SelectedNode = snode;
             snode.TreeView.Refresh();
             return needUpdateData;
         }

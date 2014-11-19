@@ -38,7 +38,18 @@ namespace IDCM.SimpleDAL.DAM
         /// <param name="nodeIds"></param>
         /// <param name="rids"></param>
         /// <returns></returns>
-        public static DataTable queryCTDRecord(string nodeIds=null,string rids=null)
+        public static DataTable queryCTDRecord(string nodeIds = null, string rids = null)
+        {
+            string cmdstr = null;
+            return queryCTDRecord(nodeIds, rids, out cmdstr);
+        }
+        /// <summary>
+        /// 查询记录
+        /// </summary>
+        /// <param name="nodeIds"></param>
+        /// <param name="rids"></param>
+        /// <returns></returns>
+        public static DataTable queryCTDRecord(string nodeIds,string rids,out string cmdstr)
         {
             StringBuilder cmdBuilder = new StringBuilder("SELECT * FROM " + table_name);
             if (nodeIds != null || rids != null)
@@ -76,9 +87,8 @@ namespace IDCM.SimpleDAL.DAM
                 if(rids!=null)
                     cmdBuilder.Append(" ").Append(CTD_RID).Append(" in (").Append(rids).Append(") ");
             }
-            string cmdstr = cmdBuilder.ToString();
+            cmdstr = cmdBuilder.ToString();
             DataTable table = SQLiteHelper.ExecuteDataTable(ConnectStr, cmdstr);
-            cacheCTDRQuery(cmdstr,table.Rows.Count);
             return table;
         }
         /// <summary>
@@ -128,7 +138,7 @@ namespace IDCM.SimpleDAL.DAM
                     }
                     else
                     {
-                        throw new NotSupportedException("Un Supported query condition using queryCTDRecord Method! The condition named is " + nodeIds + ".");
+                        throw new NotSupportedException("Un Supported query condition using countCTDRecord Method! The condition named is " + nodeIds + ".");
                     }
                 }
                 else
@@ -190,7 +200,7 @@ namespace IDCM.SimpleDAL.DAM
                         }
                         else
                         {
-                            throw new NotSupportedException("Un Supported query condition using queryCTDRecord Method! The condition named is " + nodeIds + ".");
+                            throw new NotSupportedException("Un Supported query condition using updateCTCRecordLid Method! The condition named is " + nodeIds + ".");
                         }
                     }
                     else
@@ -236,7 +246,7 @@ namespace IDCM.SimpleDAL.DAM
                         }
                         else
                         {
-                            throw new NotSupportedException("Un Supported query condition using queryCTDRecord Method! The condition named is " + nodeIds + ".");
+                            throw new NotSupportedException("Un Supported query condition using dropCTCRecordLid Method! The condition named is " + nodeIds + ".");
                         }
                     }
                     else
