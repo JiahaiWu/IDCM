@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
     <PublishUrl>发布\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,7 +25,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.1.6.%2a</ApplicationVersion>
+    <ApplicationVersion>0.1.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -50,14 +52,16 @@
     <ApplicationIcon>003_05.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharpTest.Net.Library">
+    <Reference Include="CSharpTest.Net.Library, Version=2.14.126.467, Culture=neutral, PublicKeyToken=06aee00cce822474, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\CSharpTest.Net.Library.2.14.126.467\lib\net40\CSharpTest.Net.Library.dll</HintPath>
     </Reference>
-    <Reference Include="Dapper">
+    <Reference Include="Dapper, Version=1.38.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Dapper.1.38\lib\net40\Dapper.dll</HintPath>
     </Reference>
-    <Reference Include="Dapper.Rainbow">
-      <HintPath>..\packages\Dapper.Rainbow.0.1.2\lib\net40\Dapper.Rainbow.dll</HintPath>
+    <Reference Include="Dapper.Rainbow.SQLite">
+      <HintPath>..\packages\Dapper.Rainbow.SQLite.0.1.2\lib\net40\Dapper.Rainbow.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.dll</HintPath>
@@ -93,15 +97,14 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SQLite">
+    <Reference Include="System.Data.SQLite, Version=1.0.94.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.94.0\lib\net40\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.SQLite.EF6">
       <HintPath>..\packages\System.Data.SQLite.EF6.1.0.94.0\lib\net40\System.Data.SQLite.EF6.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.SQLite.Linq">
-      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.94.1\lib\net40\System.Data.SQLite.Linq.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -129,7 +132,6 @@
     <Compile Include="ControlMBL\Module\LocalLibBuilder.cs" />
     <Compile Include="ControlMBL\Utilities\ControlUtil.cs" />
     <Compile Include="ControlMBL\Utilities\DGVUtil.cs" />
-    <Compile Include="OverallSC\Commons\FileUtil.cs" />
     <Compile Include="OverallSC\Commons\Generator\Base64CShared.cs" />
     <Compile Include="OverallSC\Commons\Generator\Base64Shared.cs" />
     <Compile Include="OverallSC\Commons\Generator\Base64SharedI.cs" />
@@ -137,6 +139,7 @@
     <Compile Include="OverallSC\Commons\HashUtil.cs" />
     <Compile Include="OverallSC\Commons\SockUtil.cs" />
     <Compile Include="OverallSC\Commons\StringUtil.cs" />
+    <Compile Include="OverallSC\Commons\FileUtil.cs" />
     <Compile Include="OverallSC\ShareSync\ConfigurationHelper.cs" />
     <Compile Include="OverallSC\ShareSync\ExtResponseCode.cs" />
     <Compile Include="OverallSC\ShareSync\IDCMEnvironment.cs" />
@@ -174,24 +177,24 @@
     <Compile Include="ServiceBL\Handle\UpdateTemplateHandler.cs" />
     <Compile Include="ServiceBL\NetTransfer\SignInExecutor.cs" />
     <Compile Include="ServiceBL\ServBuf\BGWorkerPool.cs" />
-    <Compile Include="ServiceBL\ServProcessor\TemplateUpdater.cs" />
     <Compile Include="SimpleDAL\DAM\AuthInfoDAM.cs" />
+    <Compile Include="SimpleDAL\DBCP\QueryCmdCache.cs" />
+    <Compile Include="ServiceBL\ServProcessor\TemplateUpdater.cs" />
     <Compile Include="SimpleDAL\DAM\BaseInfoNoteDAM.cs" />
     <Compile Include="SimpleDAL\DAM\CTDRecordDAM.cs" />
     <Compile Include="SimpleDAL\DAM\CustomTColDefDAM.cs" />
     <Compile Include="SimpleDAL\DAM\CustomTColMapDAM.cs" />
-    <Compile Include="SimpleDAL\DAM\DelayWorkNoteDAM.cs" />
-    <Compile Include="SimpleDAL\DAM\LibraryNodeDAM.cs" />
     <Compile Include="SimpleDAL\DBCP\DAMBase.cs" />
-    <Compile Include="SimpleDAL\DBCP\QueryCmdCache.cs" />
+    <Compile Include="SimpleDAL\DAM\LibraryNodeDAM.cs" />
+    <Compile Include="SimpleDAL\DAM\DelayWorkNoteDAM.cs" />
     <Compile Include="SimpleDAL\DBCP\SQLiteConnPicker.cs" />
     <Compile Include="SimpleDAL\DBCP\SQLiteHelper.cs" />
     <Compile Include="SimpleDAL\POO\AuthInfo.cs" />
     <Compile Include="SimpleDAL\POO\CustomTColDef.cs" />
     <Compile Include="SimpleDAL\POO\CustomTColMap.cs" />
     <Compile Include="SimpleDAL\POO\DBVersionNote.cs" />
-    <Compile Include="SimpleDAL\POO\DelayWorkNote.cs" />
     <Compile Include="SimpleDAL\POO\LibraryNode.cs" />
+    <Compile Include="SimpleDAL\POO\DelayWorkNote.cs" />
     <Compile Include="ViewLL\Manager\AuthenticationRetainer.cs" />
     <Compile Include="ViewLL\Manager\HomeViewManager.cs" />
     <Compile Include="ViewLL\Manager\IDCMVeiwManger.cs" />
@@ -201,89 +204,104 @@
     <Compile Include="ViewLL\Win\AttrMapOptionDlg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewLL\Win\AttrMapOptionDlg.Designer.cs" />
+    <Compile Include="ViewLL\Win\AttrMapOptionDlg.Designer.cs">
+      <DependentUpon>AttrMapOptionDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewLL\Win\ExportTypeDlg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewLL\Win\ExportTypeDlg.Designer.cs" />
+    <Compile Include="ViewLL\Win\ExportTypeDlg.Designer.cs">
+      <DependentUpon>ExportTypeDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewLL\Win\FrontFindDlg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewLL\Win\FrontFindDlg.Designer.cs" />
+    <Compile Include="ViewLL\Win\FrontFindDlg.Designer.cs">
+      <DependentUpon>FrontFindDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewLL\Win\HomeView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewLL\Win\HomeView.Designer.cs" />
+    <Compile Include="ViewLL\Win\HomeView.Designer.cs">
+      <DependentUpon>HomeView.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewLL\Win\IDCMForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewLL\Win\IDCMForm.Designer.cs" />
+    <Compile Include="ViewLL\Win\IDCMForm.Designer.cs">
+      <DependentUpon>IDCMForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewLL\Win\LibFieldSettingView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewLL\Win\LibFieldSettingView.Designer.cs" />
+    <Compile Include="ViewLL\Win\LibFieldSettingView.Designer.cs">
+      <DependentUpon>LibFieldSettingView.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewLL\Win\LoginStatusDlg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewLL\Win\LoginStatusDlg.Designer.cs" />
+    <Compile Include="ViewLL\Win\LoginStatusDlg.Designer.cs">
+      <DependentUpon>LoginStatusDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewLL\Win\ProcessDlg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewLL\Win\ProcessDlg.Designer.cs" />
+    <Compile Include="ViewLL\Win\ProcessDlg.Designer.cs">
+      <DependentUpon>ProcessDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewLL\Win\SignInDlg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewLL\Win\SignInDlg.Designer.cs" />
+    <Compile Include="ViewLL\Win\SignInDlg.Designer.cs">
+      <DependentUpon>SignInDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewLL\Win\StartForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewLL\Win\StartForm.Designer.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
+    <Compile Include="ViewLL\Win\StartForm.Designer.cs">
+      <DependentUpon>StartForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ViewLL\Win\AttrMapOptionDlg.resx" />
-    <EmbeddedResource Include="ViewLL\Win\ExportTypeDlg.resx" />
-    <EmbeddedResource Include="ViewLL\Win\FrontFindDlg.resx" />
-    <EmbeddedResource Include="ViewLL\Win\HomeView.resx" />
-    <EmbeddedResource Include="ViewLL\Win\IDCMForm.resx" />
-    <EmbeddedResource Include="ViewLL\Win\LibFieldSettingView.resx" />
-    <EmbeddedResource Include="ViewLL\Win\LoginStatusDlg.resx" />
-    <EmbeddedResource Include="ViewLL\Win\ProcessDlg.resx" />
-    <EmbeddedResource Include="ViewLL\Win\SignInDlg.resx" />
-    <EmbeddedResource Include="ViewLL\Win\StartForm.resx" />
-    <None Include="App.config" />
-    <None Include="NLog.config" />
-    <None Include="NLog.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="003_05.ico" />
     <Content Include="AddedEI\AddedEI.txt" />
-    <Content Include="ControlMBL\ControlMBL.txt" />
     <Content Include="OverallSC\OverallSC.txt" />
+    <None Include="Resources\rightArrow.png" />
+    <Content Include="ServiceBL\ServiceBL.txt" />
+    <Content Include="SimpleDAL\SimpleDAL.txt" />
+    <Content Include="ViewLL\ViewLL.txt" />
+    <EmbeddedResource Include="ViewLL\Win\AttrMapOptionDlg.resx">
+      <DependentUpon>AttrMapOptionDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\ExportTypeDlg.resx">
+      <DependentUpon>ExportTypeDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\FrontFindDlg.resx">
+      <DependentUpon>FrontFindDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\HomeView.resx">
+      <DependentUpon>HomeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\IDCMForm.resx">
+      <DependentUpon>IDCMForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\LibFieldSettingView.resx">
+      <DependentUpon>LibFieldSettingView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\LoginStatusDlg.resx">
+      <DependentUpon>LoginStatusDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\ProcessDlg.resx">
+      <DependentUpon>ProcessDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\SignInDlg.resx">
+      <DependentUpon>SignInDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\StartForm.resx">
+      <DependentUpon>StartForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Resources\uploading2_cut1.gif" />
     <None Include="Resources\upload.png" />
     <None Include="Resources\up.png" />
     <None Include="Resources\search.png" />
-    <None Include="Resources\rightArrow.png" />
     <None Include="Resources\remove1.png" />
     <None Include="Resources\remove.png" />
     <None Include="Resources\refresh.png" />
@@ -307,12 +325,36 @@
     <None Include="Resources\btn.jpg" />
     <None Include="Resources\bg2.jpg" />
     <None Include="Resources\base.gif" />
-    <Content Include="ServiceBL\ServiceBL.txt" />
-    <Content Include="SimpleDAL\SimpleDAL.txt" />
-    <Content Include="ViewLL\ViewLL.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AddedEI\Support\" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="ControlMBL\ControlMBL.txt" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -336,8 +378,14 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AddedEI\Support\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets')" />
+  <!-- 
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  -->
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
