@@ -92,7 +92,7 @@ namespace IDCM.ServiceBL.DataTransfer
             {
                 if (!CVNameConverter.isViewWrapName(attr))
                 {
-                    excludes.Add(attr);
+                    excludes.Add(CVNameConverter.toViewName(attr));
                 }
             }
             foreach (string attr in excludes)

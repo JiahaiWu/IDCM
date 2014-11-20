@@ -57,6 +57,24 @@ namespace IDCM.SimpleDAL.DAM
             }
         }
         /// <summary>
+        /// 获取可检索分类目录映射索引对象
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<string,int> getSearchMap()
+        {
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            Dictionary<string, int> qdict;
+            string cmd = "SELECT Name,Lid FROM " + typeof(LibraryNode).Name + " where pid>0 order by lorder";
+            using (SQLiteConnPicker picker = new SQLiteConnPicker(ConnectStr))
+            {
+                qdict= picker.getConnection().Query(cmd).ToDictionary(rs=>(string)rs.Name,rs=>(int)rs.Lid);
+            }
+            dict.Add("Whole Library", REC_ALL);
+            dict.Add("Unfiled Dataset", REC_UNFILED);
+            dict = dict.Concat(qdict).ToDictionary(x =>x.Key, x =>x.Value);
+            return dict;
+        }
+        /// <summary>
         /// 保存新节点记录
         /// </summary>
         /// <param name="instance"></param>

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using IDCM.ControlMBL.Utilities;
+using IDCM.ServiceBL.DataTransfer;
+using IDCM.SimpleDAL.DAM;
 
 namespace IDCM.ControlMBL.Module
 {
@@ -14,6 +16,7 @@ namespace IDCM.ControlMBL.Module
         {
             this.splter = searchSplter;
             this.searchPanel = dbSearchPanel;
+            bindComboBoxSearchLibHandle();
             int rowCount = this.searchPanel.RowCount - 2;
             panelList = new List<Panel>(rowCount);
             for (int i =1; i <=rowCount; i++)
@@ -39,6 +42,8 @@ namespace IDCM.ControlMBL.Module
         private TableLayoutPanel searchPanel = null;
         private SplitContainer splter = null;
         private List<Panel> panelList = null;
+        private string[] combineItems = new string[] { "And", "Or", "Not" };
+        private string[] conditionItems = new string[] { "Contains", "Equals", "Is Less than","Is greater than","Is start with","Is end with" };
         private const string panel_searchHead = "panel_searchHead";
         private const string comboBox_comd = "comboBox_comd";
         private const string comboBox_attr = "comboBox_attr";
@@ -52,6 +57,12 @@ namespace IDCM.ControlMBL.Module
         private const string checkBox_case = "checkBox_case";
         private const string checkBox_words = "checkBox_words";
         #endregion
+        public void bindComboBoxSearchLibHandle()
+        {
+            Control btn = searchPanel.GetControlFromPosition(0,0).Controls[comboBox_searchLib];
+            ControlUtil.ClearEvent(btn, "Click");
+            btn.Click += delegate(object tsender, EventArgs te) { refreshLibSearchList(tsender, te); };
+        }
         /// <summary>
         /// 初始化组合条件各行包含的控件的事件处理方法
         /// </summary>
@@ -72,6 +83,20 @@ namespace IDCM.ControlMBL.Module
                     remBtn.Click += delegate(object tsender, EventArgs te) { reduceSearchComb(tsender, te); };
                 }
             }
+            for (int i = panelList.Count(); i > 0; i--)
+            {
+                Control panel = panelList[i - 1];
+                Control ctrl = null;
+                if (i > 1)
+                {
+                    ctrl=panel.Controls[comboBox_comd + i];
+                    (ctrl as ComboBox).Items.Clear();
+                    (ctrl as ComboBox).Items.AddRange(combineItems);
+                }
+                ctrl = panel.Controls[comboBox_cond + i];
+                (ctrl as ComboBox).Items.Clear();
+                (ctrl as ComboBox).Items.AddRange(conditionItems);
+            }
         }
         /// <summary>
         /// 显示或折叠数据查询输入表单界面
@@ -81,6 +106,7 @@ namespace IDCM.ControlMBL.Module
             if (splter.Panel1Collapsed == true)
             {
                 int defaultRowCount = 2;
+                Dictionary<string,int> viewDBMap = ColumnMappingHolder.getCustomViewDBMapping();
                 for (int i = panelList.Count(); i>0; i--)
                 {
                     Control panel = panelList[i-1];
@@ -91,12 +117,34 @@ namespace IDCM.ControlMBL.Module
                         panel.Hide();
                         searchPanel.RowStyles[i].Height = 0;
                     }
+                    ///////////////////
+                    Control ctrl =null;
+                    if (i > 1)
+                    {
+                        ctrl = panel.Controls[comboBox_comd + i];
+                        (ctrl as ComboBox).SelectedIndex = 0;
+                    }
+                    ctrl = panel.Controls[comboBox_attr + i];
+                    (ctrl as ComboBox).DataSource = new BindingSource(viewDBMap, null);
+                    (ctrl as ComboBox).DisplayMember = "Key";
+                    (ctrl as ComboBox).ValueMember = "Value";
+                    (ctrl as ComboBox).SelectedIndex = 0;
+                    ctrl = panel.Controls[comboBox_cond + i];
+                    (ctrl as ComboBox).SelectedIndex = 0;
                 }
                 this.splter.SplitterDistance = (defaultRowCount+1) * panelList[0].Height;
                 this.splter.Panel1Collapsed = false;
             }
             else
                 splter.Panel1Collapsed = true;
+        }
+        public void refreshLibSearchList(object sender, EventArgs e)
+        {
+            Dictionary<string, int> libSearchMap = LibraryNodeDAM.getSearchMap();
+            (sender as ComboBox).DataSource = new BindingSource(libSearchMap, null);
+            (sender as ComboBox).DisplayMember = "Key";
+            (sender as ComboBox).ValueMember = "Value";
+            (sender as ComboBox).Refresh();
         }
         public void addSearchComb(object sender, EventArgs e)
         {
