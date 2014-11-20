@@ -81,19 +81,19 @@
             this.checkBox_matchCase.AutoSize = true;
             this.checkBox_matchCase.Location = new System.Drawing.Point(27, 66);
             this.checkBox_matchCase.Name = "checkBox_matchCase";
-            this.checkBox_matchCase.Size = new System.Drawing.Size(108, 16);
+            this.checkBox_matchCase.Size = new System.Drawing.Size(84, 16);
             this.checkBox_matchCase.TabIndex = 4;
-            this.checkBox_matchCase.Text = "Case Sensitive";
+            this.checkBox_matchCase.Text = "Match Case";
             this.checkBox_matchCase.UseVisualStyleBackColor = true;
             // 
             // checkBox_matchAll
             // 
             this.checkBox_matchAll.AutoSize = true;
-            this.checkBox_matchAll.Location = new System.Drawing.Point(145, 67);
+            this.checkBox_matchAll.Location = new System.Drawing.Point(124, 67);
             this.checkBox_matchAll.Name = "checkBox_matchAll";
             this.checkBox_matchAll.Size = new System.Drawing.Size(90, 16);
             this.checkBox_matchAll.TabIndex = 5;
-            this.checkBox_matchAll.Text = "Fully Match";
+            this.checkBox_matchAll.Text = "Match Fully";
             this.checkBox_matchAll.UseVisualStyleBackColor = true;
             // 
             // button_reset

@@ -32,11 +32,11 @@
             System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("All References");
             System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Unfiled");
             System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Trash");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("My Group (Temp)");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("My Group (Temp)");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeView));
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("All Strains");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("节点1");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("节点2");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("All Strains");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("节点1");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("节点2");
             this.statusStripBottom = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel_bottom = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton_layout = new System.Windows.Forms.ToolStripSplitButton();
@@ -55,12 +55,11 @@
             this.splitContainer_middle = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel_search = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.button_rem2 = new System.Windows.Forms.Button();
+            this.comboBox_comd2 = new System.Windows.Forms.ComboBox();
             this.textBox_search2 = new System.Windows.Forms.TextBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.comboBox_cond2 = new System.Windows.Forms.ComboBox();
+            this.comboBox_attr2 = new System.Windows.Forms.ComboBox();
             this.panel_searchHead = new System.Windows.Forms.Panel();
             this.btn_options = new System.Windows.Forms.Button();
             this.checkBox_words = new System.Windows.Forms.CheckBox();
@@ -68,11 +67,34 @@
             this.comboBox_searchLib = new System.Windows.Forms.ComboBox();
             this.checkBox_case = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_add1 = new System.Windows.Forms.Button();
             this.textBox_search1 = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox_cond1 = new System.Windows.Forms.ComboBox();
+            this.comboBox_attr1 = new System.Windows.Forms.ComboBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button_rem3 = new System.Windows.Forms.Button();
+            this.textBox_search3 = new System.Windows.Forms.TextBox();
+            this.comboBox_cond3 = new System.Windows.Forms.ComboBox();
+            this.comboBox_attr3 = new System.Windows.Forms.ComboBox();
+            this.comboBox_comd3 = new System.Windows.Forms.ComboBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.button_rem4 = new System.Windows.Forms.Button();
+            this.textBox_search4 = new System.Windows.Forms.TextBox();
+            this.comboBox_cond4 = new System.Windows.Forms.ComboBox();
+            this.comboBox_attr4 = new System.Windows.Forms.ComboBox();
+            this.comboBox_comd4 = new System.Windows.Forms.ComboBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.button_rem5 = new System.Windows.Forms.Button();
+            this.textBox_search5 = new System.Windows.Forms.TextBox();
+            this.comboBox_cond5 = new System.Windows.Forms.ComboBox();
+            this.comboBox_attr5 = new System.Windows.Forms.ComboBox();
+            this.comboBox_comd5 = new System.Windows.Forms.ComboBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.button_rem6 = new System.Windows.Forms.Button();
+            this.textBox_search6 = new System.Windows.Forms.TextBox();
+            this.comboBox_cond6 = new System.Windows.Forms.ComboBox();
+            this.comboBox_attr6 = new System.Windows.Forms.ComboBox();
+            this.comboBox_comd6 = new System.Windows.Forms.ComboBox();
             this.dataGridView_items = new System.Windows.Forms.DataGridView();
             this.tabControl_attach = new System.Windows.Forms.TabControl();
             this.references = new System.Windows.Forms.TabPage();
@@ -128,6 +150,10 @@
             this.panel2.SuspendLayout();
             this.panel_searchHead.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_items)).BeginInit();
             this.tabControl_attach.SuspendLayout();
             this.toolStrip_home.SuspendLayout();
@@ -271,13 +297,13 @@
             treeNode5.Text = "Unfiled";
             treeNode6.Name = "Trash";
             treeNode6.Text = "Trash";
-            treeNode7.Name = "MyGroup";
-            treeNode7.Text = "My Group (Temp)";
+            treeNode11.Name = "MyGroup";
+            treeNode11.Text = "My Group (Temp)";
             this.treeView_library.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode4,
             treeNode5,
             treeNode6,
-            treeNode7});
+            treeNode11});
             this.treeView_library.SelectedImageIndex = 0;
             this.treeView_library.ShowRootLines = false;
             this.treeView_library.Size = new System.Drawing.Size(215, 411);
@@ -335,16 +361,16 @@
             this.treeView_base.Location = new System.Drawing.Point(0, 28);
             this.treeView_base.Margin = new System.Windows.Forms.Padding(0);
             this.treeView_base.Name = "treeView_base";
-            treeNode8.Name = "-1";
-            treeNode8.Text = "All Strains";
-            treeNode9.Name = "节点1";
-            treeNode9.Text = "节点1";
-            treeNode10.Name = "节点2";
-            treeNode10.Text = "节点2";
+            treeNode7.Name = "-1";
+            treeNode7.Text = "All Strains";
+            treeNode8.Name = "节点1";
+            treeNode8.Text = "节点1";
+            treeNode9.Name = "节点2";
+            treeNode9.Text = "节点2";
             this.treeView_base.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode7,
             treeNode8,
-            treeNode9,
-            treeNode10});
+            treeNode9});
             this.treeView_base.SelectedImageIndex = 0;
             this.treeView_base.ShowRootLines = false;
             this.treeView_base.Size = new System.Drawing.Size(215, 70);
@@ -378,9 +404,10 @@
             // splitContainer_middle
             // 
             this.splitContainer_middle.AllowDrop = true;
-            this.splitContainer_middle.BackColor = System.Drawing.Color.NavajoWhite;
+            this.splitContainer_middle.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer_middle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer_middle.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer_middle.Margin = new System.Windows.Forms.Padding(0);
             this.splitContainer_middle.Name = "splitContainer_middle";
             this.splitContainer_middle.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -393,7 +420,7 @@
             // 
             this.splitContainer_middle.Panel2.Controls.Add(this.dataGridView_items);
             this.splitContainer_middle.Size = new System.Drawing.Size(590, 509);
-            this.splitContainer_middle.SplitterDistance = 120;
+            this.splitContainer_middle.SplitterDistance = 230;
             this.splitContainer_middle.TabIndex = 0;
             // 
             // tableLayoutPanel_search
@@ -404,26 +431,38 @@
             this.tableLayoutPanel_search.Controls.Add(this.panel2, 0, 2);
             this.tableLayoutPanel_search.Controls.Add(this.panel_searchHead, 0, 0);
             this.tableLayoutPanel_search.Controls.Add(this.panel1, 0, 1);
+            this.tableLayoutPanel_search.Controls.Add(this.panel3, 0, 3);
+            this.tableLayoutPanel_search.Controls.Add(this.panel4, 0, 4);
+            this.tableLayoutPanel_search.Controls.Add(this.panel5, 0, 5);
+            this.tableLayoutPanel_search.Controls.Add(this.panel6, 0, 6);
             this.tableLayoutPanel_search.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel_search.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel_search.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel_search.Name = "tableLayoutPanel_search";
-            this.tableLayoutPanel_search.RowCount = 4;
+            this.tableLayoutPanel_search.RowCount = 8;
+            this.tableLayoutPanel_search.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel_search.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel_search.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel_search.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel_search.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel_search.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel_search.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel_search.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel_search.Size = new System.Drawing.Size(590, 120);
+            this.tableLayoutPanel_search.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_search.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_search.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_search.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_search.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_search.Size = new System.Drawing.Size(590, 230);
             this.tableLayoutPanel_search.TabIndex = 5;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button3);
-            this.panel2.Controls.Add(this.button4);
-            this.panel2.Controls.Add(this.comboBox4);
+            this.panel2.Controls.Add(this.button_rem2);
+            this.panel2.Controls.Add(this.comboBox_comd2);
             this.panel2.Controls.Add(this.textBox_search2);
-            this.panel2.Controls.Add(this.comboBox5);
-            this.panel2.Controls.Add(this.comboBox6);
+            this.panel2.Controls.Add(this.comboBox_cond2);
+            this.panel2.Controls.Add(this.comboBox_attr2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 60);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
@@ -431,34 +470,24 @@
             this.panel2.Size = new System.Drawing.Size(590, 30);
             this.panel2.TabIndex = 7;
             // 
-            // button3
+            // button_rem2
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(563, 4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(23, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "-";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button_rem2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_rem2.Location = new System.Drawing.Point(563, 4);
+            this.button_rem2.Name = "button_rem2";
+            this.button_rem2.Size = new System.Drawing.Size(23, 23);
+            this.button_rem2.TabIndex = 5;
+            this.button_rem2.Text = "-";
+            this.button_rem2.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // comboBox_comd2
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(539, 4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(23, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "+";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(10, 4);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(48, 20);
-            this.comboBox4.TabIndex = 3;
-            this.comboBox4.Text = "And";
+            this.comboBox_comd2.FormattingEnabled = true;
+            this.comboBox_comd2.Location = new System.Drawing.Point(10, 4);
+            this.comboBox_comd2.Name = "comboBox_comd2";
+            this.comboBox_comd2.Size = new System.Drawing.Size(48, 20);
+            this.comboBox_comd2.TabIndex = 3;
+            this.comboBox_comd2.Text = "And";
             // 
             // textBox_search2
             // 
@@ -466,26 +495,26 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_search2.Location = new System.Drawing.Point(318, 5);
             this.textBox_search2.Name = "textBox_search2";
-            this.textBox_search2.Size = new System.Drawing.Size(215, 21);
+            this.textBox_search2.Size = new System.Drawing.Size(239, 21);
             this.textBox_search2.TabIndex = 2;
             // 
-            // comboBox5
+            // comboBox_cond2
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(191, 5);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(121, 20);
-            this.comboBox5.TabIndex = 1;
-            this.comboBox5.Text = "Contains";
+            this.comboBox_cond2.FormattingEnabled = true;
+            this.comboBox_cond2.Location = new System.Drawing.Point(191, 5);
+            this.comboBox_cond2.Name = "comboBox_cond2";
+            this.comboBox_cond2.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_cond2.TabIndex = 1;
+            this.comboBox_cond2.Text = "Contains";
             // 
-            // comboBox6
+            // comboBox_attr2
             // 
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(63, 4);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(121, 20);
-            this.comboBox6.TabIndex = 0;
-            this.comboBox6.Text = "Year";
+            this.comboBox_attr2.FormattingEnabled = true;
+            this.comboBox_attr2.Location = new System.Drawing.Point(63, 4);
+            this.comboBox_attr2.Name = "comboBox_attr2";
+            this.comboBox_attr2.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_attr2.TabIndex = 0;
+            this.comboBox_attr2.Text = "Year";
             // 
             // panel_searchHead
             // 
@@ -503,7 +532,7 @@
             // 
             // btn_options
             // 
-            this.btn_options.Location = new System.Drawing.Point(4, 5);
+            this.btn_options.Location = new System.Drawing.Point(4, 4);
             this.btn_options.Name = "btn_options";
             this.btn_options.Size = new System.Drawing.Size(75, 23);
             this.btn_options.TabIndex = 5;
@@ -523,12 +552,13 @@
             // 
             // btn_search
             // 
-            this.btn_search.Location = new System.Drawing.Point(85, 5);
+            this.btn_search.Location = new System.Drawing.Point(90, 5);
             this.btn_search.Name = "btn_search";
             this.btn_search.Size = new System.Drawing.Size(75, 22);
             this.btn_search.TabIndex = 1;
             this.btn_search.Text = "Search";
             this.btn_search.UseVisualStyleBackColor = true;
+            this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
             // 
             // comboBox_searchLib
             // 
@@ -553,11 +583,10 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.button_add1);
             this.panel1.Controls.Add(this.textBox_search1);
-            this.panel1.Controls.Add(this.comboBox2);
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.comboBox_cond1);
+            this.panel1.Controls.Add(this.comboBox_attr1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 30);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
@@ -565,25 +594,15 @@
             this.panel1.Size = new System.Drawing.Size(590, 30);
             this.panel1.TabIndex = 6;
             // 
-            // button2
+            // button_add1
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(563, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(23, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "-";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(539, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(23, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "+";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button_add1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_add1.Location = new System.Drawing.Point(563, 4);
+            this.button_add1.Name = "button_add1";
+            this.button_add1.Size = new System.Drawing.Size(23, 23);
+            this.button_add1.TabIndex = 4;
+            this.button_add1.Text = "+";
+            this.button_add1.UseVisualStyleBackColor = true;
             // 
             // textBox_search1
             // 
@@ -591,26 +610,266 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_search1.Location = new System.Drawing.Point(318, 5);
             this.textBox_search1.Name = "textBox_search1";
-            this.textBox_search1.Size = new System.Drawing.Size(215, 21);
+            this.textBox_search1.Size = new System.Drawing.Size(239, 21);
             this.textBox_search1.TabIndex = 2;
             // 
-            // comboBox2
+            // comboBox_cond1
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(191, 5);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 20);
-            this.comboBox2.TabIndex = 1;
-            this.comboBox2.Text = "Contains";
+            this.comboBox_cond1.FormattingEnabled = true;
+            this.comboBox_cond1.Location = new System.Drawing.Point(191, 5);
+            this.comboBox_cond1.Name = "comboBox_cond1";
+            this.comboBox_cond1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_cond1.TabIndex = 1;
+            this.comboBox_cond1.Text = "Contains";
             // 
-            // comboBox1
+            // comboBox_attr1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(63, 4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.Text = "Year";
+            this.comboBox_attr1.FormattingEnabled = true;
+            this.comboBox_attr1.Location = new System.Drawing.Point(63, 4);
+            this.comboBox_attr1.Name = "comboBox_attr1";
+            this.comboBox_attr1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_attr1.TabIndex = 0;
+            this.comboBox_attr1.Text = "Year";
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.button_rem3);
+            this.panel3.Controls.Add(this.textBox_search3);
+            this.panel3.Controls.Add(this.comboBox_cond3);
+            this.panel3.Controls.Add(this.comboBox_attr3);
+            this.panel3.Controls.Add(this.comboBox_comd3);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 90);
+            this.panel3.Margin = new System.Windows.Forms.Padding(0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(590, 30);
+            this.panel3.TabIndex = 12;
+            // 
+            // button_rem3
+            // 
+            this.button_rem3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_rem3.Location = new System.Drawing.Point(563, 5);
+            this.button_rem3.Name = "button_rem3";
+            this.button_rem3.Size = new System.Drawing.Size(23, 23);
+            this.button_rem3.TabIndex = 13;
+            this.button_rem3.Text = "-";
+            this.button_rem3.UseVisualStyleBackColor = true;
+            // 
+            // textBox_search3
+            // 
+            this.textBox_search3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_search3.Location = new System.Drawing.Point(318, 5);
+            this.textBox_search3.Name = "textBox_search3";
+            this.textBox_search3.Size = new System.Drawing.Size(239, 21);
+            this.textBox_search3.TabIndex = 11;
+            // 
+            // comboBox_cond3
+            // 
+            this.comboBox_cond3.FormattingEnabled = true;
+            this.comboBox_cond3.Location = new System.Drawing.Point(191, 5);
+            this.comboBox_cond3.Name = "comboBox_cond3";
+            this.comboBox_cond3.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_cond3.TabIndex = 10;
+            this.comboBox_cond3.Text = "Contains";
+            // 
+            // comboBox_attr3
+            // 
+            this.comboBox_attr3.FormattingEnabled = true;
+            this.comboBox_attr3.Location = new System.Drawing.Point(64, 5);
+            this.comboBox_attr3.Name = "comboBox_attr3";
+            this.comboBox_attr3.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_attr3.TabIndex = 9;
+            this.comboBox_attr3.Text = "Year";
+            // 
+            // comboBox_comd3
+            // 
+            this.comboBox_comd3.FormattingEnabled = true;
+            this.comboBox_comd3.Location = new System.Drawing.Point(10, 5);
+            this.comboBox_comd3.Name = "comboBox_comd3";
+            this.comboBox_comd3.Size = new System.Drawing.Size(48, 20);
+            this.comboBox_comd3.TabIndex = 8;
+            this.comboBox_comd3.Text = "And";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.button_rem4);
+            this.panel4.Controls.Add(this.textBox_search4);
+            this.panel4.Controls.Add(this.comboBox_cond4);
+            this.panel4.Controls.Add(this.comboBox_attr4);
+            this.panel4.Controls.Add(this.comboBox_comd4);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 120);
+            this.panel4.Margin = new System.Windows.Forms.Padding(0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(590, 30);
+            this.panel4.TabIndex = 13;
+            // 
+            // button_rem4
+            // 
+            this.button_rem4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_rem4.Location = new System.Drawing.Point(563, 4);
+            this.button_rem4.Name = "button_rem4";
+            this.button_rem4.Size = new System.Drawing.Size(23, 23);
+            this.button_rem4.TabIndex = 15;
+            this.button_rem4.Text = "-";
+            this.button_rem4.UseVisualStyleBackColor = true;
+            // 
+            // textBox_search4
+            // 
+            this.textBox_search4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_search4.Location = new System.Drawing.Point(318, 4);
+            this.textBox_search4.Name = "textBox_search4";
+            this.textBox_search4.Size = new System.Drawing.Size(239, 21);
+            this.textBox_search4.TabIndex = 13;
+            // 
+            // comboBox_cond4
+            // 
+            this.comboBox_cond4.FormattingEnabled = true;
+            this.comboBox_cond4.Location = new System.Drawing.Point(191, 4);
+            this.comboBox_cond4.Name = "comboBox_cond4";
+            this.comboBox_cond4.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_cond4.TabIndex = 12;
+            this.comboBox_cond4.Text = "Contains";
+            // 
+            // comboBox_attr4
+            // 
+            this.comboBox_attr4.FormattingEnabled = true;
+            this.comboBox_attr4.Location = new System.Drawing.Point(64, 4);
+            this.comboBox_attr4.Name = "comboBox_attr4";
+            this.comboBox_attr4.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_attr4.TabIndex = 11;
+            this.comboBox_attr4.Text = "Year";
+            // 
+            // comboBox_comd4
+            // 
+            this.comboBox_comd4.FormattingEnabled = true;
+            this.comboBox_comd4.Location = new System.Drawing.Point(10, 3);
+            this.comboBox_comd4.Name = "comboBox_comd4";
+            this.comboBox_comd4.Size = new System.Drawing.Size(48, 20);
+            this.comboBox_comd4.TabIndex = 10;
+            this.comboBox_comd4.Text = "And";
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.button_rem5);
+            this.panel5.Controls.Add(this.textBox_search5);
+            this.panel5.Controls.Add(this.comboBox_cond5);
+            this.panel5.Controls.Add(this.comboBox_attr5);
+            this.panel5.Controls.Add(this.comboBox_comd5);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(0, 150);
+            this.panel5.Margin = new System.Windows.Forms.Padding(0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(590, 30);
+            this.panel5.TabIndex = 14;
+            // 
+            // button_rem5
+            // 
+            this.button_rem5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_rem5.Location = new System.Drawing.Point(563, 4);
+            this.button_rem5.Name = "button_rem5";
+            this.button_rem5.Size = new System.Drawing.Size(23, 23);
+            this.button_rem5.TabIndex = 16;
+            this.button_rem5.Text = "-";
+            this.button_rem5.UseVisualStyleBackColor = true;
+            // 
+            // textBox_search5
+            // 
+            this.textBox_search5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_search5.Location = new System.Drawing.Point(318, 5);
+            this.textBox_search5.Name = "textBox_search5";
+            this.textBox_search5.Size = new System.Drawing.Size(239, 21);
+            this.textBox_search5.TabIndex = 14;
+            // 
+            // comboBox_cond5
+            // 
+            this.comboBox_cond5.FormattingEnabled = true;
+            this.comboBox_cond5.Location = new System.Drawing.Point(191, 6);
+            this.comboBox_cond5.Name = "comboBox_cond5";
+            this.comboBox_cond5.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_cond5.TabIndex = 13;
+            this.comboBox_cond5.Text = "Contains";
+            // 
+            // comboBox_attr5
+            // 
+            this.comboBox_attr5.FormattingEnabled = true;
+            this.comboBox_attr5.Location = new System.Drawing.Point(63, 6);
+            this.comboBox_attr5.Name = "comboBox_attr5";
+            this.comboBox_attr5.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_attr5.TabIndex = 12;
+            this.comboBox_attr5.Text = "Year";
+            // 
+            // comboBox_comd5
+            // 
+            this.comboBox_comd5.FormattingEnabled = true;
+            this.comboBox_comd5.Location = new System.Drawing.Point(10, 5);
+            this.comboBox_comd5.Name = "comboBox_comd5";
+            this.comboBox_comd5.Size = new System.Drawing.Size(48, 20);
+            this.comboBox_comd5.TabIndex = 11;
+            this.comboBox_comd5.Text = "And";
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.button_rem6);
+            this.panel6.Controls.Add(this.textBox_search6);
+            this.panel6.Controls.Add(this.comboBox_cond6);
+            this.panel6.Controls.Add(this.comboBox_attr6);
+            this.panel6.Controls.Add(this.comboBox_comd6);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(0, 180);
+            this.panel6.Margin = new System.Windows.Forms.Padding(0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(590, 30);
+            this.panel6.TabIndex = 15;
+            // 
+            // button_rem6
+            // 
+            this.button_rem6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_rem6.Location = new System.Drawing.Point(563, 4);
+            this.button_rem6.Name = "button_rem6";
+            this.button_rem6.Size = new System.Drawing.Size(23, 23);
+            this.button_rem6.TabIndex = 16;
+            this.button_rem6.Text = "-";
+            this.button_rem6.UseVisualStyleBackColor = true;
+            // 
+            // textBox_search6
+            // 
+            this.textBox_search6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_search6.Location = new System.Drawing.Point(318, 5);
+            this.textBox_search6.Name = "textBox_search6";
+            this.textBox_search6.Size = new System.Drawing.Size(239, 21);
+            this.textBox_search6.TabIndex = 14;
+            // 
+            // comboBox_cond6
+            // 
+            this.comboBox_cond6.FormattingEnabled = true;
+            this.comboBox_cond6.Location = new System.Drawing.Point(191, 6);
+            this.comboBox_cond6.Name = "comboBox_cond6";
+            this.comboBox_cond6.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_cond6.TabIndex = 13;
+            this.comboBox_cond6.Text = "Contains";
+            // 
+            // comboBox_attr6
+            // 
+            this.comboBox_attr6.FormattingEnabled = true;
+            this.comboBox_attr6.Location = new System.Drawing.Point(64, 5);
+            this.comboBox_attr6.Name = "comboBox_attr6";
+            this.comboBox_attr6.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_attr6.TabIndex = 12;
+            this.comboBox_attr6.Text = "Year";
+            // 
+            // comboBox_comd6
+            // 
+            this.comboBox_comd6.FormattingEnabled = true;
+            this.comboBox_comd6.Location = new System.Drawing.Point(10, 6);
+            this.comboBox_comd6.Name = "comboBox_comd6";
+            this.comboBox_comd6.Size = new System.Drawing.Size(48, 20);
+            this.comboBox_comd6.TabIndex = 9;
+            this.comboBox_comd6.Text = "And";
             // 
             // dataGridView_items
             // 
@@ -623,7 +882,7 @@
             this.dataGridView_items.Margin = new System.Windows.Forms.Padding(0);
             this.dataGridView_items.Name = "dataGridView_items";
             this.dataGridView_items.RowTemplate.Height = 23;
-            this.dataGridView_items.Size = new System.Drawing.Size(590, 385);
+            this.dataGridView_items.Size = new System.Drawing.Size(590, 275);
             this.dataGridView_items.TabIndex = 0;
             this.dataGridView_items.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_items_CellValueChanged);
             this.dataGridView_items.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView_items_RowPostPaint);
@@ -969,6 +1228,14 @@
             this.panel_searchHead.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_items)).EndInit();
             this.tabControl_attach.ResumeLayout(false);
             this.toolStrip_home.ResumeLayout(false);
@@ -1024,18 +1291,16 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton toolStripButton11;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_add1;
         private System.Windows.Forms.TextBox textBox_search1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox comboBox_cond1;
+        private System.Windows.Forms.ComboBox comboBox_attr1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.Button button_rem2;
+        private System.Windows.Forms.ComboBox comboBox_comd2;
         private System.Windows.Forms.TextBox textBox_search2;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.ComboBox comboBox_cond2;
+        private System.Windows.Forms.ComboBox comboBox_attr2;
         private System.Windows.Forms.ToolStripMenuItem showRefer;
         private System.Windows.Forms.ToolStripMenuItem hideRefer;
         private System.Windows.Forms.ToolStripButton toolStripButton12;
@@ -1053,5 +1318,29 @@
         private System.Windows.Forms.TreeView treeView_base;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip_base;
         private System.Windows.Forms.ToolStripMenuItem clear_toolStripMenuItem;
+        private System.Windows.Forms.ComboBox comboBox_comd3;
+        private System.Windows.Forms.ComboBox comboBox_comd6;
+        private System.Windows.Forms.ComboBox comboBox_comd4;
+        private System.Windows.Forms.ComboBox comboBox_comd5;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.ComboBox comboBox_attr3;
+        private System.Windows.Forms.ComboBox comboBox_cond3;
+        private System.Windows.Forms.TextBox textBox_search3;
+        private System.Windows.Forms.Button button_rem3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.ComboBox comboBox_attr4;
+        private System.Windows.Forms.ComboBox comboBox_cond4;
+        private System.Windows.Forms.TextBox textBox_search4;
+        private System.Windows.Forms.Button button_rem4;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button button_rem5;
+        private System.Windows.Forms.TextBox textBox_search5;
+        private System.Windows.Forms.ComboBox comboBox_cond5;
+        private System.Windows.Forms.ComboBox comboBox_attr5;
+        private System.Windows.Forms.TextBox textBox_search6;
+        private System.Windows.Forms.ComboBox comboBox_cond6;
+        private System.Windows.Forms.ComboBox comboBox_attr6;
+        private System.Windows.Forms.Button button_rem6;
     }
 }

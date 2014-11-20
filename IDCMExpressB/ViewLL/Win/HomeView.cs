@@ -439,15 +439,6 @@ namespace IDCM.ViewLL.Win
         {
 
         }
-        public void showDBDataSearch()
-        {
-            if (splitContainer_middle.Panel1Collapsed==true)
-            {
-                this.splitContainer_middle.SplitterDistance = 120;
-                this.splitContainer_middle.Panel1Collapsed = false;
-                this.textBox_search1.Focus();
-            }
-        }
         
 
         private void dataGridView_items_MouseDown(object sender, MouseEventArgs e)
@@ -661,7 +652,21 @@ namespace IDCM.ViewLL.Win
                 manager.quickSearch(findTerm);
             }
         }
-        
+        private void btn_search_Click(object sender, EventArgs e)
+        {
+            if (this.textBox_search1.Text.Trim().Length > 0)
+            {
+                manager.doDBDataSearch();
+            }
+        }
+        public TableLayoutPanel getDBSearchPanel()
+        {
+            return this.tableLayoutPanel_search;
+        }
+        public SplitContainer getSearchSpliter()
+        {
+            return splitContainer_middle;
+        }
         private static NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
     }
 }

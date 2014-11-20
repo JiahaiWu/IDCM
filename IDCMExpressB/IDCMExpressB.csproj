@@ -129,6 +129,7 @@
     <Compile Include="ControlMBL\Module\FrontProgressPrompt.cs" />
     <Compile Include="ControlMBL\Module\LibFieldBuilder.cs" />
     <Compile Include="ControlMBL\Module\LocalDataSetBuilder.cs" />
+    <Compile Include="ControlMBL\Module\LocalDBSearchBuilder.cs" />
     <Compile Include="ControlMBL\Module\LocalLibBuilder.cs" />
     <Compile Include="ControlMBL\Utilities\ControlUtil.cs" />
     <Compile Include="ControlMBL\Utilities\DGVUtil.cs" />

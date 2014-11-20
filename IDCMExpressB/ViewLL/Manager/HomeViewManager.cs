@@ -35,6 +35,7 @@ namespace IDCM.ViewLL.Manager
             homeView.setManager(this);
             libBuilder = new LocalLibBuilder(homeView.getBaseTree(), homeView.getLibTree());
             datasetBuilder = new LocalDataSetBuilder(homeView.getItemGridView(), homeView.getAttachTabControl());
+            searchBuilder = new LocalDBSearchBuilder(homeView.getDBSearchPanel(), homeView.getSearchSpliter());
             BackProgressIndicator.addIndicatorBar(homeView.getProgressBar());
         }
         public static HomeViewManager getInstance()
@@ -61,6 +62,11 @@ namespace IDCM.ViewLL.Manager
                 datasetBuilder.Dispose();
                 datasetBuilder = null;
             }
+            if (searchBuilder != null)
+            {
+                searchBuilder.Dispose();
+                searchBuilder = null;
+            }
             if (homeView != null && !homeView.IsDisposed)
             {
                 BackProgressIndicator.removeIndicatorBar(homeView.getProgressBar());
@@ -81,6 +87,7 @@ namespace IDCM.ViewLL.Manager
         private volatile HomeView homeView = null;
         private volatile LocalLibBuilder libBuilder = null;
         private volatile LocalDataSetBuilder datasetBuilder = null;
+        private volatile LocalDBSearchBuilder searchBuilder = null;
         private FrontFindDlg frontFindDlg = null;
         
         #endregion
@@ -98,6 +105,7 @@ namespace IDCM.ViewLL.Manager
                 homeView.setManager(this);
                 libBuilder = new LocalLibBuilder(homeView.getBaseTree(), homeView.getLibTree());
                 datasetBuilder = new LocalDataSetBuilder(homeView.getItemGridView(), homeView.getAttachTabControl());
+                searchBuilder = new LocalDBSearchBuilder(homeView.getDBSearchPanel(), homeView.getSearchSpliter());
             }
             if (CustomTColDefDAM.checkTableSetting())
             {
@@ -270,7 +278,12 @@ namespace IDCM.ViewLL.Manager
         }
         public void showDBDataSearch()
         {
-            homeView.showDBDataSearch();
+            searchBuilder.showDBDataSearch();
+        }
+        public void doDBDataSearch()
+        {
+            string whereCmd=searchBuilder.buildWhereCmd();
+            datasetBuilder.doDBDataSearch(whereCmd);
         }
         private void setDGVCellHit(DataGridViewCell cell)
         {

@@ -408,6 +408,10 @@ namespace IDCM.ControlMBL.Module
             }
             return null;
         }
+        public void doDBDataSearch(string whereCmd)
+        {
+            //unimplemented
+        }
         /// <summary>
         /// 下一个单元格定位，如定位失败返回null
         /// </summary>
