@@ -25,25 +25,25 @@ namespace IDCM.SimpleDAL.DBCP
         public SQLiteConnPicker(string connStr)
         {
 #if DEBUG
-            if (connStr == null || connStr.Length == 0)
+            if (connStr == null || connStr.Length == 0)//检查传进来的数据库连接url是否合法
                 throw new ArgumentNullException("connStr is NULL for SQLiteConnPicker(string)!");
 #endif
-            this.connectionStr = connStr;
-            SQLiteConnHolder holder = null;
-            connectPool.TryGetValue(connectionStr, out holder);
+            this.connectionStr = connStr;//赋值给当前类的connectionStr
+            SQLiteConnHolder holder = null;//这个类是为了保证数据库单点链接，构造方法中有个信号灯
+            connectPool.TryGetValue(connectionStr, out holder);//查看池中有没有指定的数据库连接str与链接
             if (holder == null)
             {
-                holder = new SQLiteConnHolder(connectionStr);
-                lock (ShareSyncLockers.SQLiteConnPicker_Lock)
+                holder = new SQLiteConnHolder(connectionStr);//创建一个数据库连接，创建一个信号灯
+                lock (ShareSyncLockers.SQLiteConnPicker_Lock)//因为连接池是公共资源，所以在池中存取都要加锁
                 {
-                    bool SQLiteConnAdded = connectPool.TryAdd(connectionStr, holder);
+                    bool SQLiteConnAdded = connectPool.TryAdd(connectionStr, holder);//把新建的链接str与链接存入池
 #if DEBUG
-                    System.Diagnostics.Debug.Assert(SQLiteConnAdded);
+                    System.Diagnostics.Debug.Assert(SQLiteConnAdded);//添加成功返回一个消息
 #endif
                 }
             }
             //尝试获取并打开数据库连接
-            holder.tryOpen(connectionStr);
+            holder.tryOpen(connectionStr);//打开数据库连接
         }
         /// <summary>
         /// 销毁连接资源
@@ -152,21 +152,22 @@ namespace IDCM.SimpleDAL.DBCP
                 if (semaphore.WaitOne(MAX_WAIT_TIME_OUT, true))
                 {
                     try{
-                        if (sconn != null)
+                        if (sconn != null)//如果链接不为空
                         {
+                            //链接处于打开状态，且链接没有关闭
                             if (!sconn.State.Equals(ConnectionState.Open)&&!sconn.State.Equals(ConnectionState.Closed))
                             {
-                                sconn.Close();
+                                sconn.Close();//关闭连接
                             }
                         }
                         else
                         {
-                            sconn = new SQLiteConnection();
+                            sconn = new SQLiteConnection();//如果链接为空
                             sconn.ConnectionString = connectionStr;
                         }
-                        if(!sconn.State.Equals(ConnectionState.Open))              
-                            sconn.Open();
-                        return true;
+                        if(!sconn.State.Equals(ConnectionState.Open))//如果链接没有打开           
+                            sconn.Open();//打开链接
+                        return true;//成功打开链接返回true;
                     }
                     catch (Exception ex)
                     {
