@@ -139,7 +139,7 @@ namespace IDCM.SimpleDAL.DBCP
 
         protected static SQLiteConnPicker ConnectPicker()
         {
-            return new SQLiteConnPicker(connectStr);//传进来的是个包含路径，密码的url(我理解)
+            return new SQLiteConnPicker(connectStr);
         }
         /// <summary>
         /// 数据库连接字符串
