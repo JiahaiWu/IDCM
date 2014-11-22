@@ -197,6 +197,7 @@
     <Compile Include="SimpleDAL\POO\LibraryNode.cs" />
     <Compile Include="SimpleDAL\POO\DelayWorkNote.cs" />
     <Compile Include="ViewLL\Manager\AuthenticationRetainer.cs" />
+    <Compile Include="ViewLL\Manager\GCMViewManager.cs" />
     <Compile Include="ViewLL\Manager\HomeViewManager.cs" />
     <Compile Include="ViewLL\Manager\IDCMVeiwManger.cs" />
     <Compile Include="ViewLL\Manager\LibFieldManager.cs" />
@@ -219,6 +220,12 @@
     </Compile>
     <Compile Include="ViewLL\Win\FrontFindDlg.Designer.cs">
       <DependentUpon>FrontFindDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewLL\Win\GCMView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewLL\Win\GCMView.Designer.cs">
+      <DependentUpon>GCMView.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewLL\Win\HomeView.cs">
       <SubType>Form</SubType>
@@ -277,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ViewLL\Win\FrontFindDlg.resx">
       <DependentUpon>FrontFindDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\GCMView.resx">
+      <DependentUpon>GCMView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewLL\Win\HomeView.resx">
       <DependentUpon>HomeView.cs</DependentUpon>

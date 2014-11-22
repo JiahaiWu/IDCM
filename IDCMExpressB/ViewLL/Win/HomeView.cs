@@ -667,6 +667,43 @@ namespace IDCM.ViewLL.Win
         {
             return splitContainer_middle;
         }
+        /// <summary>
+        /// 验证登录状态，并打开GCM视图页面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton_gcm_Click(object sender, EventArgs e)
+        {
+
+        }
+        /// <summary>
+        /// 云备份
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton_download_Click(object sender, EventArgs e)
+        {
+
+        }
+        /// <summary>
+        /// 云恢复
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton_upload_Click(object sender, EventArgs e)
+        {
+
+        }
+        /// <summary>
+        /// 本地数据刷新
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton_refresh_Click(object sender, EventArgs e)
+        {
+
+        }
         private static NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
+
     }
 }
