@@ -674,7 +674,7 @@ namespace IDCM.ViewLL.Win
         /// <param name="e"></param>
         private void toolStripButton_gcm_Click(object sender, EventArgs e)
         {
-
+            IDCMFormManger.getInstance().activeChildView(typeof(GCMViewManager), true);
         }
         /// <summary>
         /// 云备份

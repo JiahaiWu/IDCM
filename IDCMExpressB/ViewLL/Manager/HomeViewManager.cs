@@ -14,6 +14,7 @@ using IDCM.OverallSC.ShareSync;
 using IDCM.SimpleDAL.DBCP;
 using IDCM.ControlMBL.AsyncInvoker;
 using IDCM.ControlMBL.Utilities;
+using IDCM.SimpleDAL.POO;
 
 namespace IDCM.ViewLL.Manager
 {
@@ -21,16 +22,16 @@ namespace IDCM.ViewLL.Manager
     /// HomeView布局管理器及动态表现事务调度中心
     /// @author JiahaiWu 2014-10-15
     /// </summary>
-    class HomeViewManager : ManagerI
+    public class HomeViewManager : ManagerA
     {
         #region 构造&析构
         public HomeViewManager()
         {
             homeView = new HomeView();
             LongTermHandleNoter.note(homeView);
-            frontFindDlg = new FrontFindDlg(homeView.getItemGridView());
-            frontFindDlg.setCellHit += new FrontFindDlg.SetHit<DataGridViewCell>(setDGVCellHit);
-            frontFindDlg.cancelCellHit += new FrontFindDlg.CancelHit<DataGridViewCell>(cancelDGVCellHit);
+            frontFindDlg = new LocalFrontFindDlg(homeView.getItemGridView());
+            frontFindDlg.setCellHit += new LocalFrontFindDlg.SetHit<DataGridViewCell>(setDGVCellHit);
+            frontFindDlg.cancelCellHit += new LocalFrontFindDlg.CancelHit<DataGridViewCell>(cancelDGVCellHit);
             LongTermHandleNoter.note(frontFindDlg);
             homeView.setManager(this);
             libBuilder = new LocalLibBuilder(homeView.getBaseTree(), homeView.getLibTree());
@@ -49,9 +50,20 @@ namespace IDCM.ViewLL.Manager
         }
         #endregion
         #region 实例对象保持部分
-        public void dispose()
+
+        
+        //页面窗口实例
+        private volatile HomeView homeView = null;
+        private volatile LocalLibBuilder libBuilder = null;
+        private volatile LocalDataSetBuilder datasetBuilder = null;
+        private volatile LocalDBSearchBuilder searchBuilder = null;
+        private LocalFrontFindDlg frontFindDlg = null;
+        
+        #endregion
+        #region 接口实例化部分
+        public override void dispose()
         {
-            isDisposed = true;
+            _isDisposed = true;
             if (libBuilder != null)
             {
                 libBuilder.Dispose();
@@ -81,22 +93,11 @@ namespace IDCM.ViewLL.Manager
                 frontFindDlg = null;
             }
         }
-        
-        private volatile bool isDisposed = false;
-        //页面窗口实例
-        private volatile HomeView homeView = null;
-        private volatile LocalLibBuilder libBuilder = null;
-        private volatile LocalDataSetBuilder datasetBuilder = null;
-        private volatile LocalDBSearchBuilder searchBuilder = null;
-        private FrontFindDlg frontFindDlg = null;
-        
-        #endregion
-        #region 接口实例化部分
         /// <summary>
         /// 对象实例化初始化方法
         /// </summary>
         /// <returns></returns>
-        public bool initView(bool activeShow = true)
+        public override bool initView(bool activeShow = true)
         {
             if (homeView == null || homeView.IsDisposed)
             {
@@ -124,12 +125,12 @@ namespace IDCM.ViewLL.Manager
             dispose();
             return false;
         }
-        public void setMaxToNormal()
+        public override void setMaxToNormal()
         {
             if (homeView.WindowState.Equals(FormWindowState.Maximized))
                 homeView.WindowState = FormWindowState.Normal;
         }
-        public void setToMaxmize(bool activeFront = false)
+        public override void setToMaxmize(bool activeFront = false)
         {
             homeView.WindowState = FormWindowState.Maximized;
             if (activeFront)
@@ -138,13 +139,24 @@ namespace IDCM.ViewLL.Manager
                 homeView.Activate();
             }
         }
-        public void setMdiParent(Form pForm)
+        public override void setMdiParent(Form pForm)
         {
             homeView.MdiParent = pForm;
         }
-        public bool IsDisposed()
+        public override bool isDisposed()
         {
-            return isDisposed;
+            if (_isDisposed == false)
+            {
+                _isDisposed = (homeView == null || homeView.Disposing || homeView.IsDisposed);
+            }
+            return _isDisposed;
+        }
+        public override bool isActive()
+        {
+            if (homeView == null || homeView.Disposing || homeView.IsDisposed)
+                return false;
+            else
+                return homeView.Visible;
         }
         #endregion
 
@@ -304,9 +316,9 @@ namespace IDCM.ViewLL.Manager
         {
             if (frontFindDlg == null || frontFindDlg.IsDisposed)
             {
-                frontFindDlg = new FrontFindDlg(homeView.getItemGridView());
-                frontFindDlg.setCellHit += new FrontFindDlg.SetHit<DataGridViewCell>(setDGVCellHit);
-                frontFindDlg.cancelCellHit += new FrontFindDlg.CancelHit<DataGridViewCell>(cancelDGVCellHit);
+                frontFindDlg = new LocalFrontFindDlg(homeView.getItemGridView());
+                frontFindDlg.setCellHit += new LocalFrontFindDlg.SetHit<DataGridViewCell>(setDGVCellHit);
+                frontFindDlg.cancelCellHit += new LocalFrontFindDlg.CancelHit<DataGridViewCell>(cancelDGVCellHit);
             }
             frontFindDlg.Show();
             frontFindDlg.Visible = true;
@@ -326,18 +338,11 @@ namespace IDCM.ViewLL.Manager
         {
             frontFindDlg.findRev();
         }
-        public bool isActive()
-        {
-            if (homeView == null || homeView.IsDisposed)
-                return false;
-            else
-                return homeView.Visible;
-        }
+
         public void addNewRecord()
         {
             datasetBuilder.addNewRecord();
         }
-
         public TreeNode SelectedNode_Current
         {
             get { return libBuilder != null ? libBuilder.SelectedNode_Current : null; }

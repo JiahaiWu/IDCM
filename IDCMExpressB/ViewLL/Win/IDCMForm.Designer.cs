@@ -47,8 +47,6 @@
             this.showBackTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_help = new System.Windows.Forms.ToolStripMenuItem();
             this.webSupportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.gCMWebToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutIDCMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutIDCMToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripTextBox_user = new System.Windows.Forms.ToolStripTextBox();
@@ -86,21 +84,21 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "New...";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -112,6 +110,7 @@
             this.ToolStripMenuItem_cfg.Name = "ToolStripMenuItem_cfg";
             this.ToolStripMenuItem_cfg.Size = new System.Drawing.Size(119, 23);
             this.ToolStripMenuItem_cfg.Text = "Configuration (C)";
+            this.ToolStripMenuItem_cfg.DropDownOpening += new System.EventHandler(this.ToolStripMenuItem_cfg_DropDownOpening);
             // 
             // templatesToolStripMenuItem
             // 
@@ -191,8 +190,6 @@
             // 
             this.ToolStripMenuItem_help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.webSupportToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.gCMWebToolStripMenuItem,
             this.aboutIDCMToolStripMenuItem,
             this.aboutIDCMToolStripMenuItem1});
             this.ToolStripMenuItem_help.Name = "ToolStripMenuItem_help";
@@ -204,18 +201,6 @@
             this.webSupportToolStripMenuItem.Name = "webSupportToolStripMenuItem";
             this.webSupportToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
             this.webSupportToolStripMenuItem.Text = "Web Support";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(226, 22);
-            this.toolStripMenuItem1.Text = "Authorization";
-            // 
-            // gCMWebToolStripMenuItem
-            // 
-            this.gCMWebToolStripMenuItem.Name = "gCMWebToolStripMenuItem";
-            this.gCMWebToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
-            this.gCMWebToolStripMenuItem.Text = "Online privacy statement";
             // 
             // aboutIDCMToolStripMenuItem
             // 
@@ -238,7 +223,7 @@
             this.ToolStripTextBox_user.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
             this.ToolStripTextBox_user.ReadOnly = true;
             this.ToolStripTextBox_user.ShortcutsEnabled = false;
-            this.ToolStripTextBox_user.Size = new System.Drawing.Size(190, 23);
+            this.ToolStripTextBox_user.Size = new System.Drawing.Size(160, 23);
             this.ToolStripTextBox_user.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // IDCMForm
@@ -275,8 +260,6 @@
         private System.Windows.Forms.ToolStripMenuItem onlineSearchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_help;
         private System.Windows.Forms.ToolStripMenuItem webSupportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem gCMWebToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutIDCMToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutIDCMToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_cfg;

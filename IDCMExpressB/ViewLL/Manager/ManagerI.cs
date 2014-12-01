@@ -19,7 +19,8 @@ namespace IDCM.ViewLL.Manager
         /// 释放内置对象，用于对象主动销毁或是重建前的清理操作需要
         /// </summary>
         void dispose();
-        bool IsDisposed();
+        bool isActive();
+        bool isDisposed();
         void setMaxToNormal();
         void setToMaxmize(bool activeFront = false);
         void setMdiParent(Form pForm);

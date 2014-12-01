@@ -9,7 +9,7 @@ using IDCM.AppContext;
 
 namespace IDCM.ViewLL.Manager
 {
-    class LibFieldManager : ManagerI
+    class LibFieldManager : ManagerA
     {
         #region 构造&析构
         public LibFieldManager()
@@ -28,11 +28,23 @@ namespace IDCM.ViewLL.Manager
         {
             dispose();
         }
+
         #endregion
         #region 实例对象保持部分
-        public void dispose()
+        
+        //页面窗口实例
+        private volatile LibFieldSettingView libFieldView = null;
+        private volatile LibFieldBuilder filedBuilder = null;
+
+        internal LibFieldBuilder FiledBuilder
         {
-            isDisposed = true;
+            get { return filedBuilder; }
+        }
+        #endregion
+        #region 接口实例化部分
+        public override void dispose()
+        {
+            _isDisposed = true;
 
             if (filedBuilder != null)
             {
@@ -46,23 +58,12 @@ namespace IDCM.ViewLL.Manager
                 libFieldView = null;
             }
         }
-        private volatile bool isDisposed = false;
-        //页面窗口实例
-        private volatile LibFieldSettingView libFieldView = null;
-        private volatile LibFieldBuilder filedBuilder = null;
-
-        internal LibFieldBuilder FiledBuilder
-        {
-            get { return filedBuilder; }
-        }
-        #endregion
-        #region 接口实例化部分
         /// <summary>
         /// Manager对象实例化初始化请求方法,一般需支持内置窗口的检查与重建操作。
         /// @author JiahaiWu
         /// </summary>
         /// <returns></returns>
-        public bool initView(bool activeShow = true)
+        public override bool initView(bool activeShow = true)
         {
             if (libFieldView == null || libFieldView.IsDisposed)
             {
@@ -82,12 +83,12 @@ namespace IDCM.ViewLL.Manager
             }
             return true;
         }
-        public void setMaxToNormal()
+        public override void setMaxToNormal()
         {
             if (libFieldView.WindowState.Equals(FormWindowState.Maximized))
                 libFieldView.WindowState = FormWindowState.Normal;
         }
-        public void setToMaxmize(bool activeFront = false)
+        public override void setToMaxmize(bool activeFront = false)
         {
             libFieldView.WindowState = FormWindowState.Maximized;
             if (activeFront)
@@ -96,13 +97,24 @@ namespace IDCM.ViewLL.Manager
                 libFieldView.Activate();
             }
         }
-        public void setMdiParent(Form pForm)
+        public override void setMdiParent(Form pForm)
         {
             libFieldView.MdiParent = pForm;
         }
-        public bool IsDisposed()
+        public override bool isDisposed()
         {
-            return isDisposed;
+            if (_isDisposed == false)
+            {
+                _isDisposed = (libFieldView == null || libFieldView.Disposing || libFieldView.IsDisposed);
+            }
+            return _isDisposed;
+        }
+        public override bool isActive()
+        {
+            if (libFieldView == null || libFieldView.Disposing || libFieldView.IsDisposed)
+                return false;
+            else
+                return libFieldView.Visible;
         }
         #endregion
 

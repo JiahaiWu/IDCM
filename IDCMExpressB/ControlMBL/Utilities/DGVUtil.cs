@@ -42,5 +42,20 @@ namespace IDCM.ControlMBL.Utilities
             else
                 return cell.Value.ToString();
         }
+        public static void setDGVCellHit(DataGridViewCell cell)
+        {
+            cell.DataGridView.EndEdit();
+            int colCount = DGVUtil.getTextColumnCount(cell.DataGridView);
+            DataGridViewCell rightCell = cell.DataGridView.Rows[cell.RowIndex].Cells[colCount - 1];
+            cell.DataGridView.CurrentCell = rightCell;
+            cell.DataGridView.CurrentCell = cell;
+            cell.Selected = true;
+            cell.DataGridView.BeginEdit(true);
+        }
+        public static void cancelDGVCellHit(DataGridViewCell cell)
+        {
+            cell.DataGridView.EndEdit();
+            cell.Selected = false;
+        }
     }
 }

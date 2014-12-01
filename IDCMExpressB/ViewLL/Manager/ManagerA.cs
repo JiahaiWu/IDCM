@@ -6,16 +6,16 @@ using System.Windows.Forms;
 
 namespace IDCM.ViewLL.Manager
 {
-    public abstract class RetainerA:ManagerI
+    public abstract class ManagerA:ManagerI
     {
 
-        public void setMaxToNormal()
+        public virtual void setMaxToNormal()
         {
         }
-        public void setToMaxmize(bool activeFront = false)
+        public virtual void setToMaxmize(bool activeFront = false)
         {
         }
-        public void setMdiParent(Form pForm)
+        public virtual void setMdiParent(Form pForm)
         {
         }
         public virtual bool isActive()
