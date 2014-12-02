@@ -135,7 +135,9 @@ namespace IDCM.ControlMBL.Module
             baseTree.Nodes.Add(rootNode_unfiled);
             baseTree.Nodes.Add(rootNode_trash);
             /////////////////////////////////////////////////////////////////
-            List<LibraryNode> pnodes = LibraryNodeDAM.findParentNodes();
+            List<LibraryNode> pnodes = LibraryNodeDAM.findParentNodes();//SELECT * FROM LibraryNode
+
+            //如果为空，则创建一个分组为空的节点，更新到数据库
             if (pnodes == null || pnodes.Count == 0)
             {
                 LibraryNode node = new LibraryNode("My Group Set (Temp)", "GroupSet", "My Group Set (Temp)", -1);
@@ -143,16 +145,24 @@ namespace IDCM.ControlMBL.Module
                 long newlid = node.Lid;
                 pnodes = LibraryNodeDAM.findParentNodes();
             }
+
+            //如果节点不为空，遍历节点，创建TreeNode
             foreach (LibraryNode dr in pnodes)
             {
                 TreeNode gsNode = new TreeNode(dr.Name, 1, 1);
-                gsNode.Name = dr.Lid.ToString();
+                gsNode.Name = dr.Lid.ToString();//把节点名称设置为节点ID
                 libTree.Nodes.Add(gsNode);
             }
+
+
             foreach(TreeNode lnode in libTree.Nodes)
             {
-                long pid=Convert.ToInt64(lnode.Name);
+                long pid=Convert.ToInt64(lnode.Name);//获取节点名称(ID)
+
+                //根据ID 查LibraryNode 根据分组 order by lorder
                 List<LibraryNode> subnodes = LibraryNodeDAM.findSubNodes(pid);
+
+                //如果节点下有子节点，把子几点添加到父节点上
                 if (subnodes != null)
                 {
                     foreach (LibraryNode node in subnodes)

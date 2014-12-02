@@ -64,7 +64,7 @@ namespace IDCM.ViewLL.Win
         public void activeDataView(bool refresh=true)
         {
             //加载默认的数据报表展示
-            manager.loadTreeSet();
+            manager.loadTreeSet();//这行代码作用是，初始化左边的节点
             manager.loadDataSetView(treeView_base.Nodes[0]);
             manager.updateLibRecCount();
             //resize for data view
@@ -668,5 +668,10 @@ namespace IDCM.ViewLL.Win
             return splitContainer_middle;
         }
         private static NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
+
+        private void dataGridView_items_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

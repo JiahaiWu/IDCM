@@ -174,6 +174,7 @@
             this.closeAllToolStripMenuItem.Name = "closeAllToolStripMenuItem";
             this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.closeAllToolStripMenuItem.Text = "Close All";
+            this.closeAllToolStripMenuItem.Click += new System.EventHandler(this.closeAllToolStripMenuItem_Click);
             // 
             // showConsoleToolStripMenuItem1
             // 
@@ -186,6 +187,7 @@
             this.showBackTaskToolStripMenuItem.Name = "showBackTaskToolStripMenuItem";
             this.showBackTaskToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.showBackTaskToolStripMenuItem.Text = "Show Back Tasks";
+            this.showBackTaskToolStripMenuItem.Click += new System.EventHandler(this.showBackTaskToolStripMenuItem_Click);
             // 
             // ToolStripMenuItem_help
             // 
@@ -228,6 +230,7 @@
             this.aboutIDCMToolStripMenuItem1.Name = "aboutIDCMToolStripMenuItem1";
             this.aboutIDCMToolStripMenuItem1.Size = new System.Drawing.Size(226, 22);
             this.aboutIDCMToolStripMenuItem1.Text = "About IDCM";
+            this.aboutIDCMToolStripMenuItem1.Click += new System.EventHandler(this.aboutIDCMToolStripMenuItem1_Click);
             // 
             // ToolStripTextBox_user
             // 
@@ -238,7 +241,7 @@
             this.ToolStripTextBox_user.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
             this.ToolStripTextBox_user.ReadOnly = true;
             this.ToolStripTextBox_user.ShortcutsEnabled = false;
-            this.ToolStripTextBox_user.Size = new System.Drawing.Size(190, 23);
+            this.ToolStripTextBox_user.Size = new System.Drawing.Size(130, 23);
             this.ToolStripTextBox_user.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // IDCMForm

@@ -104,7 +104,7 @@ namespace IDCM.ControlMBL.Module
         /// <param name="colMap"></param>
         public void loadDataSetView()
         {
-            List<string> viewAttrs = ColumnMappingHolder.getViewAttrs();
+            List<string> viewAttrs = ColumnMappingHolder.getViewAttrs();//获取所有属性名称集合
             lock (ShareSyncLockers.LocalDataGridView_Lock)
             {
                 if (itemDGV.ColumnCount > 0)
@@ -250,7 +250,7 @@ namespace IDCM.ControlMBL.Module
             //创建显性列属性
             foreach (string attr in viewAttrs)
             {
-                int viewOrder = ColumnMappingHolder.getViewOrder(attr);
+                int viewOrder = ColumnMappingHolder.getViewOrder(attr);//返回属性显示位序
                 Console.Write("##"+attr+"->"+viewOrder);
                 if (viewOrder < ColumnMappingHolder.MaxMainViewCount)
                 {
@@ -272,7 +272,7 @@ namespace IDCM.ControlMBL.Module
         }
         /// <summary>
         /// 加载附加注解字段名展示
-        /// </summary>
+        /// </summary> 
         /// <param name="dgv"></param>
         /// <param name="attrs"></param>
         private void loadReferences(List<string> viewAttrs)
@@ -351,19 +351,22 @@ namespace IDCM.ControlMBL.Module
         /// <param name="viewAttrs"></param>
         /// <param name="dr"></param>
         /// dr为null则等效于清空表单操作
-        public void showReferences(List<string> viewAttrs, DataRow dr = null)
+        public void showReferences(List<string> viewAttrs, DataRow dr = null)//参数是所有属性名称集合
         {
             TabPage tabPage = attachTC.TabPages["references"];
             if (dr != null)
             {
                 (tabPage.Controls["ctd_rid_Label"] as Label).Text = dr[CTDRecordDAM.CTD_RID].ToString();
             }
-            foreach (Control ctl in tabPage.Controls)
+            foreach (Control ctl in tabPage.Controls)//获取选项卡内所有集合
             {
-                if (ctl is Panel)
+                if (ctl is Panel)//如果空间是面板
                 {
+                    //获取，选择项卡中的集合名称从referPanel_开始处的索引
                     int idx = Convert.ToInt32(ctl.Name.Substring("referPanel_".Length));
-                    string attr =CVNameConverter.toViewName(viewAttrs[idx]);
+
+                    //从viewAttrs[idx]第一位开始，viewAttrs[idx]-2个长度的字符串
+                    string attr =CVNameConverter.toViewName(viewAttrs[idx]);//注意：
                     Control ictl = ctl.Controls[attr];
                     if (ictl != null)
                     {

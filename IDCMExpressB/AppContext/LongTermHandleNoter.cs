@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Threading;
 using IDCM.OverallSC.ShareSync;
 
+
 namespace IDCM.AppContext
 {
     /// <summary>
@@ -71,7 +72,14 @@ namespace IDCM.AppContext
             {
                 handleList.AddLast(formView);
             }
+
             formView.Disposed += OnHandleDisposed;
+
+            if (formView is IDCM.ViewLL.Win.StackInfoView)
+            {
+                Console.Write("");
+            }
+            
             return formView;
         }
 
@@ -104,6 +112,7 @@ namespace IDCM.AppContext
                 lock (ShareSyncLockers.BackendHandleMonitor_Lock)
                 {
                     handleList.AddLast(worker);
+                    
                 }
                 worker.Disposed += OnHandleDisposed;
             }
@@ -157,6 +166,42 @@ namespace IDCM.AppContext
                 }
             }
             return handleList.Count < 1;
+        }
+
+        /// <summary>
+        /// 获取后台任务明细
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<String, String> getStackDetails()
+        {
+            Dictionary<String, String> dictionary = new Dictionary<String, String>();
+            foreach (Object obj in handleList)
+            {
+                if (obj is Form)
+                {
+                    Form tempForm = (obj as Form);
+                    String key = tempForm.Name;
+                    String status = "未运行";
+                    if (!tempForm.IsDisposed)
+                    {
+                        status = "运行中";
+                    }
+                    dictionary.Add(key, status);
+                }
+                else 
+                if (obj is Thread)
+                {
+                    Thread thread = (obj as Thread);
+                    String key = thread.Name;
+                    String status = "未运行";
+                    if (thread.IsAlive)
+                    {
+                        status = "运行中";
+                    }
+                    dictionary.Add(key, status);
+                }
+            }
+            return dictionary;
         }
         /// <summary>
         /// 后台线程对象缓冲池

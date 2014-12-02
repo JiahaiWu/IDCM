@@ -19,9 +19,9 @@ namespace IDCM.SimpleDAL.DAM
             lock (incrementLock)
             {
                 ++autoIncrementNum;
-                if (autoIncrementNum % 10 == 0)
+                if (autoIncrementNum % 10 == 0)//如果是10的整数
                 {
-                    string cmd = "update BaseInfoNote set seqId=" + autoIncrementNum;
+                    string cmd = "update BaseInfoNote set seqId=" + autoIncrementNum;//更新BaseInfoNote seqId
                     SQLiteHelper.ExecuteNonQuery(ConnectStr, cmd);
                 }
             }
