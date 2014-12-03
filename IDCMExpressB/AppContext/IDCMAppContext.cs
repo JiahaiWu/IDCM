@@ -37,7 +37,7 @@ namespace IDCM.AppContext
                 // Create both application forms and handle the Closed event
                 // to know when both forms are closed.
                 //Form startForm = new StartForm(workspacePath);
-                mainManger = new IDCMVeiwManger();
+                mainManger = new IDCMFormManger();
                 mainManger.initForm(true);
                 LongTermHandleNoter.checkForIdle();
                 //Run HandleInstanceMonitor
@@ -90,9 +90,9 @@ namespace IDCM.AppContext
         /// </summary>
         private static System.Windows.Forms.Timer monitor = new System.Windows.Forms.Timer();
         private static volatile bool hasInited = false;
-        private static IDCMVeiwManger mainManger = null;
+        private static IDCMFormManger mainManger = null;
 
-        internal static IDCMVeiwManger MainManger
+        internal static IDCMFormManger MainManger
         {
             get
             {

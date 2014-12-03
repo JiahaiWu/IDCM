@@ -10,15 +10,15 @@ using IDCM.ControlMBL.Utilities;
 
 namespace IDCM.ViewLL.Win
 {
-    public partial class FrontFindDlg : Form
+    public partial class GCMFrontFindDlg : Form
     {
-        public FrontFindDlg()
+        public GCMFrontFindDlg()
         {
             InitializeComponent();
             if (lastFindTerm != null && lastFindTerm.Length > 0)
                 this.comboBox_find.FormatString = lastFindTerm;
         }
-        public FrontFindDlg(params DataGridView[] dgvs)
+        public GCMFrontFindDlg(params DataGridView[] dgvs)
         {
             dgvPool = new List<DataGridView>(dgvs.Length);
             dgvPool.AddRange(dgvs);
@@ -26,7 +26,7 @@ namespace IDCM.ViewLL.Win
                 this.comboBox_find.FormatString = lastFindTerm;
             InitializeComponent();
         }
-        ~FrontFindDlg()
+        ~GCMFrontFindDlg()
         {
             foundCell = null;
             if (dgvPool != null && dgvPool.Count > 0)

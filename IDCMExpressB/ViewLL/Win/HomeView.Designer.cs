@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("All References");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Unfiled");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Trash");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("My Group (Temp)");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("All References");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Unfiled");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Trash");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("My Group (Temp)");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeView));
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("All Strains");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("节点1");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("节点2");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("All Strains");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("节点1");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("节点2");
             this.statusStripBottom = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel_bottom = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton_layout = new System.Windows.Forms.ToolStripSplitButton();
@@ -100,9 +100,8 @@
             this.references = new System.Windows.Forms.TabPage();
             this.links = new System.Windows.Forms.TabPage();
             this.toolStrip_home = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton12 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_local = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_gcm = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
@@ -290,20 +289,20 @@
             this.treeView_library.Location = new System.Drawing.Point(0, 98);
             this.treeView_library.Margin = new System.Windows.Forms.Padding(0);
             this.treeView_library.Name = "treeView_library";
-            treeNode1.Name = "Root";
-            treeNode1.Tag = "0";
-            treeNode1.Text = "All References";
-            treeNode2.Name = "Unfiled";
-            treeNode2.Text = "Unfiled";
-            treeNode3.Name = "Trash";
-            treeNode3.Text = "Trash";
-            treeNode4.Name = "MyGroup";
-            treeNode4.Text = "My Group (Temp)";
+            treeNode4.Name = "Root";
+            treeNode4.Tag = "0";
+            treeNode4.Text = "All References";
+            treeNode5.Name = "Unfiled";
+            treeNode5.Text = "Unfiled";
+            treeNode6.Name = "Trash";
+            treeNode6.Text = "Trash";
+            treeNode11.Name = "MyGroup";
+            treeNode11.Text = "My Group (Temp)";
             this.treeView_library.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4});
+            treeNode4,
+            treeNode5,
+            treeNode6,
+            treeNode11});
             this.treeView_library.SelectedImageIndex = 0;
             this.treeView_library.ShowRootLines = false;
             this.treeView_library.Size = new System.Drawing.Size(215, 411);
@@ -361,16 +360,16 @@
             this.treeView_base.Location = new System.Drawing.Point(0, 28);
             this.treeView_base.Margin = new System.Windows.Forms.Padding(0);
             this.treeView_base.Name = "treeView_base";
-            treeNode5.Name = "-1";
-            treeNode5.Text = "All Strains";
-            treeNode6.Name = "节点1";
-            treeNode6.Text = "节点1";
-            treeNode7.Name = "节点2";
-            treeNode7.Text = "节点2";
+            treeNode7.Name = "-1";
+            treeNode7.Text = "All Strains";
+            treeNode8.Name = "节点1";
+            treeNode8.Text = "节点1";
+            treeNode9.Name = "节点2";
+            treeNode9.Text = "节点2";
             this.treeView_base.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode6,
-            treeNode7});
+            treeNode7,
+            treeNode8,
+            treeNode9});
             this.treeView_base.SelectedImageIndex = 0;
             this.treeView_base.ShowRootLines = false;
             this.treeView_base.Size = new System.Drawing.Size(215, 70);
@@ -935,9 +934,8 @@
             this.toolStrip_home.GripMargin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.toolStrip_home.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip_home.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton12,
+            this.toolStripButton_local,
+            this.toolStripButton_gcm,
             this.toolStripSeparator1,
             this.toolStripLabel1,
             this.toolStripComboBox1,
@@ -960,32 +958,24 @@
             this.toolStrip_home.TabIndex = 1;
             this.toolStrip_home.Text = "toolStrip_home";
             // 
-            // toolStripButton1
+            // toolStripButton_local
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::IDCM.Properties.Resources.local;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton_local.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton_local.Image = global::IDCM.Properties.Resources.local;
+            this.toolStripButton_local.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_local.Name = "toolStripButton_local";
+            this.toolStripButton_local.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButton_local.Text = "toolStripButton_local";
             // 
-            // toolStripButton2
+            // toolStripButton_gcm
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = global::IDCM.Properties.Resources.online;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButton2.Text = "toolStripButton2";
-            // 
-            // toolStripButton12
-            // 
-            this.toolStripButton12.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton12.Image = global::IDCM.Properties.Resources.gcm_logo;
-            this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton12.Name = "toolStripButton12";
-            this.toolStripButton12.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButton12.Text = "toolStripButton12";
+            this.toolStripButton_gcm.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton_gcm.Image = global::IDCM.Properties.Resources.gcm_logo;
+            this.toolStripButton_gcm.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_gcm.Name = "toolStripButton_gcm";
+            this.toolStripButton_gcm.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButton_gcm.Text = "toolStripButton_gcm";
+            this.toolStripButton_gcm.Click += new System.EventHandler(this.toolStripButton_gcm_Click);
             // 
             // toolStripSeparator1
             // 
@@ -1057,6 +1047,7 @@
             this.toolStripButton_download.Name = "toolStripButton_download";
             this.toolStripButton_download.Size = new System.Drawing.Size(24, 24);
             this.toolStripButton_download.Text = "toolStripButton_download";
+            this.toolStripButton_download.Click += new System.EventHandler(this.toolStripButton_download_Click);
             // 
             // toolStripButton_upload
             // 
@@ -1066,6 +1057,7 @@
             this.toolStripButton_upload.Name = "toolStripButton_upload";
             this.toolStripButton_upload.Size = new System.Drawing.Size(24, 24);
             this.toolStripButton_upload.Text = "toolStripButton_upload";
+            this.toolStripButton_upload.Click += new System.EventHandler(this.toolStripButton_upload_Click);
             // 
             // toolStripButton_refresh
             // 
@@ -1075,6 +1067,7 @@
             this.toolStripButton_refresh.Name = "toolStripButton_refresh";
             this.toolStripButton_refresh.Size = new System.Drawing.Size(24, 24);
             this.toolStripButton_refresh.Text = "toolStripButton_refresh";
+            this.toolStripButton_refresh.Click += new System.EventHandler(this.toolStripButton_refresh_Click);
             // 
             // toolStripSeparator3
             // 
@@ -1272,8 +1265,7 @@
         private System.Windows.Forms.Panel panel_searchHead;
         private System.Windows.Forms.Button btn_options;
         private System.Windows.Forms.ToolStrip toolStrip_home;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolStripButton_local;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
@@ -1303,7 +1295,7 @@
         private System.Windows.Forms.ComboBox comboBox_attr2;
         private System.Windows.Forms.ToolStripMenuItem showRefer;
         private System.Windows.Forms.ToolStripMenuItem hideRefer;
-        private System.Windows.Forms.ToolStripButton toolStripButton12;
+        private System.Windows.Forms.ToolStripButton toolStripButton_gcm;
         private System.Windows.Forms.ImageList imageList_lib;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip_lib;
         private System.Windows.Forms.ToolStripMenuItem CreateGroupSet;

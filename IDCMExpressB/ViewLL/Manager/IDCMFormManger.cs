@@ -14,21 +14,21 @@ namespace IDCM.ViewLL.Manager
     /// IDCM主界面封装主管控制器实现
     /// @author JiahaiWu  2014-10-30
     /// </summary>
-    public class IDCMVeiwManger
+    public class IDCMFormManger
     {
         #region 构造&析构
-        public IDCMVeiwManger()
+        public IDCMFormManger()
         {
             mainForm = new IDCMForm();
             LongTermHandleNoter.note(mainForm);
             mainForm.setManager(this);
             subManagers = new Dictionary<Type, ManagerI>();
         }
-        public static IDCMVeiwManger getInstance()
+        public static IDCMFormManger getInstance()
         {
             return IDCMAppContext.MainManger;
         }
-        ~IDCMVeiwManger()
+        ~IDCMFormManger()
         {
             Dispose();
         }
@@ -79,12 +79,14 @@ namespace IDCM.ViewLL.Manager
         {
             ManagerI obj = null;
             subManagers.TryGetValue(manager, out obj);
-            if (obj == null || obj.IsDisposed())
+            if (obj == null || obj.isDisposed())
             {
                 obj = Activator.CreateInstance(manager) as ManagerI;
                 subManagers[manager] = obj;
-                obj.initView(false);
-                obj.setMdiParent(this.mainForm);
+                if (obj.initView(false))
+                {
+                    obj.setMdiParent(this.mainForm);
+                }
             }
             return obj;
         }

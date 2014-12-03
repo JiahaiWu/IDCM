@@ -14,7 +14,7 @@ namespace IDCM.ViewLL.Manager
     /// <summary>
     /// 用户身份认证管理
     /// </summary>
-    class AuthenticationRetainer:RetainerA
+    public class AuthenticationRetainer:RetainerA
     {
         
         #region 构造&析构
@@ -38,6 +38,14 @@ namespace IDCM.ViewLL.Manager
         }
         #endregion
         #region 实例对象保持部分
+
+        /// <summary>
+        /// SignIn hold Monitor
+        /// </summary>
+        private System.Windows.Forms.Timer signMonitor = null;
+        private AuthInfo authInfo =null;
+        #endregion
+        #region 接口实例化部分
         public override void dispose()
         {
             base.dispose();
@@ -49,13 +57,6 @@ namespace IDCM.ViewLL.Manager
             }
         }
         
-        /// <summary>
-        /// SignIn hold Monitor
-        /// </summary>
-        private System.Windows.Forms.Timer signMonitor = null;
-        private AuthInfo authInfo =null;
-        #endregion
-        #region 接口实例化部分
         /// <summary>
         /// 对象实例化初始化方法
         /// </summary>
@@ -88,17 +89,17 @@ namespace IDCM.ViewLL.Manager
                     if (authInfo.LoginFlag)
                     {
                         AuthInfoDAM.updateLastAuthInfo(authInfo);
-                        IDCMVeiwManger.getInstance().updateUserStatus(authInfo.Username);
+                        IDCMFormManger.getInstance().updateUserStatus(authInfo.Username);
                     }
                     else
-                        IDCMVeiwManger.getInstance().updateUserStatus(null);
+                        IDCMFormManger.getInstance().updateUserStatus(null);
                 }
             }
             return true;
         }
-        public override bool IsDisposed()
+        public override bool isDisposed()
         {
-            return isDisposed;
+            return _isDisposed;
         }
         #endregion
         /// <summary>
@@ -127,6 +128,27 @@ namespace IDCM.ViewLL.Manager
             return authInfo.LoginFlag;
         }
         /// <summary>
+        /// 获取有效登录用户身份信息，如果登录状态无效则返回null
+        /// </summary>
+        /// <returns></returns>
+        public AuthInfo getLoginAuthInfo()
+        {
+            if (authInfo != null)
+            {
+                long elapsedTicks = DateTime.Now.Ticks - authInfo.Timestamp;
+                TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+                if (elapsedSpan.TotalMinutes > 15)
+                {
+                    if (authInfo.Username != null && authInfo.Password != null)
+                    {
+                        authInfo = SignInExecutor.SignIn(authInfo.Username, authInfo.Password, 2000, authInfo.autoLogin);
+                    }
+                }
+                return (authInfo != null && authInfo.LoginFlag) ? authInfo : null;
+            }
+            return null;
+        }
+        /// <summary>
         /// 登录状态验证与保持
         /// </summary>
         /// <param name="sender"></param>
@@ -145,10 +167,10 @@ namespace IDCM.ViewLL.Manager
                 if (authInfo.LoginFlag)
                 {
                     AuthInfoDAM.updateLastAuthInfo(authInfo);
-                    IDCMVeiwManger.getInstance().updateUserStatus(authInfo.Username);
+                    IDCMFormManger.getInstance().updateUserStatus(authInfo.Username);
                 }
                 else
-                    IDCMVeiwManger.getInstance().updateUserStatus(null);
+                    IDCMFormManger.getInstance().updateUserStatus(null);
             }
         }
     }

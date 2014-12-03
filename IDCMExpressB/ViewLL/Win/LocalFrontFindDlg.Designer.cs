@@ -1,6 +1,6 @@
 ﻿namespace IDCM.ViewLL.Win
 {
-    partial class FrontFindDlg
+    partial class LocalFrontFindDlg
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrontFindDlg));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LocalFrontFindDlg));
             this.label_search = new System.Windows.Forms.Label();
             this.comboBox_find = new System.Windows.Forms.ComboBox();
             this.button_searchDown = new System.Windows.Forms.Button();

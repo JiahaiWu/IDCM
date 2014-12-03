@@ -19,8 +19,8 @@ namespace IDCM.ViewLL.Win
 {
     public partial class IDCMForm : Form
     {
-        private IDCMVeiwManger manager = null;
-        internal void setManager(IDCMVeiwManger manager)
+        private IDCMFormManger manager = null;
+        internal void setManager(IDCMFormManger manager)
         {
             this.manager = manager;
         }
@@ -187,10 +187,18 @@ namespace IDCM.ViewLL.Win
             }
             return true;
         }
-
+        /// <summary>
+        /// 根据HomeView和GCMView的打开状态控制菜单栏Tools选项下的菜单的可用状态
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ToolStripMenuItem_tool_DropDownOpening(object sender, EventArgs e)
         {
             HomeViewManager hvManager = (HomeViewManager)manager.getManager(typeof(HomeViewManager));
+            GCMViewManager gcmManager = (GCMViewManager)manager.getManager(typeof(GCMViewManager));
+            localSearchToolStripMenuItem.Enabled = false;
+            frontPageSearchToolStripMenuItem.Enabled = false;
+            onlineSearchToolStripMenuItem.Enabled = false;
             if (hvManager != null)
             {
                 if (hvManager.isActive())
@@ -198,13 +206,37 @@ namespace IDCM.ViewLL.Win
                     localSearchToolStripMenuItem.Enabled = true;
                     frontPageSearchToolStripMenuItem.Enabled = true;
                 }
-                else
+            }
+            if (gcmManager != null)
+            {
+                if (gcmManager.isActive())
                 {
-                    localSearchToolStripMenuItem.Enabled = false;
-                    frontPageSearchToolStripMenuItem.Enabled =false;
+                    onlineSearchToolStripMenuItem.Enabled = true;
+                    frontPageSearchToolStripMenuItem.Enabled = true;
                 }
             }
-            onlineSearchToolStripMenuItem.Enabled = false;
+        }
+        /// <summary>
+        /// 根据HomeView打开状态控制菜单栏Configuration选项下的菜单的可用状态
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripMenuItem_cfg_DropDownOpening(object sender, EventArgs e)
+        {
+            HomeViewManager hvManager = (HomeViewManager)manager.getManager(typeof(HomeViewManager));
+            if (hvManager != null)
+            {
+                if (hvManager.isActive())
+                {
+                    templatesToolStripMenuItem.Enabled = true;
+                    authToolStripMenuItem.Enabled = true;
+                }
+                else
+                {
+                    templatesToolStripMenuItem.Enabled = false;
+                    authToolStripMenuItem.Enabled = false;
+                }
+            }
         }
 
         private void localSearchToolStripMenuItem_Click(object sender, EventArgs e)
@@ -221,5 +253,7 @@ namespace IDCM.ViewLL.Win
         {
             manager.frontDataSearch();
         }
+
+
     }
 }

@@ -127,6 +127,9 @@
     <Compile Include="ControlMBL\AsyncInvoker\ToolStripItemAsyncUtil.cs" />
     <Compile Include="ControlMBL\Module\BackProgressIndicator.cs" />
     <Compile Include="ControlMBL\Module\FrontProgressPrompt.cs" />
+    <Compile Include="ControlMBL\Module\GCMDataSetBuilder.cs" />
+    <Compile Include="ControlMBL\Module\GCMRecordBuilder.cs" />
+    <Compile Include="ControlMBL\Module\GCMSearchBuilder.cs" />
     <Compile Include="ControlMBL\Module\LibFieldBuilder.cs" />
     <Compile Include="ControlMBL\Module\LocalDataSetBuilder.cs" />
     <Compile Include="ControlMBL\Module\LocalDBSearchBuilder.cs" />
@@ -197,9 +200,11 @@
     <Compile Include="SimpleDAL\POO\LibraryNode.cs" />
     <Compile Include="SimpleDAL\POO\DelayWorkNote.cs" />
     <Compile Include="ViewLL\Manager\AuthenticationRetainer.cs" />
+    <Compile Include="ViewLL\Manager\GCMViewManager.cs" />
     <Compile Include="ViewLL\Manager\HomeViewManager.cs" />
-    <Compile Include="ViewLL\Manager\IDCMVeiwManger.cs" />
+    <Compile Include="ViewLL\Manager\IDCMFormManger.cs" />
     <Compile Include="ViewLL\Manager\LibFieldManager.cs" />
+    <Compile Include="ViewLL\Manager\ManagerA.cs" />
     <Compile Include="ViewLL\Manager\ManagerI.cs" />
     <Compile Include="ViewLL\Manager\RetainerA.cs" />
     <Compile Include="ViewLL\Win\AttrMapOptionDlg.cs">
@@ -214,11 +219,23 @@
     <Compile Include="ViewLL\Win\ExportTypeDlg.Designer.cs">
       <DependentUpon>ExportTypeDlg.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewLL\Win\FrontFindDlg.cs">
+    <Compile Include="ViewLL\Win\GCMFrontFindDlg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewLL\Win\FrontFindDlg.Designer.cs">
-      <DependentUpon>FrontFindDlg.cs</DependentUpon>
+    <Compile Include="ViewLL\Win\GCMFrontFindDlg.Designer.cs">
+      <DependentUpon>GCMFrontFindDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewLL\Win\LocalFrontFindDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewLL\Win\LocalFrontFindDlg.Designer.cs">
+      <DependentUpon>LocalFrontFindDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewLL\Win\GCMView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewLL\Win\GCMView.Designer.cs">
+      <DependentUpon>GCMView.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewLL\Win\HomeView.cs">
       <SubType>Form</SubType>
@@ -275,8 +292,12 @@
     <EmbeddedResource Include="ViewLL\Win\ExportTypeDlg.resx">
       <DependentUpon>ExportTypeDlg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewLL\Win\FrontFindDlg.resx">
-      <DependentUpon>FrontFindDlg.cs</DependentUpon>
+    <EmbeddedResource Include="ViewLL\Win\GCMFrontFindDlg.resx" />
+    <EmbeddedResource Include="ViewLL\Win\LocalFrontFindDlg.resx">
+      <DependentUpon>LocalFrontFindDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\GCMView.resx">
+      <DependentUpon>GCMView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewLL\Win\HomeView.resx">
       <DependentUpon>HomeView.cs</DependentUpon>
