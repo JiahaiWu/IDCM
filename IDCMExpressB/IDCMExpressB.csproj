@@ -292,7 +292,9 @@
     <EmbeddedResource Include="ViewLL\Win\ExportTypeDlg.resx">
       <DependentUpon>ExportTypeDlg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewLL\Win\GCMFrontFindDlg.resx" />
+    <EmbeddedResource Include="ViewLL\Win\GCMFrontFindDlg.resx">
+      <DependentUpon>GCMFrontFindDlg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewLL\Win\LocalFrontFindDlg.resx">
       <DependentUpon>LocalFrontFindDlg.cs</DependentUpon>
     </EmbeddedResource>
@@ -405,6 +407,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets')" />
+
   <!-- 
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   -->
