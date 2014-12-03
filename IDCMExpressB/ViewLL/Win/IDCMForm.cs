@@ -253,7 +253,21 @@ namespace IDCM.ViewLL.Win
         {
             manager.frontDataSearch();
         }
+        private void aboutIDCMToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            AboutDlg aboutDlg = new AboutDlg();
+            aboutDlg.ShowDialog();
+        }
 
+        private void closeAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            manager.closeWorkSpaceHolder();
+        }
+
+        private void showBackTaskToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            manager.activeChildView(typeof(StackInfoManager), true);
+        }
 
     }
 }

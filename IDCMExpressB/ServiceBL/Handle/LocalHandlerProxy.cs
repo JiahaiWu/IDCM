@@ -129,6 +129,15 @@ namespace IDCM.ServiceBL.Handle
             }
             handler.progressChanged(worker,e.ProgressPercentage,args);
         }
+
+        /// <summary>
+        /// 获取BackgroundWorker任务必要信息
+        /// </summary>
+        /// <returns></returns>
+        public KeyValuePair<String,String> getStackInfo() {
+            KeyValuePair<String, String> kvp = new KeyValuePair<String, String>(handler.GetType().Name, doWorkTime.ToString("HH:mm:ss"));
+            return kvp;
+        }
         /// <summary>
         /// 获取任务代理包装的元处理器实例对象
         /// </summary>

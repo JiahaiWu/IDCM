@@ -84,6 +84,25 @@ namespace IDCM.ServiceBL.ServBuf
                 //_kvpair.Key.Dispose();
             }
         }
+
+        /// <summary>
+        /// 提供BackgroudWorker任务信息
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<String, KeyValuePair<string,string>> getStackInfo() {
+            Dictionary<String, KeyValuePair<string, string>> dictionary = new Dictionary<String, KeyValuePair<string, string>>();
+            foreach(KeyValuePair<BackgroundWorker, LocalHandlerProxy> kvp in workerPool){
+                KeyValuePair<string, string> kvp0 = kvp.Value.getStackInfo();
+                KeyValuePair<string, string> kvp1;
+                if (kvp.Key.IsBusy)
+                {
+                    kvp1 = new KeyValuePair<string, string>("运行中", kvp0.Value);
+                }
+                kvp1 = new KeyValuePair<string, string>("未运行", kvp0.Value);
+                dictionary.Add(kvp0.Key, kvp1);
+            }
+            return dictionary;
+        } 
         /// <summary>
         /// 后台统一任务管控的后台任务执行缓存池
         /// </summary>

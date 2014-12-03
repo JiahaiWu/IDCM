@@ -177,7 +177,7 @@ namespace IDCM.SimpleDAL.DAM
         public static CustomTColDef getCustomTColDef(string attr)
         {
             if(ctcdCache.Count<1)
-                loadAll();
+                loadAll();//SELECT * FROM CustomTColDef order by corder
             CustomTColDef ctcd = null;
             ctcdCache.TryGetValue(attr, out ctcd);
             return ctcd;

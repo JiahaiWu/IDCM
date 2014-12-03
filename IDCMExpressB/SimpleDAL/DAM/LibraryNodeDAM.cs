@@ -84,7 +84,7 @@ namespace IDCM.SimpleDAL.DAM
             int ic = -1;
             if (instance.Lid < 1)
             {
-                instance.Lid = BaseInfoNoteDAM.nextSeqID();
+                instance.Lid = BaseInfoNoteDAM.nextSeqID();//update BaseInfoNote set seqId 返回更新的seqId
                 string cmd = "insert into LibraryNode(lid,name,type,pid,lorder) values("
                     + instance.Lid + ",'" + instance.Name + "','" + instance.Type + "'," + (instance.Pid > 0 ? instance.Pid.ToString() : "-1") + "," + instance.Lorder + ");";
                 ic = SQLiteHelper.ExecuteNonQuery(ConnectStr, cmd);

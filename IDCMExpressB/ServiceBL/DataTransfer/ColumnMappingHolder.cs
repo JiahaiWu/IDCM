@@ -51,6 +51,7 @@ namespace IDCM.ServiceBL.DataTransfer
         /// </summary>
         public static void queryCacheAttrDBMap()
         {
+            //select * from CustomTColMap order by viewOrder
             List<CustomTColMap> ctcms = CustomTColMapDAM.findAllByOrder();
             lock (attrMapping)
             {
@@ -122,15 +123,16 @@ namespace IDCM.ServiceBL.DataTransfer
         public static List<string> getViewAttrs(bool withInnerField=true)
         {
             if (attrMapping.Count < 1)
+                //作用是在attrMapping里存入，key属性名称，value<key value> key:数据库映射，字段显示
                 queryCacheAttrDBMap();
             if (withInnerField)
-                return attrMapping.Keys.ToList<string>();
+                return attrMapping.Keys.ToList<string>();//第一次进来没参数，所以返回key的集合(属性名称)
             else
             {
                 List<string> res = new List<string>();
                 foreach (string key in attrMapping.Keys)
                 {
-                    if (CVNameConverter.isViewWrapName(key))
+                    if (CVNameConverter.isViewWrapName(key))//查看是否以[ 开头，以] 结尾
                         res.Add(key);
                 }
                 return res;
