@@ -105,9 +105,10 @@ namespace IDCM.ViewLL.Manager
 
         public override void dispose()
         {
+
             stackView.Dispose();
             
-            isDisposed = true;
+            _isDisposed = true;
         }
 
 
