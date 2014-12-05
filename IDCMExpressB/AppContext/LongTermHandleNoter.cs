@@ -177,18 +177,18 @@ namespace IDCM.AppContext
             Dictionary<String, String> dictionary = new Dictionary<String, String>();
             foreach (Object obj in handleList)
             {
-                if (obj is Form)
-                {
-                    Form tempForm = (obj as Form);
-                    String key = tempForm.Name;
-                    String status = "未运行";
-                    if (!tempForm.IsDisposed)
-                    {
-                        status = "运行中";
-                    }
-                    dictionary.Add(key, status);
-                }
-                else 
+                //if (obj is Form)
+                //{
+                //    Form tempForm = (obj as Form);
+                //    String key = tempForm.Name;
+                //    String status = "未运行";
+                //    if (!tempForm.IsDisposed)
+                //    {
+                //        status = "运行中";
+                //    }
+                //    dictionary.Add(key, status);
+                //}
+                //else 
                 if (obj is Thread)
                 {
                     Thread thread = (obj as Thread);

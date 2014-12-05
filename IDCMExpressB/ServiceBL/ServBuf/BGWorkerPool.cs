@@ -98,7 +98,10 @@ namespace IDCM.ServiceBL.ServBuf
                 {
                     kvp1 = new KeyValuePair<string, string>("运行中", kvp0.Value);
                 }
-                kvp1 = new KeyValuePair<string, string>("未运行", kvp0.Value);
+                else {
+                    kvp1 = new KeyValuePair<string, string>("未运行", kvp0.Value);
+                }
+                
                 dictionary.Add(kvp0.Key, kvp1);
             }
             return dictionary;
