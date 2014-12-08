@@ -15,6 +15,14 @@ namespace IDCM.ViewLL.Win
         public GCMView()
         {
             InitializeComponent();
+            this.splitContainer_left.Panel1Collapsed = true;
+            dataGridView_items.AllowDrop = true;
+            dataGridView_items.AllowUserToAddRows = false;
+            dataGridView_items.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView_items.EditMode = DataGridViewEditMode.EditOnKeystroke;
+            ////dataGridView_items.TopLeftHeaderCell = new DataGridViewTopLeftHeaderCell();
+            ////dataGridView_items.AdjustedTopLeftHeaderBorderStyle = DataGridViewTopLeftHeaderCell.MeasureTextPreferredSize();
+
         }
 
         private GCMViewManager manager=null;

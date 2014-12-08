@@ -158,7 +158,7 @@ namespace IDCM.ViewLL.Manager
         /// </summary>
         public void loadDataSetView()
         {
-
+            datasetBuilder.loadDataSetView();
         }
         /// <summary>
         /// 更新具体记录的显示

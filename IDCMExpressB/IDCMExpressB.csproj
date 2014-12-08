@@ -163,7 +163,9 @@
     <Compile Include="ServiceBL\Common\Converter\StrViewConverter.cs" />
     <Compile Include="ServiceBL\Common\ExportType.cs" />
     <Compile Include="ServiceBL\Common\HandleToken.cs" />
+    <Compile Include="ServiceBL\Common\StrainListPage.cs" />
     <Compile Include="ServiceBL\Common\ObjectPair.cs" />
+    <Compile Include="ServiceBL\Common\StrainView.cs" />
     <Compile Include="ServiceBL\Common\StringSimilarity.cs" />
     <Compile Include="ServiceBL\DataTransfer\ColumnMappingHolder.cs" />
     <Compile Include="ServiceBL\DataTransfer\CTableSetting.cs" />
@@ -183,6 +185,8 @@
     <Compile Include="ServiceBL\Handle\UpdateHomeLibCountHandler.cs" />
     <Compile Include="ServiceBL\Handle\UpdateTemplateHandler.cs" />
     <Compile Include="ServiceBL\NetTransfer\SignInExecutor.cs" />
+    <Compile Include="ServiceBL\NetTransfer\StrainListQueryExecutor.cs" />
+    <Compile Include="ServiceBL\NetTransfer\StrainViewQueryExecutor.cs" />
     <Compile Include="ServiceBL\ServBuf\BGWorkerPool.cs" />
     <Compile Include="SimpleDAL\DAM\AuthInfoDAM.cs" />
     <Compile Include="SimpleDAL\DBCP\QueryCmdCache.cs" />
