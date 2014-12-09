@@ -23,6 +23,7 @@ namespace IDCM.ServiceBL.NetTransfer
                 string signInUri = ConfigurationManager.AppSettings["StrainListUri"];
                 string url = string.Format(signInUri, new string[] { authInfo.Jsessionid,id});
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                log.Info("StrainViewQueryExecutor Request Url=" + url);
                 request.Method = "POST";
                 request.ContentType = "application/x-www-form-urlencoded";
                 request.Accept = "*/*";
@@ -37,6 +38,7 @@ namespace IDCM.ServiceBL.NetTransfer
                 string resStr = myStreamReader.ReadToEnd();
                 myStreamReader.Close();
                 myResponseStream.Close();
+                log.Info("StrainViewQueryExecutor Response=" + resStr);
                 StrainView sv = parserToListPageInfo(resStr);
                 if (sv != null)
                 {
@@ -52,5 +54,6 @@ namespace IDCM.ServiceBL.NetTransfer
             StrainView sv = JsonConvert.DeserializeObject<StrainView>(jsonStr);
             return sv;
         }
+        private static NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
     }
 }

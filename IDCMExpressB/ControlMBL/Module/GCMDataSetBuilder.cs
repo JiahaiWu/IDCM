@@ -24,7 +24,10 @@ namespace IDCM.ControlMBL.Module
         public void Dispose()
         {
             itemDGV = null;
-            loadedNoter.Clear();
+            if (loadedNoter != null)
+            {
+                loadedNoter.Clear();
+            }
             loadedNoter = null;
         }
         #endregion
@@ -55,16 +58,37 @@ namespace IDCM.ControlMBL.Module
         /// <param name="slp"></param>
         private void showDataItems(StrainListPage slp)
         {
+            if (slp == null || slp.list==null)
+                return;
             foreach (Dictionary<string, string> valMap in slp.list)
             {
+                //add valMap note Tag into loadedNoter Map
+                int dgvrIdx=-1;
+                loadedNoter.TryGetValue(valMap["id"],out dgvrIdx);
+                if (dgvrIdx < 0)
+                {
+                    dgvrIdx=itemDGV.Rows.Add();
+                }
                 foreach (KeyValuePair<string, string> entry in valMap)
                 {
                     //if itemDGV not contains Column of entry.key
                     //   add Column named with entry.key
                     //then merge data into itemDGV View.
                     //(if this valMap has exist in loadedNoter Map use Update Method else is append Method.) 
+                    if (!itemDGV.Columns.Contains(entry.Key))
+                    {
+                        DataGridViewTextBoxColumn dgvtbc = new DataGridViewTextBoxColumn();
+                        dgvtbc.Name = entry.Key;
+                        dgvtbc.HeaderText = entry.Key;
+                        dgvtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+                        itemDGV.Columns.Add(dgvtbc);
+                    }
+                    DataGridViewCell dgvc = itemDGV.Rows[dgvrIdx].Cells[entry.Key];
+                    if(dgvc!=null)
+                    {
+                        dgvc.Value = entry.Value;
+                    }
                 }
-                //add valMap note Tag into loadedNoter Map
             }
         }
         /// <summary>
