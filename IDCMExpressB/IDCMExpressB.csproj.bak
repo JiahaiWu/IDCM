@@ -292,9 +292,7 @@
     <EmbeddedResource Include="ViewLL\Win\ExportTypeDlg.resx">
       <DependentUpon>ExportTypeDlg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewLL\Win\GCMFrontFindDlg.resx">
-	  <DependentUpon>GCMFrontFindDlg.cs</DependentUpon>
-	</EmbeddedResource>
+    <EmbeddedResource Include="ViewLL\Win\GCMFrontFindDlg.resx" />
     <EmbeddedResource Include="ViewLL\Win\LocalFrontFindDlg.resx">
       <DependentUpon>LocalFrontFindDlg.cs</DependentUpon>
     </EmbeddedResource>
