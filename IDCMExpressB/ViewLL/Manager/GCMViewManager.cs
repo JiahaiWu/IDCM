@@ -8,6 +8,8 @@ using IDCM.ViewLL.Win;
 using IDCM.ControlMBL.Module;
 using IDCM.ControlMBL.Utilities;
 using IDCM.SimpleDAL.POO;
+using IDCM.ServiceBL.CmdChannel;
+using IDCM.ServiceBL.Handle;
 
 namespace IDCM.ViewLL.Manager
 {
@@ -23,7 +25,7 @@ namespace IDCM.ViewLL.Manager
             frontFindDlg.cancelCellHit += new GCMFrontFindDlg.CancelHit<DataGridViewCell>(DGVUtil.cancelDGVCellHit);
             LongTermHandleNoter.note(frontFindDlg);
             gcmView.setManager(this);
-            recBuilder = new GCMRecordBuilder(gcmView.getRecordTab());
+            recBuilder = new GCMRecordBuilder(gcmView.getRecordTree(),gcmView.getRecordList());
             datasetBuilder = new GCMDataSetBuilder(gcmView.getItemGridView());
             searchBuilder = new GCMSearchBuilder(gcmView.getSearchPanel(), gcmView.getSearchSpliter());
             BackProgressIndicator.addIndicatorBar(gcmView.getProgressBar());//有待完善
@@ -93,7 +95,7 @@ namespace IDCM.ViewLL.Manager
                 gcmView = new GCMView();
                 LongTermHandleNoter.note(gcmView);
                 gcmView.setManager(this);
-                recBuilder = new GCMRecordBuilder(gcmView.getRecordTab());
+                recBuilder = new GCMRecordBuilder(gcmView.getRecordTree(), gcmView.getRecordList());
                 datasetBuilder = new GCMDataSetBuilder(gcmView.getItemGridView());
                 searchBuilder = new GCMSearchBuilder(gcmView.getSearchPanel(), gcmView.getSearchSpliter());
             }
@@ -158,7 +160,9 @@ namespace IDCM.ViewLL.Manager
         /// </summary>
         public void loadDataSetView()
         {
-            datasetBuilder.loadDataSetView();
+            LoadGCMDataHandler lgdh = new LoadGCMDataHandler(gcmView.getItemGridView(), gcmView.getRecordTree(), gcmView.getRecordList(), datasetBuilder.getLoadedNoter());
+            CmdConsole.call(lgdh, CmdConsole.CmdReqOption.L);
+            ////datasetBuilder.loadDataSetView();
         }
         /// <summary>
         /// 更新具体记录的显示

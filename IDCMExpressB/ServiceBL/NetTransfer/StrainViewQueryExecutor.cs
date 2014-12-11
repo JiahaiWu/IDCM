@@ -12,10 +12,10 @@ using IDCM.ViewLL.Manager;
 
 namespace IDCM.ServiceBL.NetTransfer
 {
-    class StrainViewQueryExecutor
+    public class StrainViewQueryExecutor
     {
 
-        public static StrainView strainListQuery(string id, int timeout = 10000)
+        public static StrainView strainViewQuery(string id, int timeout = 10000)
         {
             AuthInfo authInfo = AuthenticationRetainer.getInstance().getLoginAuthInfo();
             if (authInfo != null && id != null)
@@ -39,7 +39,7 @@ namespace IDCM.ServiceBL.NetTransfer
                 myStreamReader.Close();
                 myResponseStream.Close();
                 log.Info("StrainViewQueryExecutor Response=" + resStr);
-                StrainView sv = parserToListPageInfo(resStr);
+                StrainView sv = parserToViewPageInfo(resStr);
                 if (sv != null)
                 {
                     sv.Jsessionid = authInfo.Jsessionid;
@@ -49,7 +49,7 @@ namespace IDCM.ServiceBL.NetTransfer
             return null;
         }
 
-        protected static StrainView parserToListPageInfo(string jsonStr)
+        protected static StrainView parserToViewPageInfo(string jsonStr)
         {
             StrainView sv = JsonConvert.DeserializeObject<StrainView>(jsonStr);
             return sv;

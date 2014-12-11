@@ -35,9 +35,25 @@ namespace IDCM.ViewLL.Win
         {
             return this.dataGridView_items;
         }
-        public TabControl getRecordTab()
+        public SplitContainer getRightSpliterContainer()
         {
-            return this.tabControl_rec;
+            return this.splitContainer_right;
+        }
+        public SplitContainer getMainSpliterContainer()
+        {
+            return this.splitContainer_main;
+        }
+        public SplitContainer getLeftSpliterContainer()
+        {
+            return this.splitContainer_left;
+        }
+        public TreeView getRecordTree()
+        {
+            return this.treeView_record;
+        }
+        public ListView getRecordList()
+        {
+            return this.listView_record;
         }
         public void setManager(GCMViewManager manager)
         {

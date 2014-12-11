@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IDCM.ServiceBL.Common
 {
-    class StrainView:Dictionary<string,string>
+    public class StrainView:Dictionary<string,string>
     {
         public string Jsessionid { get; set; }
     }
