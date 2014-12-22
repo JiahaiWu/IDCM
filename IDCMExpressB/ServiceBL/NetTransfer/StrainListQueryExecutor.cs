@@ -7,7 +7,7 @@ using System.IO;
 using System.Configuration;
 using Newtonsoft.Json;
 using IDCM.ViewLL.Manager;
-using IDCM.ServiceBL.Common;
+using IDCM.ServiceBL.Common.GCMStrainElement;
 using IDCM.SimpleDAL.POO;
 
 namespace IDCM.ServiceBL.NetTransfer

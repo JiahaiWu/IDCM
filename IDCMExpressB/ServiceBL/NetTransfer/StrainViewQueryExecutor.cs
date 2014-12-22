@@ -6,7 +6,7 @@ using System.Net;
 using System.IO;
 using System.Configuration;
 using Newtonsoft.Json;
-using IDCM.ServiceBL.Common;
+using IDCM.ServiceBL.Common.GCMStrainElement;
 using IDCM.SimpleDAL.POO;
 using IDCM.ViewLL.Manager;
 
@@ -20,7 +20,7 @@ namespace IDCM.ServiceBL.NetTransfer
             AuthInfo authInfo = AuthenticationRetainer.getInstance().getLoginAuthInfo();
             if (authInfo != null && id != null)
             {
-                string signInUri = ConfigurationManager.AppSettings["StrainListUri"];
+                string signInUri = ConfigurationManager.AppSettings["StrainViewUri"];
                 string url = string.Format(signInUri, new string[] { authInfo.Jsessionid,id});
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 log.Info("StrainViewQueryExecutor Request Url=" + url);

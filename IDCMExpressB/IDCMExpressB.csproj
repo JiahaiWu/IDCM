@@ -128,6 +128,7 @@
     <Compile Include="ControlMBL\AsyncInvoker\DateTimePikcerAsyncUtil.cs" />
     <Compile Include="ControlMBL\AsyncInvoker\DGVAsyncUtil.cs" />
     <Compile Include="ControlMBL\AsyncInvoker\ToolStripItemAsyncUtil.cs" />
+    <Compile Include="ControlMBL\AsyncInvoker\TreeViewAsyncUtil.cs" />
     <Compile Include="ControlMBL\Module\BackProgressIndicator.cs" />
     <Compile Include="ControlMBL\Module\FrontProgressPrompt.cs" />
     <Compile Include="ControlMBL\Module\GCMDataSetBuilder.cs" />
@@ -163,9 +164,9 @@
     <Compile Include="ServiceBL\Common\Converter\StrViewConverter.cs" />
     <Compile Include="ServiceBL\Common\ExportType.cs" />
     <Compile Include="ServiceBL\Common\HandleToken.cs" />
-    <Compile Include="ServiceBL\Common\StrainListPage.cs" />
+    <Compile Include="ServiceBL\Common\GCMStrainElement\StrainListPage.cs" />
     <Compile Include="ServiceBL\Common\ObjectPair.cs" />
-    <Compile Include="ServiceBL\Common\StrainView.cs" />
+    <Compile Include="ServiceBL\Common\GCMStrainElement\StrainView.cs" />
     <Compile Include="ServiceBL\Common\StringSimilarity.cs" />
     <Compile Include="ServiceBL\DataTransfer\ColumnMappingHolder.cs" />
     <Compile Include="ServiceBL\DataTransfer\CTableSetting.cs" />

@@ -32,6 +32,28 @@ namespace IDCM.ControlMBL.AsyncInvoker
             }));
         }
         /// <summary>
+        /// 为指定的DataGridView指定行索引数处实现异步的数据行插入操作
+        /// </summary>
+        /// <param name="dgv"></param>
+        /// <param name="cellvals"></param>
+        /// <param name="rowIdx"></param>
+        public static void syncAddRow(DataGridView dgv, string[] cellvals,int rowIdx)
+        {
+            DataGridViewRow dgvr = new DataGridViewRow();
+            ControlAsyncUtil.SyncInvoke(dgv, new ControlAsyncUtil.InvokeHandler(delegate()
+            {
+                if (cellvals != null)
+                {
+                    dgvr.CreateCells(dgv, cellvals);
+                }
+                else
+                {
+                    dgvr.CreateCells(dgv);
+                }
+                dgv.Rows.InsertRange(rowIdx, dgvr);
+            }));
+        }
+        /// <summary>
         /// 为指定的DataGridView实现异步的移除数据行操作
         /// </summary>
         /// <param name="dgv"></param>

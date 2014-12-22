@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using IDCM.ServiceBL.Common;
+using IDCM.ServiceBL.Common.GCMStrainElement;
 using System.Windows.Forms;
+using IDCM.ControlMBL.AsyncInvoker;
 
 namespace IDCM.ServiceBL.NetTransfer
 {
@@ -39,14 +40,24 @@ namespace IDCM.ServiceBL.NetTransfer
         {
             if (slp == null || slp.list == null)
                 return;
+            if (!itemDGV.Columns.Contains("id"))
+            {
+                DataGridViewTextBoxColumn dgvtbc = new DataGridViewTextBoxColumn();
+                dgvtbc.Name = "id";
+                dgvtbc.HeaderText = "id";
+                dgvtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+                DGVAsyncUtil.syncAddCol(itemDGV, dgvtbc);  ///itemDGV.Columns.Add(dgvtbc);
+            }
             foreach (Dictionary<string, string> valMap in slp.list)
             {
                 //add valMap note Tag into loadedNoter Map
                 int dgvrIdx = -1;
                 loadedNoter.TryGetValue(valMap["id"], out dgvrIdx);
-                if (dgvrIdx < 0)
+                if (dgvrIdx <= 0)
                 {
-                    dgvrIdx = itemDGV.Rows.Add();
+                    dgvrIdx = itemDGV.RowCount;
+                    DGVAsyncUtil.syncAddRow(itemDGV, null, dgvrIdx); //dgvrIdx = itemDGV.Rows.Add();
+                    loadedNoter.Add(valMap["id"], dgvrIdx);
                 }
                 foreach (KeyValuePair<string, string> entry in valMap)
                 {
@@ -60,12 +71,12 @@ namespace IDCM.ServiceBL.NetTransfer
                         dgvtbc.Name = entry.Key;
                         dgvtbc.HeaderText = entry.Key;
                         dgvtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-                        itemDGV.Columns.Add(dgvtbc);
+                        DGVAsyncUtil.syncAddCol(itemDGV, dgvtbc);  ///itemDGV.Columns.Add(dgvtbc);
                     }
                     DataGridViewCell dgvc = itemDGV.Rows[dgvrIdx].Cells[entry.Key];
                     if (dgvc != null)
                     {
-                        dgvc.Value = entry.Value;
+                        DGVAsyncUtil.syncValue(itemDGV, dgvc, entry.Value);  ////dgvc.Value = entry.Value;
                     }
                 }
             }
@@ -93,12 +104,25 @@ namespace IDCM.ServiceBL.NetTransfer
         {
             if (sv == null)
                 return;
-            foreach (KeyValuePair<string, string> svEntry in sv)
+            foreach (KeyValuePair<string, object> svEntry in sv.ToDictionary())
             {
                 TreeNode node = new TreeNode(svEntry.Key);
                 node.Name = svEntry.Key;
-                node.Tag = svEntry.Value;
-                recordTree.Nodes.Add(node);
+                if (svEntry.Value is string)
+                {
+                    node.Tag = svEntry.Value;
+                }
+                else if (svEntry.Value is Dictionary<string, dynamic>)
+                {
+                    foreach (KeyValuePair<string, dynamic> subEntry in svEntry.Value as Dictionary<string, dynamic>)
+                    {
+                        TreeNode subNode = new TreeNode(subEntry.Key);
+                        subNode.Name = subEntry.Key;
+                        subNode.Tag =Convert.ToString(subEntry.Value);
+                        node.Nodes.Add(subNode);
+                    }
+                }
+                TreeViewAsyncUtil.syncAddNode(recordTree, node); //recordTree.Nodes.Add(node);
             }
         }
     }
