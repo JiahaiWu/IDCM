@@ -19,6 +19,7 @@ namespace IDCM.ServiceBL.NetTransfer
                 string signInUri = ConfigurationManager.AppSettings["SignInUri"];
                 string url = string.Format(signInUri, new string[] { username, password });
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                log.Info("SignInExecutor Request Url=" + url);
                 request.Method = "POST";
                 request.ContentType = "application/x-www-form-urlencoded";
                 request.Accept = "*/*";
@@ -33,6 +34,7 @@ namespace IDCM.ServiceBL.NetTransfer
                 string resStr = myStreamReader.ReadToEnd();
                 myStreamReader.Close();
                 myResponseStream.Close();
+                log.Info("SignInExecutor Response=" + resStr);
                 AuthInfo auth= parserToAuthInfo(resStr);
                 if (auth != null)
                 {
@@ -59,5 +61,6 @@ namespace IDCM.ServiceBL.NetTransfer
             public string loginFlag { get; set; }
             public string jsessionid { get; set; }
         }
+        private static NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
     }
 }

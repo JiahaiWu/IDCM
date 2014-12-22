@@ -7,7 +7,7 @@ using System.IO;
 using System.Configuration;
 using Newtonsoft.Json;
 using IDCM.ViewLL.Manager;
-using IDCM.ServiceBL.Common;
+using IDCM.ServiceBL.Common.GCMStrainElement;
 using IDCM.SimpleDAL.POO;
 
 namespace IDCM.ServiceBL.NetTransfer
@@ -18,11 +18,12 @@ namespace IDCM.ServiceBL.NetTransfer
         public static StrainListPage strainListQuery(int currentPage, string strainnumber = "", string strainname = "", int timeout = 10000)
         {
             AuthInfo authInfo = AuthenticationRetainer.getInstance().getLoginAuthInfo();
-            if (authInfo != null && currentPage != null)
+            if (authInfo != null && currentPage >=0)
             {
                 string signInUri = ConfigurationManager.AppSettings["StrainListUri"];
                 string url = string.Format(signInUri, new object[] { authInfo.Jsessionid, currentPage, strainnumber, strainname });
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                log.Info("StrainListQueryExecutor Request Url=" + url);
                 request.Method = "POST";
                 request.ContentType = "application/x-www-form-urlencoded";
                 request.Accept = "*/*";
@@ -37,6 +38,7 @@ namespace IDCM.ServiceBL.NetTransfer
                 string resStr = myStreamReader.ReadToEnd();
                 myStreamReader.Close();
                 myResponseStream.Close();
+                log.Info("StrainListQueryExecutor Response=" + resStr);
                 StrainListPage slp = parserToListPageInfo(resStr);
                 if (slp != null)
                 {
@@ -52,5 +54,6 @@ namespace IDCM.ServiceBL.NetTransfer
             StrainListPage slp = JsonConvert.DeserializeObject<StrainListPage>(jsonStr);
             return slp;
         }
+        private static NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
     }
 }

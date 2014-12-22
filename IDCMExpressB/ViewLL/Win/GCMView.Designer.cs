@@ -89,11 +89,9 @@
             this.comboBox_attr6 = new System.Windows.Forms.ComboBox();
             this.comboBox_comd6 = new System.Windows.Forms.ComboBox();
             this.dataGridView_items = new System.Windows.Forms.DataGridView();
-            this.tabControl_rec = new System.Windows.Forms.TabControl();
-            this.tabPage_tree = new System.Windows.Forms.TabPage();
-            this.treeView_item = new System.Windows.Forms.TreeView();
-            this.tabPage_list = new System.Windows.Forms.TabPage();
-            this.listView_item = new System.Windows.Forms.ListView();
+            this.splitContainer_right = new System.Windows.Forms.SplitContainer();
+            this.listView_record = new System.Windows.Forms.ListView();
+            this.treeView_record = new System.Windows.Forms.TreeView();
             this.statusStrip_bottom.SuspendLayout();
             this.toolStrip_gcm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer_main)).BeginInit();
@@ -113,9 +111,10 @@
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_items)).BeginInit();
-            this.tabControl_rec.SuspendLayout();
-            this.tabPage_tree.SuspendLayout();
-            this.tabPage_list.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer_right)).BeginInit();
+            this.splitContainer_right.Panel1.SuspendLayout();
+            this.splitContainer_right.Panel2.SuspendLayout();
+            this.splitContainer_right.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip_bottom
@@ -273,7 +272,7 @@
             // 
             // splitContainer_main.Panel2
             // 
-            this.splitContainer_main.Panel2.Controls.Add(this.tabControl_rec);
+            this.splitContainer_main.Panel2.Controls.Add(this.splitContainer_right);
             this.splitContainer_main.Size = new System.Drawing.Size(920, 480);
             this.splitContainer_main.SplitterDistance = 620;
             this.splitContainer_main.TabIndex = 2;
@@ -757,58 +756,43 @@
             this.dataGridView_items.Size = new System.Drawing.Size(620, 241);
             this.dataGridView_items.TabIndex = 0;
             // 
-            // tabControl_rec
+            // splitContainer_right
             // 
-            this.tabControl_rec.Controls.Add(this.tabPage_tree);
-            this.tabControl_rec.Controls.Add(this.tabPage_list);
-            this.tabControl_rec.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl_rec.Location = new System.Drawing.Point(0, 0);
-            this.tabControl_rec.Margin = new System.Windows.Forms.Padding(0);
-            this.tabControl_rec.Name = "tabControl_rec";
-            this.tabControl_rec.SelectedIndex = 0;
-            this.tabControl_rec.Size = new System.Drawing.Size(296, 480);
-            this.tabControl_rec.TabIndex = 0;
+            this.splitContainer_right.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer_right.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer_right.Margin = new System.Windows.Forms.Padding(0);
+            this.splitContainer_right.Name = "splitContainer_right";
+            this.splitContainer_right.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // tabPage_tree
+            // splitContainer_right.Panel1
             // 
-            this.tabPage_tree.Controls.Add(this.treeView_item);
-            this.tabPage_tree.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_tree.Name = "tabPage_tree";
-            this.tabPage_tree.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_tree.Size = new System.Drawing.Size(288, 454);
-            this.tabPage_tree.TabIndex = 0;
-            this.tabPage_tree.Text = "TreeView";
-            this.tabPage_tree.UseVisualStyleBackColor = true;
+            this.splitContainer_right.Panel1.Controls.Add(this.listView_record);
             // 
-            // treeView_item
+            // splitContainer_right.Panel2
             // 
-            this.treeView_item.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView_item.Location = new System.Drawing.Point(3, 3);
-            this.treeView_item.Margin = new System.Windows.Forms.Padding(0);
-            this.treeView_item.Name = "treeView_item";
-            this.treeView_item.Size = new System.Drawing.Size(282, 448);
-            this.treeView_item.TabIndex = 0;
+            this.splitContainer_right.Panel2.Controls.Add(this.treeView_record);
+            this.splitContainer_right.Size = new System.Drawing.Size(296, 480);
+            this.splitContainer_right.SplitterDistance = 98;
+            this.splitContainer_right.TabIndex = 0;
             // 
-            // tabPage_list
+            // listView_record
             // 
-            this.tabPage_list.Controls.Add(this.listView_item);
-            this.tabPage_list.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_list.Name = "tabPage_list";
-            this.tabPage_list.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_list.Size = new System.Drawing.Size(288, 454);
-            this.tabPage_list.TabIndex = 1;
-            this.tabPage_list.Text = "ListView";
-            this.tabPage_list.UseVisualStyleBackColor = true;
+            this.listView_record.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView_record.Location = new System.Drawing.Point(0, 0);
+            this.listView_record.Margin = new System.Windows.Forms.Padding(0);
+            this.listView_record.Name = "listView_record";
+            this.listView_record.Size = new System.Drawing.Size(296, 98);
+            this.listView_record.TabIndex = 0;
+            this.listView_record.UseCompatibleStateImageBehavior = false;
             // 
-            // listView_item
+            // treeView_record
             // 
-            this.listView_item.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView_item.Location = new System.Drawing.Point(3, 3);
-            this.listView_item.Margin = new System.Windows.Forms.Padding(0);
-            this.listView_item.Name = "listView_item";
-            this.listView_item.Size = new System.Drawing.Size(282, 448);
-            this.listView_item.TabIndex = 0;
-            this.listView_item.UseCompatibleStateImageBehavior = false;
+            this.treeView_record.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView_record.Location = new System.Drawing.Point(0, 0);
+            this.treeView_record.Margin = new System.Windows.Forms.Padding(0);
+            this.treeView_record.Name = "treeView_record";
+            this.treeView_record.Size = new System.Drawing.Size(296, 378);
+            this.treeView_record.TabIndex = 0;
             // 
             // GCMView
             // 
@@ -850,9 +834,10 @@
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_items)).EndInit();
-            this.tabControl_rec.ResumeLayout(false);
-            this.tabPage_tree.ResumeLayout(false);
-            this.tabPage_list.ResumeLayout(false);
+            this.splitContainer_right.Panel1.ResumeLayout(false);
+            this.splitContainer_right.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer_right)).EndInit();
+            this.splitContainer_right.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -918,12 +903,10 @@
         private System.Windows.Forms.ComboBox comboBox_attr6;
         private System.Windows.Forms.ComboBox comboBox_comd6;
         private System.Windows.Forms.DataGridView dataGridView_items;
-        private System.Windows.Forms.TabControl tabControl_rec;
-        private System.Windows.Forms.TabPage tabPage_tree;
-        private System.Windows.Forms.TabPage tabPage_list;
-        private System.Windows.Forms.TreeView treeView_item;
-        private System.Windows.Forms.ListView listView_item;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.SplitContainer splitContainer_right;
+        private System.Windows.Forms.ListView listView_record;
+        private System.Windows.Forms.TreeView treeView_record;
     }
 }

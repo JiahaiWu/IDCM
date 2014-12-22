@@ -128,6 +128,7 @@
     <Compile Include="ControlMBL\AsyncInvoker\DateTimePikcerAsyncUtil.cs" />
     <Compile Include="ControlMBL\AsyncInvoker\DGVAsyncUtil.cs" />
     <Compile Include="ControlMBL\AsyncInvoker\ToolStripItemAsyncUtil.cs" />
+    <Compile Include="ControlMBL\AsyncInvoker\TreeViewAsyncUtil.cs" />
     <Compile Include="ControlMBL\Module\BackProgressIndicator.cs" />
     <Compile Include="ControlMBL\Module\FrontProgressPrompt.cs" />
     <Compile Include="ControlMBL\Module\GCMDataSetBuilder.cs" />
@@ -163,9 +164,9 @@
     <Compile Include="ServiceBL\Common\Converter\StrViewConverter.cs" />
     <Compile Include="ServiceBL\Common\ExportType.cs" />
     <Compile Include="ServiceBL\Common\HandleToken.cs" />
-    <Compile Include="ServiceBL\Common\StrainListPage.cs" />
+    <Compile Include="ServiceBL\Common\GCMStrainElement\StrainListPage.cs" />
     <Compile Include="ServiceBL\Common\ObjectPair.cs" />
-    <Compile Include="ServiceBL\Common\StrainView.cs" />
+    <Compile Include="ServiceBL\Common\GCMStrainElement\StrainView.cs" />
     <Compile Include="ServiceBL\Common\StringSimilarity.cs" />
     <Compile Include="ServiceBL\DataTransfer\ColumnMappingHolder.cs" />
     <Compile Include="ServiceBL\DataTransfer\CTableSetting.cs" />
@@ -178,12 +179,14 @@
     <Compile Include="ServiceBL\Handle\ExcelExportHandler.cs" />
     <Compile Include="ServiceBL\Handle\ExcelImportHandler.cs" />
     <Compile Include="ServiceBL\Handle\JSONListExportHandler.cs" />
+    <Compile Include="ServiceBL\Handle\LoadGCMDataHandler.cs" />
     <Compile Include="ServiceBL\Handle\LocalHandlerProxy.cs" />
     <Compile Include="ServiceBL\Handle\SelectDataRowHandler.cs" />
     <Compile Include="ServiceBL\Handle\TextExportHandler.cs" />
     <Compile Include="ServiceBL\Handle\UpdateHomeDataViewHandler.cs" />
     <Compile Include="ServiceBL\Handle\UpdateHomeLibCountHandler.cs" />
     <Compile Include="ServiceBL\Handle\UpdateTemplateHandler.cs" />
+    <Compile Include="ServiceBL\NetTransfer\GCMDataLoader.cs" />
     <Compile Include="ServiceBL\NetTransfer\SignInExecutor.cs" />
     <Compile Include="ServiceBL\NetTransfer\StrainListQueryExecutor.cs" />
     <Compile Include="ServiceBL\NetTransfer\StrainViewQueryExecutor.cs" />
@@ -316,8 +319,8 @@
       <DependentUpon>ExportTypeDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewLL\Win\GCMFrontFindDlg.resx">
-	  <DependentUpon>GCMFrontFindDlg.cs</DependentUpon>
-	</EmbeddedResource>
+      <DependentUpon>GCMFrontFindDlg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewLL\Win\LocalFrontFindDlg.resx">
       <DependentUpon>LocalFrontFindDlg.cs</DependentUpon>
     </EmbeddedResource>
