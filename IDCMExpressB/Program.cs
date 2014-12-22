@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using IDCM.AppContext;
-
+/********************************
+ * Individual Data Center of Microbial resources (IDCM)
+ * A desktop software package for microbial resources researchers.
+ * 
+ * Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+ * 
+ * @Contact NO.1 Beichen West Road, Chaoyang District, Beijing 100101, Email: office@im.ac.cn
+ */
 namespace IDCM
 {
     static class Program
@@ -18,24 +25,39 @@ namespace IDCM
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                string ws = null;
-                if (args.Length > 0)
-                {
-                    for (int i = 0; i < args.Length - 1; i++)
-                    {
-                        if (args[i].Equals("-ws"))
-                        {
-                            ws = args[i + 1].Trim(new char[] { '"' });
-                        }
-                    }
-                }
-                Application.Run(new IDCMAppContext(ws));
+                dynamic xargs = commandArgScreening(args);
+                Application.Run(new IDCMAppContext(xargs));
             }
             catch (Exception ex)
             {
-                MessageBox.Show("FATAL!" + ex.Message + "\n" + ex.StackTrace);
+#if DEBUG
+                MessageBox.Show("It's Crash! \n FATAL ERROR:" + ex.Message + "\n" + ex.StackTrace);
+#endif
                 log.Info("FATAL!", ex);
             }
+        }
+        /// <summary>
+        /// 控制台请求参数初筛，
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        private static dynamic commandArgScreening(string[] args)
+        {
+            string ws = null;
+#if DEBUG
+            System.Diagnostics.Debug.Assert(args != null);
+#endif
+            if (args.Length > 0)
+            {
+                for (int i = 0; i < args.Length - 1; i++)
+                {
+                    if (args[i].Equals("-ws"))
+                    {
+                        ws = args[i + 1].Trim(new char[] { '"' });
+                    }
+                }
+            }
+            return ws;
         }
 
         private static NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
