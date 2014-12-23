@@ -16,8 +16,25 @@ namespace IDCM
     static class Program
     {
         /// <summary>
-        /// 应用程序的主入口点。
+        /// IDCM应用程序的主入口点。
+        /// 说明：
+        /// 1.应用程序支持参数请求，请求格式为 IDCM.exe [-Option1 arg1] [-Option2 arg2] ...，目前支持项有
+        ///   1） -ws ${worksSpacePath}
+        /// 2.组件依赖主要包括
+        ///   1）.Net framework 4.0
+        ///   2）Nlog
+        ///   3）NPOI
+        ///   4) SQLite
+        ///   5) Dapper
+        ///   6) Newtonsoft.Json
+        ///   7) CSharpTest.Net.Libray
+        ///   8) Nuit
+        /// 注意：
+        /// 无效参数请求将被忽略处理，参数选项开关大小写敏感。
+        /// 
+        /// @author JiahaiWu
         /// </summary>
+        /// <param name="args">应用命令调用请求附加参数</param>
         [STAThread]
         static void Main(string[] args)
         {
@@ -37,10 +54,10 @@ namespace IDCM
             }
         }
         /// <summary>
-        /// 控制台请求参数初筛，
+        /// 控制台请求参数初筛
         /// </summary>
-        /// <param name="args"></param>
-        /// <returns></returns>
+        /// <param name="args">应用程序启动时命令行参数</param>
+        /// <returns>返回过滤后的“有效”命令行参数表达</returns>
         private static dynamic commandArgScreening(string[] args)
         {
             string ws = null;

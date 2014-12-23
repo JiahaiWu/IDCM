@@ -54,9 +54,7 @@ namespace IDCM.AppContext
                 //检查目标工作空间的文档是否已占用，如果被占用则执行退出操作;
                 WorkSpaceHolder.checkWorkSpaceSingleton(workspacePath);
 
-                // Create both application forms and handle the Closed event
-                // to know when both forms are closed.
-                //Form startForm = new StartForm(workspacePath);
+                // Create main application form and active the initForm method
                 mainManger = new IDCMFormManger();
                 mainManger.initForm(true);
                 LongTermHandleNoter.checkForIdle();

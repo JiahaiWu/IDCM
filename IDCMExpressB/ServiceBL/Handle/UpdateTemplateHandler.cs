@@ -9,7 +9,14 @@ using System.Windows.Forms;
 using IDCM.ViewLL.Manager;
 using IDCM.AppContext;
 using IDCM.ControlMBL.Module;
-
+/********************************
+ * Individual Data Center of Microbial resources (IDCM)
+ * A desktop software package for microbial resources researchers.
+ * 
+ * Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+ * 
+ * @Contact NO.1 Beichen West Road, Chaoyang District, Beijing 100101, Email: office@im.ac.cn
+ */
 namespace IDCM.ServiceBL.Handle
 {
     class UpdateTemplateHandler:AbsHandler
